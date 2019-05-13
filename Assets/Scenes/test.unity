@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellSize: {x: 1.5625, y: 1.5625}
   originCol: 5
-  originRow: 4
+  originRow: 3
   numCol: 11
   numRow: 9
 --- !u!1 &1114846685
@@ -263,7 +263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114846685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.25, y: 4.6875, z: 0}
+  m_LocalPosition: {x: -1.5625, y: 1.5625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 907688581}
@@ -281,7 +281,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198717a6a6b0558478b9929032c1efc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flagDisplays: []
+  isWallN: 0
+  isWallE: 0
+  isWallS: 0
+  isWallW: 0
+  isPit: 0
+  isGoal: 0
+  displayRoot: {fileID: 0}
+  pitGO: {fileID: 0}
+  goalGO: {fileID: 0}
+  _col: 4
+  _row: 5
 --- !u!1001 &1974861614
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,30 +4,74 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 public class LevelTile : MonoBehaviour {
-    [System.Flags]
-    public enum Flag {
-        None = 0x0,
-        WallN = 0x1,
-        WallE = 0x2,
-        WallS = 0x4,
-        WallW = 0x8,
-        Pit = 0x10,
-        Goal = 0x20
+    [Header("Flags")]
+    public bool isWallN;
+    public bool isWallE;
+    public bool isWallS;
+    public bool isWallW;
+
+    public bool isPit;
+    public bool isGoal;
+
+    [Header("Displays")]
+    public Transform displayRoot;
+    public GameObject pitGO;
+    public GameObject goalGO;
+
+    public LevelGrid levelGrid {
+        get {
+            if(!mLevelGrid)
+                mLevelGrid = transform.parent ? transform.parent.GetComponent<LevelGrid>() : null;
+            return mLevelGrid;
+        }
     }
 
-    public GameObject[] flagDisplays;
+    public int col { get { return _col; } }
+    public int row { get { return _row; } }
+
+    [HideInInspector]
+    [SerializeField]
+    int _col = -1;
+    [SerializeField]
+    [HideInInspector]
+    int _row = -1;
+
+    private LevelGrid mLevelGrid;
 
 #if UNITY_EDITOR
     void Update() {
         if(!Application.isPlaying) {
             //snap to cell if parent is level grid
-            var levelGrid = transform.parent ? transform.parent.GetComponent<LevelGrid>() : null;
             if(levelGrid) {
-                int r, c;
-                if(levelGrid.GetCellIndexLocal(transform.localPosition, out c, out r))
-                    transform.position = levelGrid.GetCellPosition(c, r);
+                if(levelGrid.GetCellIndexLocal(transform.localPosition, out _col, out _row))
+                    transform.position = levelGrid.GetCellPosition(_col, _row);
             }
         }
     }
 #endif
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.white;
+
+        const float lineThickness = 0.15f;
+
+        if(levelGrid) {
+            var cellSize = levelGrid.cellSize;
+            var hCellSize = cellSize * 0.5f;
+
+            var pos = transform.position;
+            //var min = new Vector2(pos.x - hCellSize.x, pos.y - hCellSize.y);
+            //var max = new Vector2(pos.x + hCellSize.x, pos.y + hCellSize.y);
+
+            //walls
+            if(isWallN)
+                Gizmos.DrawCube(new Vector3(pos.x, pos.y + hCellSize.y - lineThickness * 0.5f, 0f), new Vector3(cellSize.x, lineThickness));
+            if(isWallS)
+                Gizmos.DrawCube(new Vector3(pos.x, pos.y - hCellSize.y + lineThickness * 0.5f, 0f), new Vector3(cellSize.x, lineThickness));
+            if(isWallE)
+                Gizmos.DrawCube(new Vector3(pos.x + hCellSize.x - lineThickness * 0.5f, pos.y, 0f), new Vector3(lineThickness, cellSize.y));
+            if(isWallW)
+                Gizmos.DrawCube(new Vector3(pos.x - hCellSize.x + lineThickness * 0.5f, pos.y, 0f), new Vector3(lineThickness, cellSize.y));
+        }
+    }
 }
