@@ -21,13 +21,21 @@ public class LevelTile : MonoBehaviour {
     public LevelGrid levelGrid {
         get {
             if(!mLevelGrid)
-                mLevelGrid = transform.parent ? transform.parent.GetComponent<LevelGrid>() : null;
+                mLevelGrid = transform.parent ? GetComponentInParent<LevelGrid>() : null;
             return mLevelGrid;
         }
     }
 
     public int col { get { return _col; } }
     public int row { get { return _row; } }
+
+    public CellIndex cellIndex {
+        get { return new CellIndex(_row, _col); }
+        set {
+            _col = value.col;
+            _row = value.row;
+        }
+    }
 
     [HideInInspector]
     [SerializeField]
@@ -43,7 +51,8 @@ public class LevelTile : MonoBehaviour {
         if(!Application.isPlaying) {
             //snap to cell if parent is level grid
             if(levelGrid) {
-                if(levelGrid.GetCellIndexLocal(transform.localPosition, out _col, out _row))
+                cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
+                if(cellIndex.isValid)
                     transform.position = levelGrid.GetCellPosition(_col, _row);
             }
         }

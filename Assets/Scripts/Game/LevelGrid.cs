@@ -10,6 +10,8 @@ public class LevelGrid : MonoBehaviour
     public int originRow = 2;
     public int numCol = 5;
     public int numRow = 5;
+    public Transform tilesRoot;
+    public Transform entitiesRoot;
 
     public Vector2 size { get { return new Vector2(numCol * cellSize.x, numRow * cellSize.y); } }
     public Vector2 extents { get { return new Vector2(numCol * cellSize.x * 0.5f, numRow * cellSize.y * 0.5f); } }
@@ -17,23 +19,21 @@ public class LevelGrid : MonoBehaviour
     public Vector2 max { get { return center + extents; } }
     public Vector2 center { get { return transform.position; } }
 
-    public LevelTile[][] tileCells {
+    public LevelTile[,] tileCells {
         get {
             if(mTileCells == null || mTileCells.GetLength(0) != numRow || mTileCells.GetLength(1) != numCol) {
                 if(mTiles == null)
-                    mTiles = GetComponentsInChildren<LevelTile>();
+                    mTiles = tilesRoot ? tilesRoot.GetComponentsInChildren<LevelTile>() : GetComponentsInChildren<LevelTile>();
 
-                mTileCells = new LevelTile[numRow][];
-                for(int r = 0; r < numRow; r++)
-                    mTileCells[r] = new LevelTile[numCol];
+                mTileCells = new LevelTile[numRow, numCol];
 
                 //go through tiles and place them
                 for(int i = 0; i < mTiles.Length; i++) {
                     var tile = mTiles[i];
 
-                    int col, row;
-                    if(GetCellIndexLocal(tile.transform.localPosition, out col, out row))
-                        mTileCells[row][col] = tile;
+                    var cellInd = GetCellIndexLocal(tile.transform.localPosition);
+                    if(cellInd.isValid)
+                        mTileCells[cellInd.row, cellInd.col] = tile;
                 }
             }
 
@@ -41,40 +41,90 @@ public class LevelGrid : MonoBehaviour
         }
     }
 
-    private LevelTile[][] mTileCells; //[row][col]
-    private LevelTile[] mTiles;
+    private LevelTile[,] mTileCells; //[row][col]
+    private LevelTile[] mTiles; //[row][col]
+
+    private const int entityListCapacity = 4;
+    private M8.CacheList<LevelEntity>[,] mEntityCells;
+
+    public M8.CacheList<LevelEntity> GetEntities(int col, int row) {
+        if(mEntityCells == null)
+            return null;
+
+        if(row < 0 || row >= mEntityCells.GetLength(0) || col < 0 || col >= mEntityCells.GetLength(1))
+            return null;
+
+        return mEntityCells[row, col];
+    }
+
+    public M8.CacheList<LevelEntity> GetEntities(CellIndex cellIndex) {
+        return GetEntities(cellIndex.col, cellIndex.row);
+    }
+
+    public M8.CacheList<LevelEntity> GetEntities(Vector2 pos) {
+        var cellIndex = GetCellIndex(pos);
+        return GetEntities(cellIndex.col, cellIndex.row);
+    }
+
+    public void AddEntity(LevelEntity ent) {
+        if(!ent)
+            return;
+
+        if(mEntityCells == null)
+            mEntityCells = new M8.CacheList<LevelEntity>[numRow, numCol];
+
+        var entCellInd = ent.cellIndex;
+        if(entCellInd.row >= 0 && entCellInd.row < mEntityCells.GetLength(0) && entCellInd.col >= 0 && entCellInd.col < mEntityCells.GetLength(1)) {
+            var entList = mEntityCells[entCellInd.row, entCellInd.col];
+            if(entList == null) {
+                mEntityCells[entCellInd.row, entCellInd.col] = entList = new M8.CacheList<LevelEntity>(entityListCapacity);
+                entList.Add(ent);
+            }
+            else if(!entList.Exists(ent))
+                entList.Add(ent);
+        }
+    }
+
+    public void RemoveEntity(LevelEntity ent) {
+        if(!ent)
+            return;
+
+        var entList = GetEntities(ent.cellIndex);
+        if(entList != null)
+            entList.Remove(ent);
+    }
 
     public LevelTile GetTile(Vector2 pos) {
-        int r, c;
-        if(GetCellIndex(pos, out c, out r))
-            return tileCells[r][c];
+        var cellInd = GetCellIndex(pos);
+        if(cellInd.isValid)
+            return tileCells[cellInd.row, cellInd.col];
 
         return null;
     }
 
     /// <summary>
-    /// Grab cell index based on given world position. Returns true if valid.
+    /// Grab cell index based on given world position.
     /// </summary>
-    public bool GetCellIndex(Vector2 pos, out int col, out int row) {
+    public CellIndex GetCellIndex(Vector2 pos) {
         Vector2 lpos = transform.worldToLocalMatrix.MultiplyPoint3x4(pos);
-        return GetCellIndexLocal(lpos, out col, out row);
+        return GetCellIndexLocal(lpos);
     }
 
     /// <summary>
-    /// Grab cell index based on given local position. Returns true if valid.
+    /// Grab cell index based on given local position.
     /// </summary>
-    public bool GetCellIndexLocal(Vector2 lpos, out int col, out int row) {
+    public CellIndex GetCellIndexLocal(Vector2 lpos) {
         lpos += extents;
 
-        col = Mathf.FloorToInt(lpos.x / cellSize.x);
+        int col = Mathf.FloorToInt(lpos.x / cellSize.x);
         if(col < 0 || col >= numCol)
             col = -1;
 
-        row = Mathf.FloorToInt(lpos.y / cellSize.y);
+        int row = Mathf.FloorToInt(lpos.y / cellSize.y);
         if(row < 0 || row >= numRow)
             row = -1;
 
-        return col != -1 && row != -1;
+        return new CellIndex(row, col);
     }
 
     /// <summary>
@@ -85,23 +135,10 @@ public class LevelGrid : MonoBehaviour
     }
 
     /// <summary>
-    /// Outputs index relative to origin's 
+    /// Grab center of cell position (world) based on given CellIndex.
     /// </summary>
-    public bool GetCellIndexFromOrigin(Vector2 pos, out int col, out int row) {
-        if(GetCellIndex(pos, out col, out row)) {
-            CellIndexToOrigin(ref col, ref row);
-            return true;
-        }
-
-        return false;
-    }
-
-    /// <summary>
-    /// Transform given indices to be relative to origin.
-    /// </summary>
-    public void CellIndexToOrigin(ref int col, ref int row) {
-        col -= originCol;
-        row -= originRow;
+    public Vector2 GetCellPosition(CellIndex cellIndex) {
+        return GetCellPosition(cellIndex.col, cellIndex.row);
     }
 
     void OnDrawGizmos() {
