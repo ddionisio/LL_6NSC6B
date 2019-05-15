@@ -46,7 +46,7 @@ public class LevelGrid : MonoBehaviour
 
     private const int entityListCapacity = 4;
     private M8.CacheList<LevelEntity>[,] mEntityCells;
-
+        
     public M8.CacheList<LevelEntity> GetEntities(int col, int row) {
         if(mEntityCells == null)
             return null;
@@ -99,6 +99,19 @@ public class LevelGrid : MonoBehaviour
         if(cellInd.isValid)
             return tileCells[cellInd.row, cellInd.col];
 
+        return null;
+    }
+
+    public LevelTile GetTile(CellIndex cellIndex) {
+        if(cellIndex.isValid)
+            return tileCells[cellIndex.row, cellIndex.col];
+
+        return null;
+    }
+
+    public LevelTile GetTile(int col, int row) {
+        if(row >= 0 && row < tileCells.GetLength(0) && col >= 0 && col < tileCells.GetLength(1))
+            return tileCells[row, col];
         return null;
     }
 

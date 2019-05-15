@@ -52,8 +52,7 @@ public class LevelEntityMoveDir : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn, I
                 return false;
 
             //check play mode
-
-            return true;
+            return PlayController.instance.curMode == PlayController.Mode.Editing;
         }
     }
 
@@ -65,9 +64,13 @@ public class LevelEntityMoveDir : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn, I
 
     private Coroutine mRout;
 
-    private LevelGrid mLevelGrid;
-
     public static bool CheckPlaceable(LevelGrid grid, CellIndex cellIndex) {
+        var tile = grid.GetTile(cellIndex);
+
+        //check tile, ensure it is blank
+        if(tile == null || !tile.isEmpty)
+            return false;
+
         var ents = grid.GetEntities(cellIndex);
 
         //check if there's an entity, if it's only one and it's another dir, then it is fine.
@@ -96,6 +99,9 @@ public class LevelEntityMoveDir : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn, I
     }
 
     void OnApplicationFocus(bool focus) {
+        if(!Application.isPlaying)
+            return;
+
         if(!focus)
             DragInvalidate();
     }
@@ -202,14 +208,16 @@ public class LevelEntityMoveDir : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn, I
     private void DragInvalidate() {
         mIsDragging = false;
 
-        displayColorGroup.Revert();
-        ghostColorGroup.Revert();
+        if(displayColorGroup) displayColorGroup.Revert();
+        if(ghostColorGroup) ghostColorGroup.Revert();
 
         ghostRoot.gameObject.SetActive(false);
     }
 
     private void DragBegin() {
         mIsDragging = true;
+
+        if(displayColorGroup) displayColorGroup.ApplyColor(displayColorDragging);
 
         if(highlightGO) highlightGO.SetActive(false);
 
@@ -237,10 +245,12 @@ public class LevelEntityMoveDir : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn, I
         }
 
         //check tile if placeable
-        if(mIsDraggingPlaceable)
-            ghostColorGroup.Revert();
-        else
-            ghostColorGroup.ApplyColor(ghostInvalidColor);
+        if(ghostColorGroup) {
+            if(mIsDraggingPlaceable)
+                ghostColorGroup.Revert();
+            else
+                ghostColorGroup.ApplyColor(ghostInvalidColor);
+        }
     }
 
     private void DragEnd() {

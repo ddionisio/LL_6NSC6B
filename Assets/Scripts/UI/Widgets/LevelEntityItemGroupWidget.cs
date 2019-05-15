@@ -64,7 +64,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
 
     private Coroutine mRout;
         
-    public void Init(LevelEntityItemGroupConfig.Data[] itemConfigs, LevelGrid levelGrid) {
+    public void Init(LevelItemData[] itemConfigs, LevelGrid levelGrid) {
         //init pool
         if(!mPool)
             mPool = M8.PoolController.CreatePool(poolGroup);
@@ -97,7 +97,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
             //instantiate item
             if(!item) {
                 item = Instantiate(itemConfig.template, itemsRoot);
-                item.name = itemConfig.template.name;
+                item.name = itemConfig.name;
             }
 
             item.Init(mPool, levelGrid, mCellHighlightRoot, itemConfig.count);
@@ -112,8 +112,8 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     }
 
     void OnDestroy() {
-        if(LevelPlayMode.isInstantiated)
-            LevelPlayMode.instance.modeChangedCallback -= OnModeChanged;
+        if(PlayController.isInstantiated)
+            PlayController.instance.modeChangedCallback -= OnModeChanged;
     }
 
     void Awake() {
@@ -124,17 +124,17 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
 
         if(animator && !string.IsNullOrEmpty(takeEnter)) animator.ResetTake(takeEnter);
 
-        LevelPlayMode.instance.modeChangedCallback += OnModeChanged;
+        PlayController.instance.modeChangedCallback += OnModeChanged;
     }
 
-    void OnModeChanged(LevelPlayMode.Mode mode) {
+    void OnModeChanged(PlayController.Mode mode) {
         switch(mode) {
-            case LevelPlayMode.Mode.Edit:
+            case PlayController.Mode.Editing:
                 curState = State.Shown;
                 break;
 
-            case LevelPlayMode.Mode.None:
-            case LevelPlayMode.Mode.Run:
+            case PlayController.Mode.None:
+            case PlayController.Mode.Running:
                 curState = State.Hidden;
                 break;
         }

@@ -37,6 +37,8 @@ public class LevelTile : MonoBehaviour {
         }
     }
 
+    public bool isEmpty { get { return !(isPit || isGoal); } }
+
     [HideInInspector]
     [SerializeField]
     int _col = -1;
