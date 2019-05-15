@@ -128,6 +128,13 @@ public class LevelGrid : MonoBehaviour
     }
 
     /// <summary>
+    /// Grab center of cell position (world) based on given pos (world). Basically snaps given pos
+    /// </summary>
+    public Vector2 GetCellPosition(Vector2 pos) {
+        return GetCellPosition(GetCellIndex(pos));
+    }
+
+    /// <summary>
     /// Grab center of cell position (world) based on given col and row.
     /// </summary>
     public Vector2 GetCellPosition(int col, int row) {

@@ -8,6 +8,10 @@ public struct CellIndex : IComparer, IComparer<CellIndex> {
 
     public bool isValid { get { return row >= 0 && col >= 0; } }
 
+    public void Invalidate() {
+        row = col = -1;
+    }
+
     public CellIndex(int aRow, int aCol) {
         row = aRow;
         col = aCol;

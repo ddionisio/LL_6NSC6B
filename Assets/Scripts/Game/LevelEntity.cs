@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class LevelEntity : MonoBehaviour, M8.IPoolSpawn, M8.IPoolSpawnComplete, M8.IPoolDespawn {
+public class LevelEntity : MonoBehaviour {
     [Header("Data")]
     public float zOfs = -0.01f;
 
@@ -23,12 +23,14 @@ public class LevelEntity : MonoBehaviour, M8.IPoolSpawn, M8.IPoolSpawnComplete, 
         set {
             if(_col != value.col || _row != value.row) {
                 //update reference in grid
-                levelGrid.RemoveEntity(this);
+                if(levelGrid)
+                    levelGrid.RemoveEntity(this);
 
                 _col = value.col;
                 _row = value.row;
 
-                levelGrid.AddEntity(this);
+                if(levelGrid)
+                    levelGrid.AddEntity(this);
             }
         }
     }
@@ -41,9 +43,8 @@ public class LevelEntity : MonoBehaviour, M8.IPoolSpawn, M8.IPoolSpawnComplete, 
                 transform.position = new Vector3(value.x, value.y, zOfs);
 
                 //update row and col
-                if(levelGrid) {
+                if(levelGrid)
                     cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
-                }
             }
         }
     }
@@ -58,25 +59,48 @@ public class LevelEntity : MonoBehaviour, M8.IPoolSpawn, M8.IPoolSpawnComplete, 
 
     [HideInInspector]
     [SerializeField]
-    int _col = -1;
+    protected int _col = -1;
     [SerializeField]
     [HideInInspector]
-    int _row = -1;
+    protected int _row = -1;
 
     private LevelGrid mLevelGrid;
     private M8.PoolDataController mPoolDat;
 
-    protected virtual void OnDestroy() {
-        if(!poolData) {
+    /// <summary>
+    /// Refresh position to current cell
+    /// </summary>
+    public void SnapPosition() {
+        var pos = levelGrid.GetCellPosition(_col, _row);
+        transform.position = new Vector3(pos.x, pos.y, zOfs);
+    }
+
+    /// <summary>
+    /// Used for placeable entities
+    /// </summary>
+    public virtual void Delete() {
+
+    }
+
+    protected virtual void OnDisable() {
+        if(Application.isPlaying) {
             if(levelGrid)
                 levelGrid.RemoveEntity(this);
         }
     }
 
-    protected virtual void Start() {
-        if(!poolData) {
-            if(levelGrid)
+    protected virtual void OnEnable() {
+        if(Application.isPlaying) {
+            if(levelGrid) {
+                //refresh cell info
+                var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
+                _row = _cellIndex.row;
+                _col = _cellIndex.col;
+
+                SnapPosition();
+
                 levelGrid.AddEntity(this);
+            }
         }
     }
 
@@ -85,38 +109,15 @@ public class LevelEntity : MonoBehaviour, M8.IPoolSpawn, M8.IPoolSpawnComplete, 
         if(!Application.isPlaying) {
             //snap to cell if parent is level grid
             if(levelGrid) {
-                var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);                
-                if(_cellIndex.isValid)
-                    transform.position = levelGrid.GetCellPosition(_col, _row);
+                var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
 
                 _col = _cellIndex.col;
                 _row = _cellIndex.row;
+
+                if(_cellIndex.isValid)
+                    SnapPosition();
             }
         }
 #endif
-    }
-
-    protected virtual void Spawned(M8.GenericParams parms) { }
-    protected virtual void SpawnCompleted() { }
-    protected virtual void Despawned() { }
-
-    void M8.IPoolSpawn.OnSpawned(M8.GenericParams parms) {
-        Spawned(parms);
-    }
-
-    void M8.IPoolSpawnComplete.OnSpawnComplete() {
-        if(levelGrid) {
-            cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
-            levelGrid.AddEntity(this);
-        }
-
-        SpawnCompleted();
-    }
-
-    void M8.IPoolDespawn.OnDespawned() {
-        Despawned();
-
-        if(levelGrid)
-            levelGrid.RemoveEntity(this);
     }
 }
