@@ -42,9 +42,17 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         }
     }
 
-    protected override bool applyPositionOnEnable { get { return false; } }
+    public M8.PoolDataController poolData {
+        get {
+            if(!mPoolDat)
+                mPoolDat = GetComponent<M8.PoolDataController>();
+            return mPoolDat;
+        }
+    }
 
     protected Coroutine mRout;
+
+    private M8.PoolDataController mPoolDat;
 
     private bool mIsDragging;
     private bool mIsDraggingPlaceable;

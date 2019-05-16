@@ -50,14 +50,6 @@ public class LevelEntity : MonoBehaviour {
         }
     }
 
-    public M8.PoolDataController poolData {
-        get {
-            if(!mPoolDat)
-                mPoolDat = GetComponent<M8.PoolDataController>();
-            return mPoolDat;
-        }
-    }
-
     [HideInInspector]
     [SerializeField]
     protected int _col = -1;
@@ -65,46 +57,14 @@ public class LevelEntity : MonoBehaviour {
     [HideInInspector]
     protected int _row = -1;
 
-    /// <summary>
-    /// If true, apply position to grid, and add to levelGrid during OnEnable
-    /// </summary>
-    protected virtual bool applyPositionOnEnable { get { return true; } }
-
     private LevelGrid mLevelGrid;
-    private M8.PoolDataController mPoolDat;
-
+    
     /// <summary>
     /// Refresh position to current cell
     /// </summary>
     public void SnapPosition() {
         var pos = levelGrid.GetCellPosition(_col, _row);
         transform.position = new Vector3(pos.x, pos.y, zOfs);
-    }
-
-    protected virtual void OnDisable() {
-        if(Application.isPlaying) {
-            if(applyPositionOnEnable) {
-                if(levelGrid)
-                    levelGrid.RemoveEntity(this);
-            }
-        }
-    }
-
-    protected virtual void OnEnable() {
-        if(Application.isPlaying) {
-            if(applyPositionOnEnable) {
-                if(levelGrid) {
-                    //refresh cell info
-                    var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
-                    _row = _cellIndex.row;
-                    _col = _cellIndex.col;
-
-                    SnapPosition();
-
-                    levelGrid.AddEntity(this);
-                }
-            }
-        }
     }
 
     protected virtual void Update() {

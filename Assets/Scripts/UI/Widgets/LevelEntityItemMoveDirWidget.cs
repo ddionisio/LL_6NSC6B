@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class LevelEntityItemMoveDirWidget : LevelEntityItemWidget {
     [Header("Move Dir Data")]
-    public LevelEntityMoveDir.Type dir;
+    public MoveDir dir;
 
     public override float iconRotation {
         get {
             switch(dir) {
-                case LevelEntityMoveDir.Type.Down:
+                case MoveDir.Down:
                     return 180f;
-                case LevelEntityMoveDir.Type.Left:
+                case MoveDir.Left:
                     return 90f;
-                case LevelEntityMoveDir.Type.Right:
+                case MoveDir.Right:
                     return -90f;
                 default:
                     return 0f;

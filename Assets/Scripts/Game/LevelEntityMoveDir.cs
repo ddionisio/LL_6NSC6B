@@ -9,23 +9,16 @@ using UnityEngine;
 public class LevelEntityMoveDir : LevelEntityPlaceable {    
     public const string parmType = "dirType";
 
-    public enum Type {
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
     [Header("Display Dir")]
     public Transform displayDirRoot;
     public Transform ghostDirRoot;
 
-    public Type dirType { get; private set; }
+    public MoveDir dirType { get; private set; }
 
     protected override void Spawned(GenericParams parms) {
         if(parms != null) {
             if(parms.ContainsKey(parmType))
-                dirType = parms.GetValue<Type>(parmType);
+                dirType = parms.GetValue<MoveDir>(parmType);
         }
 
         ApplyDirDisplay();
@@ -35,13 +28,13 @@ public class LevelEntityMoveDir : LevelEntityPlaceable {
         Vector3 angles;
 
         switch(dirType) {
-            case Type.Down:
+            case MoveDir.Down:
                 angles = new Vector3(0f, 0f, 180f);
                 break;
-            case Type.Left:
+            case MoveDir.Left:
                 angles = new Vector3(0f, 0f, 90f);
                 break;
-            case Type.Right:
+            case MoveDir.Right:
                 angles = new Vector3(0f, 0f, -90f);
                 break;
             default:

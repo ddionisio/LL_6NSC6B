@@ -2147,6 +2147,9 @@ MonoBehaviour:
   - template: {fileID: 5303968653408082756, guid: f2a886b7e2b248e4797289c199165c3c,
       type: 3}
     count: 1
+  - template: {fileID: 5597780524706766624, guid: 8f579997082911f4e81fad1c5faea6a7,
+      type: 3}
+    count: 1
 --- !u!4 &1818976412
 Transform:
   m_ObjectHideFlags: 0

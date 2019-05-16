@@ -104,8 +104,10 @@ public class LevelGrid : MonoBehaviour
     }
 
     public LevelTile GetTile(CellIndex cellIndex) {
-        if(cellIndex.isValid)
-            return tileCells[cellIndex.row, cellIndex.col];
+        if(cellIndex.isValid) {
+            if(cellIndex.row >= 0 && cellIndex.row < tileCells.GetLength(0) && cellIndex.col >= 0 && cellIndex.col < tileCells.GetLength(1))
+                return tileCells[cellIndex.row, cellIndex.col];
+        }
 
         return null;
     }
