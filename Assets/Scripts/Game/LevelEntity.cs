@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
+[AddComponentMenu("")]
 public class LevelEntity : MonoBehaviour {
     [Header("Data")]
     public float zOfs = -0.01f;
@@ -64,6 +65,11 @@ public class LevelEntity : MonoBehaviour {
     [HideInInspector]
     protected int _row = -1;
 
+    /// <summary>
+    /// If true, apply position to grid, and add to levelGrid during OnEnable
+    /// </summary>
+    protected virtual bool applyPositionOnEnable { get { return true; } }
+
     private LevelGrid mLevelGrid;
     private M8.PoolDataController mPoolDat;
 
@@ -75,31 +81,28 @@ public class LevelEntity : MonoBehaviour {
         transform.position = new Vector3(pos.x, pos.y, zOfs);
     }
 
-    /// <summary>
-    /// Used for placeable entities
-    /// </summary>
-    public virtual void Delete() {
-
-    }
-
     protected virtual void OnDisable() {
         if(Application.isPlaying) {
-            if(levelGrid)
-                levelGrid.RemoveEntity(this);
+            if(applyPositionOnEnable) {
+                if(levelGrid)
+                    levelGrid.RemoveEntity(this);
+            }
         }
     }
 
     protected virtual void OnEnable() {
         if(Application.isPlaying) {
-            if(levelGrid) {
-                //refresh cell info
-                var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
-                _row = _cellIndex.row;
-                _col = _cellIndex.col;
+            if(applyPositionOnEnable) {
+                if(levelGrid) {
+                    //refresh cell info
+                    var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
+                    _row = _cellIndex.row;
+                    _col = _cellIndex.col;
 
-                SnapPosition();
+                    SnapPosition();
 
-                levelGrid.AddEntity(this);
+                    levelGrid.AddEntity(this);
+                }
             }
         }
     }

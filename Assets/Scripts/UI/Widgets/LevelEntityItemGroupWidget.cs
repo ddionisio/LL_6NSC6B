@@ -10,13 +10,12 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
 
     [Header("Data")]
     public string poolGroup = "levelEntityPlacer";
-    [M8.TagSelector]
-    public string tagCellHighlight = "CellHighlight";
 
     [Header("Display")]
     public GameObject panelGO;
 
     public Transform itemsRoot; //placement for items
+    public DragDisplayWidget drag; //place for dragging
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -57,24 +56,19 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
 
     private M8.PoolController mPool;
 
-    private Transform mCellHighlightRoot;
-
     private const int itemsCapacity = 8;
     private M8.CacheList<LevelEntityItemWidget> mItems = new M8.CacheList<LevelEntityItemWidget>(itemsCapacity);
 
     private Coroutine mRout;
         
     public void Init(LevelItemData[] itemConfigs, LevelGrid levelGrid) {
+        //init drag
+        if(drag)
+            drag.cellHighlightRoot = levelGrid.cellHighlightRoot;
+
         //init pool
         if(!mPool)
             mPool = M8.PoolController.CreatePool(poolGroup);
-
-        //init highlight
-        if(!mCellHighlightRoot) {
-            var cellHighlightGO = GameObject.FindGameObjectWithTag(tagCellHighlight);
-            if(cellHighlightGO)
-                mCellHighlightRoot = cellHighlightGO.transform;
-        }
 
         //hide current items
         for(int i = 0; i < mItems.Count; i++) {
@@ -100,7 +94,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
                 item.name = itemConfig.name;
             }
 
-            item.Init(mPool, levelGrid, mCellHighlightRoot, itemConfig.count);
+            item.Init(mPool, levelGrid, drag, itemConfig.count);
 
             item.gameObject.SetActive(true);
             item.transform.SetSiblingIndex(i);

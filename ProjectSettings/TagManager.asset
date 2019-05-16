@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Level
   - ItemSelector
-  - CellHighlight
   layers:
   - Default
   - TransparentFX

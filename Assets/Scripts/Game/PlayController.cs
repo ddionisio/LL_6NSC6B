@@ -34,10 +34,26 @@ public class PlayController : GameModeController<PlayController> {
 
     private Mode mCurMode = Mode.None;
 
+    private LevelGrid mLevelGrid;
+
+    private LevelEntityItemGroupWidget mItemSelectorUI;
+
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
 
+        //grab level
+        var levelGO = GameObject.FindGameObjectWithTag(tagLevel);
+        if(levelGO)
+            mLevelGrid = levelGO.GetComponent<LevelGrid>();
 
+        //initialize item placement group
+        var itemSelectorGO = GameObject.FindGameObjectWithTag(tagItemSelectorUI);
+        if(itemSelectorGO) {
+            mItemSelectorUI = itemSelectorGO.GetComponent<LevelEntityItemGroupWidget>();
+            if(mItemSelectorUI) {
+                mItemSelectorUI.Init(items, mLevelGrid);
+            }
+        }
     }
 
     protected override IEnumerator Start() {

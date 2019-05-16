@@ -12,6 +12,7 @@ public class LevelGrid : MonoBehaviour
     public int numRow = 5;
     public Transform tilesRoot;
     public Transform entitiesRoot;
+    public Transform cellHighlightRoot; //use for placing tiles
 
     public Vector2 size { get { return new Vector2(numCol * cellSize.x, numRow * cellSize.y); } }
     public Vector2 extents { get { return new Vector2(numCol * cellSize.x * 0.5f, numRow * cellSize.y * 0.5f); } }
