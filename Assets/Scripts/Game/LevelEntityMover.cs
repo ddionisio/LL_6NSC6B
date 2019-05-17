@@ -88,10 +88,10 @@ public class LevelEntityMover : LevelEntity {
 
             switch(mCurDir) {
                 case MoveDir.Up:
-                    toCellIndex.row--;
+                    toCellIndex.row++;
                     break;
                 case MoveDir.Down:
-                    toCellIndex.row++;
+                    toCellIndex.row--;
                     break;
                 case MoveDir.Left:
                     toCellIndex.col--;
@@ -105,6 +105,8 @@ public class LevelEntityMover : LevelEntity {
         }
     }
 
+    public CellIndex prevCellIndex { get; private set; }
+        
     private State mCurState = State.None;
     private MoveDir mCurDir;
 
@@ -114,17 +116,22 @@ public class LevelEntityMover : LevelEntity {
     private Coroutine mRout;
 
     /// <summary>
-    /// Return true if evaluation is finished (ends further evaluate)
+    /// Return state to switch to, if none, then evaluate further
     /// </summary>
-    protected virtual bool EvaluateEntity(LevelEntity ent) {
-        return false;
+    protected virtual State EvaluateEntity(LevelEntity ent) {
+        if(ent is LevelEntityMoveDir) {
+            //change dir
+            dir = ((LevelEntityMoveDir)ent).dirType;
+        }
+
+        return State.None;
     }
 
     /// <summary>
-    /// Return true if evaluation is finished (ends further evaluate)
+    /// Return state to switch to, if none, then evaluate further
     /// </summary>
-    protected virtual bool EvaluateTile(LevelTile tile) {
-        return false;
+    protected virtual State EvaluateTile(LevelTile tile) {
+        return State.None;
     }
 
     void OnDisable() {
@@ -171,10 +178,11 @@ public class LevelEntityMover : LevelEntity {
     void OnModeChanged(PlayController.Mode mode) {
         switch(mode) {
             case PlayController.Mode.Editing:
+                dir = startDir;
+
                 //check if we are already on the original spot
                 if(cellIndex == mDefaultCellIndex) {
                     state = State.Idle;
-                    dir = startDir;
                 }
                 else {
                     //warp back to original position
@@ -222,12 +230,20 @@ public class LevelEntityMover : LevelEntity {
 
         while(mCurState == State.Moving) {
             //ensure current dir is the same
-            var toDir = GetNextDir();
+            var toDir = EvalDir(dir);
             if(dir != toDir) {
                 //check next dir
                 dir = toDir;
                 yield return changeDirWait;
                 continue;
+            }
+
+            //check if we are heading to prev cell, try another route
+            if(nextCellIndex == prevCellIndex) {
+                var checkDir = GetNextDir(dir);
+                var nextDir = EvalDir(checkDir);
+                if(checkDir == nextDir)
+                    dir = nextDir;
             }
 
             var startPos = levelGrid.GetCellPosition(cellIndex);
@@ -249,26 +265,20 @@ public class LevelEntityMover : LevelEntity {
                     position = Vector2.Lerp(startPos, endPos, t);
 
                     //check if cell has changed
-                    var _cellIndex = cellIndex;
-                    if(_cellIndex != prevCell) {
-                        var isEvalDone = false;
+                    if(cellIndex != prevCell) {
+                        prevCellIndex = prevCell;
 
-                        //evaluate
-                        var ents = levelGrid.GetEntities(_cellIndex);
-                        if(ents != null) {
-                            for(int i = 0; i < ents.Count; i++) {
-                                if(ents[i]) {
-                                    isEvalDone = EvaluateEntity(ents[i]);
-                                    if(isEvalDone)
-                                        break;
-                                }
-                            }
+                        var prevDir = dir;
+
+                        var toState = EvaluateCurrentTile();
+                        if(toState != State.None) {
+                            state = toState;
+                            yield break;
                         }
-
-                        if(!isEvalDone) {
-                            var tile = levelGrid.GetTile(_cellIndex);
-                            if(tile)
-                                EvaluateTile(tile);
+                        else {
+                            //reset prevCellIndex if dir is changed
+                            if(dir != prevDir)
+                                prevCellIndex = cellIndex;
                         }
                     }
                 }
@@ -276,6 +286,112 @@ public class LevelEntityMover : LevelEntity {
             else
                 yield return null;
         }
+    }
+
+    IEnumerator DoWarp() {
+        var prevPos = transform.position;
+
+        //apply warp position
+        cellIndex = mWarpToCellIndex;
+        SnapPosition();
+
+        if(displayRoot) displayRoot.position = prevPos;
+
+        if(animator && !string.IsNullOrEmpty(takeWarpOut))
+            yield return animator.PlayWait(takeWarpOut);
+
+        if(displayRoot) displayRoot.localPosition = Vector3.zero;
+
+        if(animator && !string.IsNullOrEmpty(takeWarpIn))
+            yield return animator.PlayWait(takeWarpIn);
+
+        mRout = null;
+
+        //change state depending on mode
+        switch(PlayController.instance.curMode) {
+            case PlayController.Mode.Running:
+                var toState = EvaluateCurrentTile();
+                if(toState != State.None)
+                    state = toState;
+                else
+                    state = State.Moving;
+                break;
+
+            default:
+                state = State.Idle;
+                break;
+        }
+    }
+
+    IEnumerator DoJump() {
+        Vector2 prevPos = transform.position;
+
+        //apply warp position
+        cellIndex = mWarpToCellIndex;
+        SnapPosition();
+
+        if(displayRoot) displayRoot.position = prevPos;
+
+        //jump motion
+        var dist = (position - prevPos).magnitude;
+        if(dist > 0f) {
+            var delay = dist / moveSpeed;
+            var curTime = 0f;
+            while(curTime < delay) {
+                yield return null;
+
+                curTime += Time.deltaTime;
+
+                var t = Mathf.Clamp01(curTime / delay);
+
+                var toPos = Vector2.Lerp(prevPos, position, t);
+
+                toPos.y += Mathf.Sin(Mathf.PI * t) * jumpHeight;
+
+                displayRoot.position = toPos;
+            }
+        }
+
+        mRout = null;
+
+        //change state depending on mode
+        switch(PlayController.instance.curMode) {
+            case PlayController.Mode.Running:
+                var toState = EvaluateCurrentTile();
+                if(toState != State.None)
+                    state = toState;
+                else
+                    state = State.Moving;
+                break;
+
+            default:
+                state = State.Idle;
+                break;
+        }
+    }
+
+    private State EvaluateCurrentTile() {
+        var toState = State.None;
+
+        //evaluate
+        var ents = levelGrid.GetEntities(cellIndex);
+        if(ents != null) {
+            for(int i = 0; i < ents.Count; i++) {
+                if(ents[i]) {
+                    toState = EvaluateEntity(ents[i]);
+                    if(toState != State.None)
+                        break;
+                }
+            }
+        }
+
+        if(toState != State.None) {
+            var tile = levelGrid.GetTile(cellIndex);
+            if(tile)
+                toState = EvaluateTile(tile);
+        }
+
+        return toState;
     }
 
     private void ApplyCurState(State prevState) {
@@ -286,6 +402,7 @@ public class LevelEntityMover : LevelEntity {
 
         SnapPosition();
 
+        prevCellIndex = cellIndex;
 
         switch(prevState) {
             case State.Warp:
@@ -301,6 +418,20 @@ public class LevelEntityMover : LevelEntity {
                 mRout = StartCoroutine(DoMove());
                 break;
 
+            case State.Warp:
+                mRout = StartCoroutine(DoWarp());
+                break;
+
+            case State.Victory:
+                if(animator && !string.IsNullOrEmpty(takeVictory))
+                    animator.Play(takeVictory);
+                break;
+
+            case State.Dead:
+                if(animator && !string.IsNullOrEmpty(takeDead))
+                    animator.Play(takeDead);
+                break;
+
             default:
                 break;
         }
@@ -308,23 +439,45 @@ public class LevelEntityMover : LevelEntity {
         ApplyCurDir();
     }
 
-    private MoveDir GetNextDir() {
-        if(!levelGrid)
-            return dir; //fail-safe
-
-        var toDir = dir;
-
-        //check for level entity move dir
-        var ents = levelGrid.GetEntities(cellIndex);
-        if(ents != null) {
-            for(int i = 0; i < ents.Count; i++) {
-                var entMoveDir = ents[i] as LevelEntityMoveDir;
-                if(entMoveDir) {
-                    toDir = entMoveDir.dirType;
-                    break;
-                }
-            }
+    private MoveDir GetNextDir(MoveDir aDir) {
+        switch(aDir) {
+            case MoveDir.Up:
+                return MoveDir.Right;
+            case MoveDir.Down:
+                return MoveDir.Left;
+            case MoveDir.Left:
+                return MoveDir.Up;
+            case MoveDir.Right:
+                return MoveDir.Down;
         }
+
+        return aDir;
+    }
+
+    private CellIndex GetNextTile(MoveDir aDir) {
+        var toCellIndex = cellIndex;
+
+        switch(aDir) {
+            case MoveDir.Up:
+                toCellIndex.row++;
+                break;
+            case MoveDir.Down:
+                toCellIndex.row--;
+                break;
+            case MoveDir.Left:
+                toCellIndex.col--;
+                break;
+            case MoveDir.Right:
+                toCellIndex.col++;
+                break;
+        }
+
+        return toCellIndex;
+    }
+
+    private MoveDir EvalDir(MoveDir toDir) {
+        if(!levelGrid)
+            return toDir; //fail-safe
 
         //check wall on current tile
         var tile = levelGrid.GetTile(cellIndex);
@@ -349,9 +502,10 @@ public class LevelEntityMover : LevelEntity {
                     toDir = MoveDir.Down;
                 break;
         }
-                
+
         //check wall on next tile, or if it's empty/outside
-        var nextTile = levelGrid.GetTile(nextCellIndex);
+        var toCell = GetNextTile(toDir);
+        var nextTile = levelGrid.GetTile(toCell);
         if(nextTile) {
             switch(toDir) {
                 case MoveDir.Up:
@@ -388,6 +542,8 @@ public class LevelEntityMover : LevelEntity {
                     break;
             }
         }
+
+        //check if toDir tile is already travelled
 
         return toDir;
     }
@@ -450,14 +606,6 @@ public class LevelEntityMover : LevelEntity {
                         take = takeJumpSide;
                         break;
                 }
-                break;
-
-            case State.Victory:
-                take = takeVictory;
-                break;
-
-            case State.Dead:
-                take = takeDead;
                 break;
         }
 

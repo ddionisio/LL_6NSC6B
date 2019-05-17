@@ -28,7 +28,8 @@ public class PlayWidget : MonoBehaviour {
     void OnDisable() {
         mRout = null;
 
-        PlayController.instance.modeChangedCallback -= OnChangeMode;
+        if(PlayController.isInstantiated)
+            PlayController.instance.modeChangedCallback -= OnChangeMode;
     }
 
     void OnEnable() {
