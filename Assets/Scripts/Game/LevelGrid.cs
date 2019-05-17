@@ -95,6 +95,50 @@ public class LevelGrid : MonoBehaviour
             entList.Remove(ent);
     }
 
+    /// <summary>
+    /// Return the quadrant number: 1,2,3,4. 0 if origin, -1 if along x-axis, -2 if along y-axis
+    /// </summary>
+    public int GetQuadrant(Vector2 pos) {
+        var cellInd = GetCellIndex(pos);
+        return GetQuadrant(cellInd.col, cellInd.row);
+    }
+
+    /// <summary>
+    /// Return the quadrant number: 1,2,3,4. 0 if origin, -1 if along x-axis, -2 if along y-axis
+    /// </summary>
+    public int GetQuadrant(CellIndex cellIndex) {
+        return GetQuadrant(cellIndex.col, cellIndex.row);
+    }
+
+    /// <summary>
+    /// Return the quadrant number: 1,2,3,4. 0 if origin, -1 if along x-axis, -2 if along y-axis
+    /// </summary>
+    public int GetQuadrant(int col, int row) {
+        int _col = col - originCol;
+        int _row = row - originRow;
+
+        if(_col < 0) {
+            if(_row < 0)
+                return 3;
+            else if(_row > 0)
+                return 2;
+            else
+                return -1;
+        }
+        else if(_col > 0) {
+            if(_row < 0)
+                return 4;
+            else if(_row > 0)
+                return 1;
+            else
+                return -1;
+        }
+        else if(_row != 0)
+            return -2;
+
+        return 0;
+    }
+
     public LevelTile GetTile(Vector2 pos) {
         var cellInd = GetCellIndex(pos);
         if(cellInd.isValid)

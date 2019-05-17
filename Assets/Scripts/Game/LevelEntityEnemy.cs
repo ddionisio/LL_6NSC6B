@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelEntityPlayer : LevelEntityMover {
-    [Header("Data Player")]
-    [M8.TagSelector]
-    public string tagEnemy = "Enemy";
+public class LevelEntityEnemy : LevelEntityMover {
 
     private LevelEntityMover mEntDeadMover; //current dead mover on cell
 
@@ -15,14 +12,9 @@ public class LevelEntityPlayer : LevelEntityMover {
 
     protected override State EvaluateEntity(LevelEntity ent) {
         if(ent is LevelEntityMover) {
-            var entMover = (LevelEntityMover)ent;
+            var entMover = (LevelEntityMover)ent;            
             if(entMover.state == State.Dead)
                 mEntDeadMover = entMover;
-            else {
-                //check if it's an enemy, die
-                if(entMover.CompareTag(tagEnemy))
-                    return State.Dead;
-            }
         }
 
         return base.EvaluateEntity(ent);

@@ -18,11 +18,17 @@ public class LevelEntityMover : LevelEntity {
     public MoveDir startDir = MoveDir.Down;
     public float moveSpeed = 5f;
     public float moveChangeDirDelay = 0.15f;
+
     public float jumpHeight = 2f;
+    public float jumpDelay = 0.3f;
+    public int jumpDisplaySortOrder = 100;
+
+    public int deadDisplaySortOrder = -100;
 
     [Header("Display")]
     public Transform displayRoot;
     public SpriteRenderer displaySpriteRender; //note: default facing right
+    public Transform displayShadowRoot;
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -113,17 +119,16 @@ public class LevelEntityMover : LevelEntity {
     private CellIndex mDefaultCellIndex;
     private CellIndex mWarpToCellIndex;
 
+    private int mDefaultDisplaySortOrder;
+
     private Coroutine mRout;
+
+    protected virtual void EvaluateBegin() { }
 
     /// <summary>
     /// Return state to switch to, if none, then evaluate further
     /// </summary>
     protected virtual State EvaluateEntity(LevelEntity ent) {
-        if(ent is LevelEntityMoveDir) {
-            //change dir
-            dir = ((LevelEntityMoveDir)ent).dirType;
-        }
-
         return State.None;
     }
 
@@ -171,6 +176,9 @@ public class LevelEntityMover : LevelEntity {
             return;
 
         mDefaultCellIndex = cellIndex;
+
+        if(displaySpriteRender)
+            mDefaultDisplaySortOrder = displaySpriteRender.sortingOrder;
 
         PlayController.instance.modeChangedCallback += OnModeChanged;
     }
@@ -289,18 +297,12 @@ public class LevelEntityMover : LevelEntity {
     }
 
     IEnumerator DoWarp() {
-        var prevPos = transform.position;
+        if(animator && !string.IsNullOrEmpty(takeWarpOut))
+            yield return animator.PlayWait(takeWarpOut);
 
         //apply warp position
         cellIndex = mWarpToCellIndex;
         SnapPosition();
-
-        if(displayRoot) displayRoot.position = prevPos;
-
-        if(animator && !string.IsNullOrEmpty(takeWarpOut))
-            yield return animator.PlayWait(takeWarpOut);
-
-        if(displayRoot) displayRoot.localPosition = Vector3.zero;
 
         if(animator && !string.IsNullOrEmpty(takeWarpIn))
             yield return animator.PlayWait(takeWarpIn);
@@ -324,33 +326,29 @@ public class LevelEntityMover : LevelEntity {
     }
 
     IEnumerator DoJump() {
-        Vector2 prevPos = transform.position;
-
-        //apply warp position
-        cellIndex = mWarpToCellIndex;
-        SnapPosition();
-
-        if(displayRoot) displayRoot.position = prevPos;
+        var startPos = position;
+        var endPos = levelGrid.GetCellPosition(mWarpToCellIndex);
 
         //jump motion
-        var dist = (position - prevPos).magnitude;
-        if(dist > 0f) {
-            var delay = dist / moveSpeed;
-            var curTime = 0f;
-            while(curTime < delay) {
-                yield return null;
+        var curTime = 0f;
+        while(curTime < jumpDelay) {
+            yield return null;
 
-                curTime += Time.deltaTime;
+            curTime += Time.deltaTime;
 
-                var t = Mathf.Clamp01(curTime / delay);
+            var t = Mathf.Clamp01(curTime / jumpDelay);
 
-                var toPos = Vector2.Lerp(prevPos, position, t);
+            var toPos = Vector2.Lerp(startPos, endPos, t);
+            var jumpPos = new Vector2(toPos.x, toPos.y + Mathf.Sin(Mathf.PI * t) * jumpHeight);
 
-                toPos.y += Mathf.Sin(Mathf.PI * t) * jumpHeight;
+            if(displayRoot) displayRoot.position = jumpPos;
 
-                displayRoot.position = toPos;
-            }
+            if(displayShadowRoot) displayShadowRoot.position = toPos;
         }
+
+        //apply position
+        cellIndex = mWarpToCellIndex;
+        SnapPosition();
 
         mRout = null;
 
@@ -373,22 +371,68 @@ public class LevelEntityMover : LevelEntity {
     private State EvaluateCurrentTile() {
         var toState = State.None;
 
+        EvaluateBegin();
+
         //evaluate
         var ents = levelGrid.GetEntities(cellIndex);
         if(ents != null) {
             for(int i = 0; i < ents.Count; i++) {
-                if(ents[i]) {
+                var ent = ents[i];
+
+                if(ent && ent != this) {
                     toState = EvaluateEntity(ents[i]);
                     if(toState != State.None)
                         break;
+
+                    //do our specific things
+                    if(ent is LevelEntityMoveDir) {
+                        //change dir
+                        dir = ((LevelEntityMoveDir)ent).dirType;
+                    }
+                    else if(ent is LevelEntityReflect) {
+                        var reflectEnt = (LevelEntityReflect)ent;
+
+                        //apply reflect relative to origin
+                        mWarpToCellIndex = cellIndex;
+
+                        if(reflectEnt.reflectX) {
+                            mWarpToCellIndex.col = levelGrid.originCol - (mWarpToCellIndex.col - levelGrid.originCol);
+                        }
+
+                        if(reflectEnt.reflectY) {
+                            mWarpToCellIndex.row = levelGrid.originRow - (mWarpToCellIndex.row - levelGrid.originRow);
+                        }
+
+                        toState = State.Jumping;
+                    }
+                    else if(ent is LevelEntityAbsolute) {
+                        var absEnt = (LevelEntityAbsolute)ent;
+                        if(absEnt.axisType != AxisType.None) {
+                            //apply abs. relative to origin
+                            mWarpToCellIndex = cellIndex;
+
+                            switch(absEnt.axisType) {
+                                case AxisType.X:
+                                    mWarpToCellIndex.col = levelGrid.originCol + Mathf.Abs(mWarpToCellIndex.col - levelGrid.originCol);
+                                    break;
+                                case AxisType.Y:
+                                    mWarpToCellIndex.row = levelGrid.originRow + Mathf.Abs(mWarpToCellIndex.row - levelGrid.originRow);
+                                    break;
+                            }
+
+                            toState = State.Jumping;
+                        }
+                    }
                 }
             }
         }
 
-        if(toState != State.None) {
+        if(toState == State.None) {
             var tile = levelGrid.GetTile(cellIndex);
             if(tile)
                 toState = EvaluateTile(tile);
+            else //tile is empty, should be dead
+                toState = State.Dead;
         }
 
         return toState;
@@ -404,11 +448,19 @@ public class LevelEntityMover : LevelEntity {
 
         prevCellIndex = cellIndex;
 
+        int displaySortOrder = mDefaultDisplaySortOrder;
+
         switch(prevState) {
-            case State.Warp:
             case State.Jumping:
                 if(displayRoot)
                     displayRoot.localPosition = Vector3.zero;
+                if(displayShadowRoot)
+                    displayShadowRoot.localPosition = Vector3.zero;
+                break;
+
+            case State.Dead:
+                if(displayShadowRoot)
+                    displayShadowRoot.gameObject.SetActive(true);
                 break;
         }
 
@@ -422,12 +474,23 @@ public class LevelEntityMover : LevelEntity {
                 mRout = StartCoroutine(DoWarp());
                 break;
 
+            case State.Jumping:
+                displaySortOrder = jumpDisplaySortOrder;
+
+                mRout = StartCoroutine(DoJump());
+                break;
+
             case State.Victory:
                 if(animator && !string.IsNullOrEmpty(takeVictory))
                     animator.Play(takeVictory);
                 break;
 
             case State.Dead:
+                displaySortOrder = deadDisplaySortOrder;
+
+                if(displayShadowRoot)
+                    displayShadowRoot.gameObject.SetActive(false);
+
                 if(animator && !string.IsNullOrEmpty(takeDead))
                     animator.Play(takeDead);
                 break;
@@ -435,6 +498,9 @@ public class LevelEntityMover : LevelEntity {
             default:
                 break;
         }
+
+        if(displaySpriteRender)
+            displaySpriteRender.sortingOrder = displaySortOrder;
 
         ApplyCurDir();
     }

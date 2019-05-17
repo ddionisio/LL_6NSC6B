@@ -8,6 +8,8 @@ TagManager:
   - ItemSelector
   - CellHighlight
   - LevelEntityPlaceable
+  - Enemy
+  - Goal
   layers:
   - Default
   - TransparentFX
