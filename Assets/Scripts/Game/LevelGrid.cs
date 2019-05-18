@@ -14,6 +14,12 @@ public class LevelGrid : MonoBehaviour
     public Transform entitiesRoot;
     public Transform cellHighlightRoot; //use for placing tiles
 
+    [Header("Wall")]
+    public Transform wallRoot;
+    public SpriteRenderer wallLineHTemplate;
+    public SpriteRenderer wallLineVTemplate;
+    public Vector2 wallLineOfs;
+    
     public Vector2 size { get { return new Vector2(numCol * cellSize.x, numRow * cellSize.y); } }
     public Vector2 extents { get { return new Vector2(numCol * cellSize.x * 0.5f, numRow * cellSize.y * 0.5f); } }
     public Vector2 min { get { return center - extents; } }
@@ -22,31 +28,56 @@ public class LevelGrid : MonoBehaviour
 
     public LevelTile[,] tileCells {
         get {
-            if(mTileCells == null || mTileCells.GetLength(0) != numRow || mTileCells.GetLength(1) != numCol) {
-                if(mTiles == null)
-                    mTiles = tilesRoot ? tilesRoot.GetComponentsInChildren<LevelTile>() : GetComponentsInChildren<LevelTile>();
-
-                mTileCells = new LevelTile[numRow, numCol];
-
-                //go through tiles and place them
-                for(int i = 0; i < mTiles.Length; i++) {
-                    var tile = mTiles[i];
-
-                    var cellInd = GetCellIndexLocal(tile.transform.localPosition);
-                    if(cellInd.isValid)
-                        mTileCells[cellInd.row, cellInd.col] = tile;
-                }
-            }
+            if(mTileCells == null || mTileCells.GetLength(0) != numRow || mTileCells.GetLength(1) != numCol)
+                mTileCells = GenerateTileCells();
 
             return mTileCells;
         }
     }
 
+    public LevelTile[] goalTiles {
+        get {
+            if(mGoalTiles == null) {
+                var goalTileList = new List<LevelTile>();
+
+                var _tileCells = tileCells;
+
+                for(int r = 0; r < _tileCells.GetLength(0); r++) {
+                    for(int c = 0; c < _tileCells.GetLength(1); c++) {
+                        var tile = _tileCells[r, c];
+                        if(tile != null && tile.isGoal)
+                            goalTileList.Add(tile);
+                    }
+                }
+
+                mGoalTiles = goalTileList.ToArray();
+            }
+
+            return mGoalTiles;
+        }
+    }
+
     private LevelTile[,] mTileCells; //[row][col]
-    private LevelTile[] mTiles; //[row][col]
+    private LevelTile[] mGoalTiles;
 
     private const int entityListCapacity = 4;
     private M8.CacheList<LevelEntity>[,] mEntityCells;
+
+    public LevelTile[,] GenerateTileCells() {
+        var tileCells = new LevelTile[numRow, numCol];
+        var tiles = tilesRoot ? tilesRoot.GetComponentsInChildren<LevelTile>() : GetComponentsInChildren<LevelTile>();
+
+        //go through tiles and place them
+        for(int i = 0; i < tiles.Length; i++) {
+            var tile = tiles[i];
+
+            var cellInd = GetCellIndexLocal(tile.transform.localPosition);
+            if(cellInd.isValid)
+                tileCells[cellInd.row, cellInd.col] = tile;
+        }
+
+        return tileCells;
+    }
         
     public M8.CacheList<LevelEntity> GetEntities(int col, int row) {
         if(mEntityCells == null)

@@ -128,6 +128,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
                 break;
 
             case PlayController.Mode.None:
+            case PlayController.Mode.Pause:
             case PlayController.Mode.Running:
                 curState = State.Hidden;
                 break;

@@ -64,6 +64,10 @@ public class LevelEntityMover : LevelEntity {
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeWarpIn;
 
+    [Header("Signal Listen")]
+    public M8.Signal signalListenVictory;
+    public M8.Signal signalListenReset; //revert to starting position much like going to edit mode
+
     public State state {
         get { return mCurState; }
         set {
@@ -163,15 +167,18 @@ public class LevelEntityMover : LevelEntity {
         state = State.Idle;
     }
 
-    void OnDestroy() {
+    protected virtual void OnDestroy() {
         if(!Application.isPlaying)
             return;
 
         if(PlayController.isInstantiated)
             PlayController.instance.modeChangedCallback -= OnModeChanged;
+
+        if(signalListenVictory) signalListenVictory.callback -= OnSignalVictory;
+        if(signalListenReset) signalListenReset.callback -= OnSignalReset;
     }
 
-    void Awake() {
+    protected virtual void Awake() {
         if(!Application.isPlaying)
             return;
 
@@ -181,34 +188,15 @@ public class LevelEntityMover : LevelEntity {
             mDefaultDisplaySortOrder = displaySpriteRender.sortingOrder;
 
         PlayController.instance.modeChangedCallback += OnModeChanged;
+
+        if(signalListenVictory) signalListenVictory.callback += OnSignalVictory;
+        if(signalListenReset) signalListenReset.callback += OnSignalReset;
     }
 
     void OnModeChanged(PlayController.Mode mode) {
         switch(mode) {
             case PlayController.Mode.Editing:
-                dir = startDir;
-
-                //check if we are already on the original spot
-                if(cellIndex == mDefaultCellIndex) {
-                    state = State.Idle;
-                }
-                else {
-                    //warp back to original position
-                    switch(state) {
-                        case State.Warp:
-                            //if we are warping, change it to warp to default
-                            if(mWarpToCellIndex != mDefaultCellIndex) {
-                                mWarpToCellIndex = mDefaultCellIndex;
-                                ApplyCurState(State.Warp);
-                            }
-                            break;
-
-                        default:
-                            mWarpToCellIndex = mDefaultCellIndex;
-                            state = State.Warp;
-                            break;
-                    }
-                }
+                OnSignalReset();
                 break;
 
             case PlayController.Mode.None:
@@ -230,6 +218,36 @@ public class LevelEntityMover : LevelEntity {
                         break;
                 }
                 break;
+        }
+    }
+
+    void OnSignalVictory() {
+        state = State.Victory;
+    }
+
+    void OnSignalReset() {
+        dir = startDir;
+
+        //check if we are already on the original spot
+        if(cellIndex == mDefaultCellIndex) {
+            state = State.Idle;
+        }
+        else {
+            //warp back to original position
+            switch(state) {
+                case State.Warp:
+                    //if we are warping, change it to warp to default
+                    if(mWarpToCellIndex != mDefaultCellIndex) {
+                        mWarpToCellIndex = mDefaultCellIndex;
+                        ApplyCurState(State.Warp);
+                    }
+                    break;
+
+                default:
+                    mWarpToCellIndex = mDefaultCellIndex;
+                    state = State.Warp;
+                    break;
+            }
         }
     }
 

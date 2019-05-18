@@ -15,6 +15,8 @@ public class PlayController : GameModeController<PlayController> {
     public string tagLevel = "Level";
     [M8.TagSelector]
     public string tagItemSelectorUI = "ItemSelector";
+    [M8.TagSelector]
+    public string tagPlayer = "Player";
 
     [Header("Data")]
     public LevelItemData[] items;
@@ -30,13 +32,27 @@ public class PlayController : GameModeController<PlayController> {
         }
     }
 
+    public LevelEntityPlayer player {
+        get {
+            if(!mPlayer) {
+                var go = GameObject.FindGameObjectWithTag(tagPlayer);
+                if(go)
+                    mPlayer = go.GetComponent<LevelEntityPlayer>();
+            }
+
+            return mPlayer;
+        }
+    }
+
+    public LevelGrid levelGrid { get; private set; }
+
     public event System.Action<Mode> modeChangedCallback;
 
     private Mode mCurMode = Mode.None;
 
-    private LevelGrid mLevelGrid;
-
     private LevelEntityItemGroupWidget mItemSelectorUI;
+
+    private LevelEntityPlayer mPlayer;
 
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
@@ -44,14 +60,14 @@ public class PlayController : GameModeController<PlayController> {
         //grab level
         var levelGO = GameObject.FindGameObjectWithTag(tagLevel);
         if(levelGO)
-            mLevelGrid = levelGO.GetComponent<LevelGrid>();
+            levelGrid = levelGO.GetComponent<LevelGrid>();
 
         //initialize item placement group
         var itemSelectorGO = GameObject.FindGameObjectWithTag(tagItemSelectorUI);
         if(itemSelectorGO) {
             mItemSelectorUI = itemSelectorGO.GetComponent<LevelEntityItemGroupWidget>();
             if(mItemSelectorUI) {
-                mItemSelectorUI.Init(items, mLevelGrid);
+                mItemSelectorUI.Init(items, levelGrid);
             }
         }
     }
