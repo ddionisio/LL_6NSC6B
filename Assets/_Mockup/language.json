@@ -6,9 +6,16 @@
   },
   "en": {
     "welcome": "Welcome!",
-    "title": "<size=50>Attack on Blob</size>\nMultiply and Divide",
+    "title": "Grid Lock",
     "credits": "CREDITS",
     "credits_desc": "Written by: David Dionisio\nMusic from: Kevin Macleod",
-    "play": "PLAY"
+    "play": "PLAY",
+    "options": "OPTIONS",
+    "music": "MUSIC",
+    "sound": "SOUND",
+    "speech": "SPEECH",
+    "on": "ON",
+    "off": "OFF",
+    "close": "CLOSE"
   }
 }

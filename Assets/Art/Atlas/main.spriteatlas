@@ -45,7 +45,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 6027e5ea175ae434a9ac6e25e4812ef0, type: 3}
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
-    totalSpriteSurfaceArea: 47775
+    totalSpriteSurfaceArea: 48959
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -62,6 +62,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: df4b3443a66668842a035a006fef682c, type: 3}
   - {fileID: 21300000, guid: 6365d063b104ede43a6f2866a82d29fe, type: 3}
   - {fileID: 21300000, guid: e5dc777390553e4499a405c82af83aef, type: 3}
+  - {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
   - {fileID: 21300000, guid: 761a39f37c970494692893c09089ec0a, type: 3}
   - {fileID: 21300000, guid: 44a2e43498084d140b46c5499e074241, type: 3}
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
@@ -93,6 +94,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b678ba2d7d4bed94abb27c65899b8595, type: 3}
   - {fileID: 21300000, guid: c5a54a7e88b59e547a8905c1ad93d892, type: 3}
   - {fileID: 21300000, guid: d100bf3fba8e48343b4f69fe5447d682, type: 3}
+  - {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
   - {fileID: 21300000, guid: 49f63cbf9fa458c4cbc656fbdbb5124a, type: 3}
   m_PackedSpriteNamesToIndex:
   - star
@@ -108,6 +110,7 @@ SpriteAtlas:
   - circleFuzzyGlow
   - ringGlowLarge
   - explodePixel4
+  - wallHorizontal
   - blob3
   - explodePixel3
   - circleGlow
@@ -139,6 +142,7 @@ SpriteAtlas:
   - circleFrameSmall
   - edge_shade
   - tutorialHandPoint
+  - wallVertical
   - devicerMouthOpen
   m_Tag: main
   m_IsVariant: 0
