@@ -33,7 +33,18 @@ namespace HutongGames.PlayMaker.Actions.Game {
         }
 
         void DoCheck() {
-            var isMatch = PlayController.instance.player.goalCount == PlayController.instance.levelGrid.goalTiles.Length;
+            bool isMatch = false;
+
+            var goals = PlayController.instance.levelGrid.goals;
+            if(goals != null) {
+                int collectedCount = 0;
+                for(int i = 0; i < goals.Length; i++) {
+                    if(goals[i] && goals[i].state == LevelEntityGoal.State.Collected)
+                        collectedCount++;
+                }
+
+                isMatch = collectedCount == goals.Length;
+            }
 
             storeResult = isMatch;
 

@@ -35,30 +35,17 @@ public class LevelGrid : MonoBehaviour
         }
     }
 
-    public LevelTile[] goalTiles {
+    public LevelEntityGoal[] goals {
         get {
-            if(mGoalTiles == null) {
-                var goalTileList = new List<LevelTile>();
+            if(mGoals == null)
+                mGoals = entitiesRoot ? entitiesRoot.GetComponentsInChildren<LevelEntityGoal>(true) : null;
 
-                var _tileCells = tileCells;
-
-                for(int r = 0; r < _tileCells.GetLength(0); r++) {
-                    for(int c = 0; c < _tileCells.GetLength(1); c++) {
-                        var tile = _tileCells[r, c];
-                        if(tile != null && tile.isGoal)
-                            goalTileList.Add(tile);
-                    }
-                }
-
-                mGoalTiles = goalTileList.ToArray();
-            }
-
-            return mGoalTiles;
+            return mGoals;
         }
     }
 
     private LevelTile[,] mTileCells; //[row][col]
-    private LevelTile[] mGoalTiles;
+    private LevelEntityGoal[] mGoals;
 
     private const int entityListCapacity = 4;
     private M8.CacheList<LevelEntity>[,] mEntityCells;

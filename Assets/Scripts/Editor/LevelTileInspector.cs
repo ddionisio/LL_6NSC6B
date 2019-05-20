@@ -17,8 +17,5 @@ public class LevelTileInspector : Editor {
         //update display actives based on flags
         if(dat.pitGO && dat.pitGO.activeSelf != dat.isPit)
             dat.pitGO.SetActive(dat.isPit);
-
-        if(dat.goalGO && dat.goalGO.activeSelf != dat.isGoal)
-            dat.goalGO.SetActive(dat.isGoal);
     }
 }

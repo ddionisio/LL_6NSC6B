@@ -11,12 +11,14 @@ public class LevelTile : MonoBehaviour {
     public bool isWallW;
 
     public bool isPit;
-    public bool isGoal;
+
+    [Header("Tile")]
+    public Sprite[] tileSpriteVariants;
+    public SpriteRenderer tileSpriteRender;
 
     [Header("Displays")]
-    public Transform displayRoot;
+    public Transform displayRoot;    
     public GameObject pitGO;
-    public GameObject goalGO;
 
     public LevelGrid levelGrid {
         get {
@@ -37,7 +39,7 @@ public class LevelTile : MonoBehaviour {
         }
     }
 
-    public bool isPlaceable { get { return !(isPit || isGoal); } }
+    public bool isPlaceable { get { return !(isPit); } }
 
     [HideInInspector]
     [SerializeField]
@@ -47,6 +49,12 @@ public class LevelTile : MonoBehaviour {
     int _row = -1;
 
     private LevelGrid mLevelGrid;
+
+    void Awake() {
+        if(tileSpriteRender && tileSpriteVariants.Length > 0) {
+            tileSpriteRender.sprite = tileSpriteVariants[Random.Range(0, tileSpriteVariants.Length)];
+        }
+    }
 
 #if UNITY_EDITOR
     void Update() {

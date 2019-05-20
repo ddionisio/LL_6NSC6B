@@ -81,6 +81,18 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         RefreshDisplay();
     }
 
+    public void RefreshDisplay() {
+        if(colorGroup) {
+            if(isInteractible && !isDragging)
+                colorGroup.Revert();
+            else
+                colorGroup.ApplyColor(colorDisabled);
+        }
+
+        if(countText)
+            countText.text = count.ToString();
+    }
+
     public void ReleaseAll() {
         if(mActiveEntities == null)
             return;
@@ -239,17 +251,5 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         }
 
         return true;
-    }
-
-    private void RefreshDisplay() {
-        if(colorGroup) {
-            if(isInteractible && !isDragging)
-                colorGroup.Revert();
-            else
-                colorGroup.ApplyColor(colorDisabled);
-        }
-
-        if(countText)
-            countText.text = count.ToString();
     }
 }

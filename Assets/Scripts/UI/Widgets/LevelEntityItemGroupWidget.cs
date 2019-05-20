@@ -66,6 +66,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
             var itm = mItems[i];
             if(itm && itm.gameObject.activeSelf) {
                 itm.ReleaseAll();
+                itm.RefreshDisplay();
             }
         }
     }
