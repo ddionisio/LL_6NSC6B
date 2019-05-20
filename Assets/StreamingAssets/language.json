@@ -16,6 +16,7 @@
     "speech": "SPEECH",
     "on": "ON",
     "off": "OFF",
-    "close": "CLOSE"
+    "close": "CLOSE",
+    "clear": "CLEAR"
   }
 }

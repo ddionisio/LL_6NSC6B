@@ -45,15 +45,17 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 6027e5ea175ae434a9ac6e25e4812ef0, type: 3}
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
-    totalSpriteSurfaceArea: 48959
+    totalSpriteSurfaceArea: 53487
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: be98f690b6a68d8478a95623f406a172, type: 3}
+  - {fileID: 21300000, guid: 5ed7cd01c36b80f4588c3709e317573b, type: 3}
   - {fileID: 21300000, guid: f4683e31b11d8c249ac19e37611319cd, type: 3}
   - {fileID: 21300000, guid: 3821ed81270146041a91f097758a2b70, type: 3}
   - {fileID: 21300002, guid: 2c182d91a96c3c949bcbade9ea5d4ba4, type: 3}
   - {fileID: 21300000, guid: 2c182d91a96c3c949bcbade9ea5d4ba4, type: 3}
+  - {fileID: 21300000, guid: 35c861e17e36a3341a5093ed261fa746, type: 3}
   - {fileID: 21300000, guid: cfce0ce1b6c72e54f9981e474f39ca7c, type: 3}
   - {fileID: 21300002, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
   - {fileID: 21300000, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
@@ -68,7 +70,9 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: ed3ee745814d1bf44a0a1ff9061127df, type: 3}
+  - {fileID: 21300000, guid: cd412d8684d925f4ba0ce690380537f0, type: 3}
   - {fileID: 21300000, guid: 63a527f61ac87224cb15c6b6c304cbc6, type: 3}
+  - {fileID: 21300000, guid: fa6c1537487602e45bbc81f7107889a4, type: 3}
   - {fileID: 21300000, guid: bf01b0b7199ec26448b016fd2de647e5, type: 3}
   - {fileID: 21300000, guid: 326ab6c73d9e81346bb6774298a0d825, type: 3}
   - {fileID: 21300000, guid: 5427e4f7e1cb9704892fb4854f1cf6a9, type: 3}
@@ -98,10 +102,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 49f63cbf9fa458c4cbc656fbdbb5124a, type: 3}
   m_PackedSpriteNamesToIndex:
   - star
+  - arrow
   - downArrow
   - blob4
   - tutorialArrow2_bottom
   - tutorialArrow2
+  - xReflect
   - edge_shade_left_8x1
   - shadeWhite_bottomLeft
   - shadeWhite
@@ -116,7 +122,9 @@ SpriteAtlas:
   - circleGlow
   - explodePixel5
   - devicerBody
+  - xyReflect
   - devicerEye
+  - yReflect
   - explodePixel1
   - circle32x32
   - dot

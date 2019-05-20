@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: itemMoveDirDown
       objectReference: {fileID: 0}
+    - target: {fileID: 5303968653408082756, guid: f2a886b7e2b248e4797289c199165c3c,
+        type: 3}
+      propertyPath: dir
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5303968653408082757, guid: f2a886b7e2b248e4797289c199165c3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -79,16 +84,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5303968653408082757, guid: f2a886b7e2b248e4797289c199165c3c,
         type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303968653408082757, guid: f2a886b7e2b248e4797289c199165c3c,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303968653408082757, guid: f2a886b7e2b248e4797289c199165c3c,
-        type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
@@ -116,16 +111,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303968653408082756, guid: f2a886b7e2b248e4797289c199165c3c,
-        type: 3}
-      propertyPath: dir
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5303968653132890125, guid: f2a886b7e2b248e4797289c199165c3c,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2a886b7e2b248e4797289c199165c3c, type: 3}

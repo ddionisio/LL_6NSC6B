@@ -60,6 +60,15 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     private M8.CacheList<LevelEntityItemWidget> mItems = new M8.CacheList<LevelEntityItemWidget>(itemsCapacity);
 
     private Coroutine mRout;
+
+    public void Clear() {
+        for(int i = 0; i < mItems.Count; i++) {
+            var itm = mItems[i];
+            if(itm && itm.gameObject.activeSelf) {
+                itm.ReleaseAll();
+            }
+        }
+    }
         
     public void Init(LevelItemData[] itemConfigs, LevelGrid levelGrid) {
         //init drag
@@ -92,6 +101,8 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
             if(!item) {
                 item = Instantiate(itemConfig.template, itemsRoot);
                 item.name = itemConfig.name;
+
+                mItems.Add(item);
             }
 
             item.Init(mPool, levelGrid, drag, itemConfig.count);

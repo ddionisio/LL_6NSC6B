@@ -8,7 +8,7 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
     [Header("Move")]
     public DG.Tweening.Ease moveEase = DG.Tweening.Ease.InOutSine;
-    public float moveDelay = 0.3f;
+    public float moveDelay = 0.15f;
 
     [Header("Display")]
     public Transform displayRoot;
