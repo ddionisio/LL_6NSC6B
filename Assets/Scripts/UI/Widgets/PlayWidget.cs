@@ -156,6 +156,8 @@ public class PlayWidget : MonoBehaviour {
     }
 
     IEnumerator DoShow() {
+        if(displayGO) displayGO.SetActive(true);
+
         if(button) button.interactable = false;
 
         if(animator && !string.IsNullOrEmpty(takeEnter))
