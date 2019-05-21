@@ -67,13 +67,16 @@ public class LevelGridInspector : Editor {
                                 eCol = c;
                         }
                         else if(sCol != -1) {
-                            ApplyWallHorizontal(dat, sCol, eCol, r, true);
+                            ApplyWallHorizontal(dat, sCol, eCol, r, false, true);
+                            ApplyWallHorizontal(dat, sCol, eCol, r, true, true);
                             sCol = -1;
                         }
                     }
 
-                    if(sCol != -1)
-                        ApplyWallHorizontal(dat, sCol, eCol, r, true);
+                    if(sCol != -1) {
+                        ApplyWallHorizontal(dat, sCol, eCol, r, false, true);
+                        ApplyWallHorizontal(dat, sCol, eCol, r, true, true);
+                    }
 
                     //top
                     if(r == mTileCells.GetLength(0) - 1) {
@@ -89,14 +92,17 @@ public class LevelGridInspector : Editor {
                                         eCol = c;
                                 }
                                 else if(sCol != -1) {
-                                    ApplyWallHorizontal(dat, sCol, eCol, r, false);
+                                    ApplyWallHorizontal(dat, sCol, eCol, r, false, false);
+                                    ApplyWallHorizontal(dat, sCol, eCol, r, true, false);
                                     sCol = -1;
                                 }
                             }
                         }
 
-                        if(sCol != -1)
-                            ApplyWallHorizontal(dat, sCol, eCol, r, false);
+                        if(sCol != -1) {
+                            ApplyWallHorizontal(dat, sCol, eCol, r, false, false);
+                            ApplyWallHorizontal(dat, sCol, eCol, r, true, false);
+                        }
                     }
                 }
 
@@ -126,13 +132,16 @@ public class LevelGridInspector : Editor {
                                 eRow = r;
                         }
                         else if(sRow != -1) {
-                            ApplyWallVertical(dat, sRow, eRow, c, true);
+                            ApplyWallVertical(dat, sRow, eRow, c, false, true);
+                            ApplyWallVertical(dat, sRow, eRow, c, true, true);
                             sRow = -1;
                         }
                     }
 
-                    if(sRow != -1)
-                        ApplyWallVertical(dat, sRow, eRow, c, true);
+                    if(sRow != -1) {
+                        ApplyWallVertical(dat, sRow, eRow, c, false, true);
+                        ApplyWallVertical(dat, sRow, eRow, c, true, true);
+                    }
 
                     //right
                     if(c == mTileCells.GetLength(1) - 1) {
@@ -148,23 +157,38 @@ public class LevelGridInspector : Editor {
                                         eRow = r;
                                 }
                                 else if(sRow != -1) {
-                                    ApplyWallVertical(dat, sRow, eRow, c, false);
+                                    ApplyWallVertical(dat, sRow, eRow, c, false, false);
+                                    ApplyWallVertical(dat, sRow, eRow, c, true, false);
                                     sRow = -1;
                                 }
                             }
                         }
 
-                        if(sRow != -1)
-                            ApplyWallVertical(dat, sRow, eRow, c, false);
+                        if(sRow != -1) {
+                            ApplyWallVertical(dat, sRow, eRow, c, false, false);
+                            ApplyWallVertical(dat, sRow, eRow, c, true, false);
+                        }
                     }
                 }
             }
         }
     }
 
-    private void ApplyWallHorizontal(LevelGrid levelGrid, int sCol, int eCol, int row, bool isBottom) {
+    private void ApplyWallHorizontal(LevelGrid levelGrid, int sCol, int eCol, int row, bool isBack, bool isBottom) {
+        SpriteRenderer sprRenderTemplate;
+        Vector2 ofs;
+
+        if(isBack) {
+            sprRenderTemplate = levelGrid.wallLineHBackTemplate;
+            ofs = levelGrid.wallLineBackOfs;
+        }
+        else {
+            sprRenderTemplate = levelGrid.wallLineHTemplate;
+            ofs = levelGrid.wallLineOfs;
+        }
+
         var sPos = levelGrid.GetCellPosition(sCol, row);
-        sPos.x -= levelGrid.cellSize.x * 0.5f + levelGrid.wallLineOfs.x;
+        sPos.x -= levelGrid.cellSize.x * 0.5f + ofs.x;
 
         if(isBottom)
             sPos.y -= levelGrid.cellSize.y * 0.5f;
@@ -172,19 +196,31 @@ public class LevelGridInspector : Editor {
             sPos.y += levelGrid.cellSize.y * 0.5f;
 
         var ePos = levelGrid.GetCellPosition(eCol, row);
-        ePos.x += levelGrid.cellSize.x * 0.5f + levelGrid.wallLineOfs.x;
+        ePos.x += levelGrid.cellSize.x * 0.5f + ofs.x;
 
         ePos.y = sPos.y;
 
-        var sprRender = Instantiate(levelGrid.wallLineHTemplate, levelGrid.wallRoot);
+        var sprRender = Instantiate(sprRenderTemplate, levelGrid.wallRoot);
         sprRender.size = new Vector2(ePos.x - sPos.x, sprRender.size.y);
 
         sprRender.transform.position = new Vector2(Mathf.Lerp(sPos.x, ePos.x, 0.5f), sPos.y);
     }
 
-    private void ApplyWallVertical(LevelGrid levelGrid, int sRow, int eRow, int col, bool isLeft) {
+    private void ApplyWallVertical(LevelGrid levelGrid, int sRow, int eRow, int col, bool isBack, bool isLeft) {
+        SpriteRenderer sprRenderTemplate;
+        Vector2 ofs;
+
+        if(isBack) {
+            sprRenderTemplate = levelGrid.wallLineVBackTemplate;
+            ofs = levelGrid.wallLineBackOfs;
+        }
+        else {
+            sprRenderTemplate = levelGrid.wallLineVTemplate;
+            ofs = levelGrid.wallLineOfs;
+        }
+
         var sPos = levelGrid.GetCellPosition(col, sRow);
-        sPos.y -= levelGrid.cellSize.y * 0.5f + levelGrid.wallLineOfs.y;
+        sPos.y -= levelGrid.cellSize.y * 0.5f + ofs.y;
 
         if(isLeft)
             sPos.x -= levelGrid.cellSize.x * 0.5f;
@@ -192,11 +228,11 @@ public class LevelGridInspector : Editor {
             sPos.x += levelGrid.cellSize.x * 0.5f;
 
         var ePos = levelGrid.GetCellPosition(col, eRow);
-        ePos.y += levelGrid.cellSize.y * 0.5f + levelGrid.wallLineOfs.y;
+        ePos.y += levelGrid.cellSize.y * 0.5f + ofs.y;
 
         ePos.x = sPos.x;
 
-        var sprRender = Instantiate(levelGrid.wallLineVTemplate, levelGrid.wallRoot);
+        var sprRender = Instantiate(sprRenderTemplate, levelGrid.wallRoot);
         sprRender.size = new Vector2(sprRender.size.x, ePos.y - sPos.y);
 
         sprRender.transform.position = new Vector2(sPos.x, Mathf.Lerp(sPos.y, ePos.y, 0.5f));

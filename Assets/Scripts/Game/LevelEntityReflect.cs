@@ -17,8 +17,14 @@ public class LevelEntityReflect : LevelEntityPlaceable {
     public Sprite spriteReflectXYLL; //to lower left
     public Sprite spriteReflectXYLR; //to lower right
 
+    [Header("Sprite Drag Refs")]
+    public Sprite spriteDragXReflect;
+    public Sprite spriteDragYReflect;
+    public Sprite spriteDragXYReflect;
+
     [Header("Display")]
     public SpriteRenderer iconSpriteRender;
+    public SpriteRenderer iconDragSpriteRender;
 
     public bool reflectX { get; private set; }
     public bool reflectY { get; private set; }
@@ -37,7 +43,7 @@ public class LevelEntityReflect : LevelEntityPlaceable {
         //determine display
         if(iconSpriteRender) {
             var quadrant = levelGrid.GetQuadrant(cellIndex);
-            
+
             if(reflectX && reflectY) {
                 //diagonal
                 switch(quadrant) {
@@ -102,6 +108,15 @@ public class LevelEntityReflect : LevelEntityPlaceable {
                         break;
                 }
             }
+        }
+
+        if(iconDragSpriteRender) {
+            if(reflectX && reflectY)
+                iconDragSpriteRender.sprite = spriteDragXYReflect;
+            else if(reflectX)
+                iconDragSpriteRender.sprite = spriteDragXReflect;
+            else if(reflectY)
+                iconDragSpriteRender.sprite = spriteDragYReflect;
         }
     }
 }

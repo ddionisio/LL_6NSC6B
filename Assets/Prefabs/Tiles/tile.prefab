@@ -404,7 +404,6 @@ MonoBehaviour:
   isWallS: 0
   isWallW: 0
   isPit: 0
-  isGoal: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -415,6 +414,5 @@ MonoBehaviour:
   tileSpriteRender: {fileID: 7876187482970928811}
   displayRoot: {fileID: 7876187482422429035}
   pitGO: {fileID: 7423442658526153999}
-  goalGO: {fileID: 0}
   _col: 5
   _row: 3

@@ -11,8 +11,13 @@ public class LevelEntityAbsolute : LevelEntityPlaceable {
     public Sprite spriteAxisX;
     public Sprite spriteAxisY;
 
+    [Header("Sprite Drag Refs")]
+    public Sprite spriteDragAxisX;
+    public Sprite spriteDragAxisY;
+
     [Header("Display")]
     public SpriteRenderer iconSpriteRender;
+    public SpriteRenderer iconSpriteDragRender;
 
     public AxisType axisType { get; private set; }
 
@@ -31,6 +36,17 @@ public class LevelEntityAbsolute : LevelEntityPlaceable {
                     break;
                 case AxisType.Y:
                     iconSpriteRender.sprite = spriteAxisY;
+                    break;
+            }
+        }
+
+        if(iconSpriteDragRender) {
+            switch(axisType) {
+                case AxisType.X:
+                    iconSpriteDragRender.sprite = spriteDragAxisX;
+                    break;
+                case AxisType.Y:
+                    iconSpriteDragRender.sprite = spriteDragAxisY;
                     break;
             }
         }

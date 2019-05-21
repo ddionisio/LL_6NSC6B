@@ -17,9 +17,12 @@ public class LevelGrid : MonoBehaviour
     [Header("Wall")]
     public Transform wallRoot;
     public SpriteRenderer wallLineHTemplate;
+    public SpriteRenderer wallLineHBackTemplate;
     public SpriteRenderer wallLineVTemplate;
+    public SpriteRenderer wallLineVBackTemplate;
     public Vector2 wallLineOfs;
-    
+    public Vector2 wallLineBackOfs;
+
     public Vector2 size { get { return new Vector2(numCol * cellSize.x, numRow * cellSize.y); } }
     public Vector2 extents { get { return new Vector2(numCol * cellSize.x * 0.5f, numRow * cellSize.y * 0.5f); } }
     public Vector2 min { get { return center - extents; } }
@@ -224,6 +227,10 @@ public class LevelGrid : MonoBehaviour
     /// </summary>
     public Vector2 GetCellPosition(CellIndex cellIndex) {
         return GetCellPosition(cellIndex.col, cellIndex.row);
+    }
+
+    void Awake() {
+        if(cellHighlightRoot) cellHighlightRoot.gameObject.SetActive(false);
     }
 
     void OnDrawGizmos() {

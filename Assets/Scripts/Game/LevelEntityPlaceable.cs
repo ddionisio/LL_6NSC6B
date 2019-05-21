@@ -90,9 +90,15 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
     public void ApplyDeleteFill(float t) {
         if(deleteFillSpriteRender) {
-            var s = deleteFillSpriteRender.size;
-            s.y = mDeleteFillDefaultHeight * t;
-            deleteFillSpriteRender.size = s;
+            if(t > 0f) {
+                deleteFillSpriteRender.gameObject.SetActive(true);
+
+                var s = deleteFillSpriteRender.size;
+                s.y = mDeleteFillDefaultHeight * t;
+                deleteFillSpriteRender.size = s;
+            }
+            else
+                deleteFillSpriteRender.gameObject.SetActive(false);
         }
     }
 
@@ -111,6 +117,7 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
     protected virtual void Awake() {
         if(deleteFillSpriteRender) {
             mDeleteFillDefaultHeight = deleteFillSpriteRender.size.y;
+            deleteFillSpriteRender.gameObject.SetActive(false);
         }
     }
 
@@ -166,6 +173,9 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         StopCurrentRout();
 
         DragInvalidate();
+
+        if(deleteFillSpriteRender)
+            deleteFillSpriteRender.gameObject.SetActive(false);
 
         if(levelGrid)
             levelGrid.RemoveEntity(this);
@@ -245,6 +255,8 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         if(ghostColorGroup) ghostColorGroup.Revert();
 
         if(ghostRoot) ghostRoot.gameObject.SetActive(false);
+
+        if(levelGrid && levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.gameObject.SetActive(false);
     }
 
     private void DragBegin() {
@@ -255,6 +267,8 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         if(highlightGO) highlightGO.SetActive(false);
 
         if(ghostRoot) ghostRoot.gameObject.SetActive(true);
+
+        if(levelGrid && levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.gameObject.SetActive(true);
     }
 
     private void DragUpdate(PointerEventData eventData) {
@@ -264,7 +278,7 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
             if(levelGrid) {
                 mDraggingCellIndex = levelGrid.GetCellIndex(pos);
 
-                if(ghostRoot) ghostRoot.position = levelGrid.GetCellPosition(mDraggingCellIndex);
+                if(levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.position = levelGrid.GetCellPosition(mDraggingCellIndex);
 
                 mIsDraggingPlaceable = CheckPlaceable(levelGrid, mDraggingCellIndex);
             }
@@ -272,6 +286,8 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
                 mDraggingCellIndex.Invalidate();
                 mIsDraggingPlaceable = false;
             }
+
+            if(ghostRoot) ghostRoot.position = pos;
         }
         else {
             mDraggingCellIndex.Invalidate();
