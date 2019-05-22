@@ -119,7 +119,7 @@ public class LevelGrid : MonoBehaviour
     /// <summary>
     /// Return the quadrant number: 1,2,3,4. 0 if origin, -1 if along x-axis, -2 if along y-axis
     /// </summary>
-    public int GetQuadrant(Vector2 pos) {
+    public QuadrantType GetQuadrant(Vector2 pos) {
         var cellInd = GetCellIndex(pos);
         return GetQuadrant(cellInd.col, cellInd.row);
     }
@@ -127,52 +127,47 @@ public class LevelGrid : MonoBehaviour
     /// <summary>
     /// Return the quadrant number: 1,2,3,4. 0 if origin, -1 if along x-axis, -2 if along y-axis
     /// </summary>
-    public int GetQuadrant(CellIndex cellIndex) {
+    public QuadrantType GetQuadrant(CellIndex cellIndex) {
         return GetQuadrant(cellIndex.col, cellIndex.row);
     }
 
     /// <summary>
     /// Return the quadrant number: 1,2,3,4. 0 if origin, -1 if along x-axis, -2 if along y-axis
     /// </summary>
-    public int GetQuadrant(int col, int row) {
+    public QuadrantType GetQuadrant(int col, int row) {
         int _col = col - originCol;
         int _row = row - originRow;
 
         if(_col < 0) {
             if(_row < 0)
-                return 3;
+                return QuadrantType.Quadrant3;
             else if(_row > 0)
-                return 2;
+                return QuadrantType.Quadrant2;
             else
-                return -1;
+                return QuadrantType.AxisX;
         }
         else if(_col > 0) {
             if(_row < 0)
-                return 4;
+                return QuadrantType.Quadrant4;
             else if(_row > 0)
-                return 1;
+                return QuadrantType.Quadrant1;
             else
-                return -1;
+                return QuadrantType.AxisX;
         }
         else if(_row != 0)
-            return -2;
+            return QuadrantType.AxisY;
 
-        return 0;
+        return QuadrantType.Origin;
     }
 
     public LevelTile GetTile(Vector2 pos) {
-        var cellInd = GetCellIndex(pos);
-        if(cellInd.isValid)
-            return tileCells[cellInd.row, cellInd.col];
-
-        return null;
+        var cellInd = GetCellIndex(pos);        
+        return GetTile(cellInd);
     }
 
     public LevelTile GetTile(CellIndex cellIndex) {
-        if(cellIndex.isValid) {
-            if(cellIndex.row >= 0 && cellIndex.row < tileCells.GetLength(0) && cellIndex.col >= 0 && cellIndex.col < tileCells.GetLength(1))
-                return tileCells[cellIndex.row, cellIndex.col];
-        }
+        if(cellIndex.row >= 0 && cellIndex.row < tileCells.GetLength(0) && cellIndex.col >= 0 && cellIndex.col < tileCells.GetLength(1))
+            return tileCells[cellIndex.row, cellIndex.col];
 
         return null;
     }

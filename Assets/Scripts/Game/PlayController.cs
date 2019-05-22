@@ -16,6 +16,8 @@ public class PlayController : GameModeController<PlayController> {
     [M8.TagSelector]
     public string tagItemSelectorUI = "ItemSelector";
     [M8.TagSelector]
+    public string tagGridPointer = "GridPointer";
+    [M8.TagSelector]
     public string tagPlayer = "Player";
 
     [Header("Data")]
@@ -32,27 +34,17 @@ public class PlayController : GameModeController<PlayController> {
         }
     }
 
-    public LevelEntityPlayer player {
-        get {
-            if(!mPlayer) {
-                var go = GameObject.FindGameObjectWithTag(tagPlayer);
-                if(go)
-                    mPlayer = go.GetComponent<LevelEntityPlayer>();
-            }
-
-            return mPlayer;
-        }
-    }
+    public LevelEntityPlayer player { get; private set; }
 
     public LevelGrid levelGrid { get; private set; }
+
+    public LevelGridPointerWidget levelGridPointer { get; private set; }
 
     public event System.Action<Mode> modeChangedCallback;
 
     private Mode mCurMode = Mode.None;
 
     private LevelEntityItemGroupWidget mItemSelectorUI;
-
-    private LevelEntityPlayer mPlayer;
 
     protected override void OnInstanceInit() {
         base.OnInstanceInit();
@@ -62,12 +54,22 @@ public class PlayController : GameModeController<PlayController> {
         if(levelGO)
             levelGrid = levelGO.GetComponent<LevelGrid>();
 
+        //grab grid pointer
+        var gridPointerGO = GameObject.FindGameObjectWithTag(tagGridPointer);
+        if(gridPointerGO)
+            levelGridPointer = gridPointerGO.GetComponent<LevelGridPointerWidget>();
+
+        //grab player
+        var playerGO = GameObject.FindGameObjectWithTag(tagPlayer);
+        if(playerGO)
+            player = playerGO.GetComponent<LevelEntityPlayer>();
+
         //initialize item placement group
         var itemSelectorGO = GameObject.FindGameObjectWithTag(tagItemSelectorUI);
         if(itemSelectorGO) {
             mItemSelectorUI = itemSelectorGO.GetComponent<LevelEntityItemGroupWidget>();
             if(mItemSelectorUI) {
-                mItemSelectorUI.Init(items, levelGrid);
+                mItemSelectorUI.Init(items);
             }
         }
     }

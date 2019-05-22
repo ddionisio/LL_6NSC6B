@@ -15,11 +15,6 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
     public M8.SpriteColorGroup displayColorGroup;
     public Color displayColorDragging = Color.gray;
 
-    [Header("Display Ghost")]
-    public Transform ghostRoot;
-    public M8.SpriteColorGroup ghostColorGroup;
-    public Color ghostInvalidColor = Color.red;
-
     [Header("Display Misc.")]
     public GameObject highlightGO;
 
@@ -50,17 +45,25 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         }
     }
 
+    public virtual Sprite dragIcon { get { return null; } }
+    public virtual float dragIconRotate { get { return 0f; } }
+
     protected Coroutine mRout;
 
     private M8.PoolDataController mPoolDat;
 
     private bool mIsDragging;
-    private bool mIsDraggingPlaceable;
-    private CellIndex mDraggingCellIndex;
 
     private float mDeleteFillDefaultHeight;
 
     public static bool CheckPlaceable(LevelGrid grid, CellIndex cellIndex) {
+        if(!grid)
+            return false;
+
+        if(cellIndex.col - grid.originCol == 2 && cellIndex.row - grid.originRow == 0) {
+            int i = 0;
+        }
+
         var tile = grid.GetTile(cellIndex);
 
         //Debug.Log(string.Format("cellIndex: {0}, {1}", cellIndex.col, cellIndex.row));
@@ -209,8 +212,6 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
         DragUpdate(eventData);
 
-        //determine placement
-
         DragEnd();
     }
 
@@ -249,12 +250,14 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
     }
 
     private void DragInvalidate() {
+        if(mIsDragging) {
+            if(PlayController.isInstantiated && PlayController.instance.levelGridPointer)
+                PlayController.instance.levelGridPointer.mode = LevelGridPointerWidget.Mode.Pointer;
+        }
+
         mIsDragging = false;
 
         if(displayColorGroup) displayColorGroup.Revert();
-        if(ghostColorGroup) ghostColorGroup.Revert();
-
-        if(ghostRoot) ghostRoot.gameObject.SetActive(false);
 
         if(levelGrid && levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.gameObject.SetActive(false);
     }
@@ -266,52 +269,29 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
         if(highlightGO) highlightGO.SetActive(false);
 
-        if(ghostRoot) ghostRoot.gameObject.SetActive(true);
-
-        if(levelGrid && levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.gameObject.SetActive(true);
+        var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
+        if(drag) {
+            drag.SetupDrag(dragIcon, dragIconRotate);
+            drag.mode = LevelGridPointerWidget.Mode.Drag;
+        }
     }
 
     private void DragUpdate(PointerEventData eventData) {
-        if(eventData.pointerCurrentRaycast.isValid) {
-            //update drag display position
-            Vector2 pos = eventData.pointerCurrentRaycast.worldPosition;
-            if(levelGrid) {
-                mDraggingCellIndex = levelGrid.GetCellIndex(pos);
-
-                if(levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.position = levelGrid.GetCellPosition(mDraggingCellIndex);
-
-                mIsDraggingPlaceable = CheckPlaceable(levelGrid, mDraggingCellIndex);
-            }
-            else {
-                mDraggingCellIndex.Invalidate();
-                mIsDraggingPlaceable = false;
-            }
-
-            if(ghostRoot) ghostRoot.position = pos;
-        }
-        else {
-            mDraggingCellIndex.Invalidate();
-            mIsDraggingPlaceable = false;
-        }
-
-        //check tile if placeable
-        if(ghostColorGroup) {
-            if(mIsDraggingPlaceable)
-                ghostColorGroup.Revert();
-            else
-                ghostColorGroup.ApplyColor(ghostInvalidColor);
-        }
+        var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
+        if(drag)
+            drag.UpdatePointer(eventData);
     }
 
     private void DragEnd() {
         //check tile if placeable
-        if(mIsDraggingPlaceable) {
-            var prevCellIndex = cellIndex;
+        var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
+        if(drag && drag.isDragValid) {
+            var cellIndex = drag.pointerCellIndex;
 
             //check if we need to swap
             bool isMoveValid = true;
 
-            var ents = levelGrid.GetEntities(mDraggingCellIndex);
+            var ents = levelGrid.GetEntities(cellIndex);
             if(ents != null && ents.Count == 1) {
                 var otherEnt = ents[0] as LevelEntityPlaceable;
                 if(otherEnt) {
@@ -323,7 +303,7 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
             }
 
             if(isMoveValid) {
-                var toPos = levelGrid.GetCellPosition(mDraggingCellIndex);
+                var toPos = levelGrid.GetCellPosition(cellIndex);
                 MoveTo(toPos);
             }
         }

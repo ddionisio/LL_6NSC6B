@@ -15,7 +15,6 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     public GameObject panelGO;
 
     public Transform itemsRoot; //placement for items
-    public DragDisplayWidget drag; //place for dragging
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -71,11 +70,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
         }
     }
         
-    public void Init(LevelItemData[] itemConfigs, LevelGrid levelGrid) {
-        //init drag
-        if(drag)
-            drag.cellHighlightRoot = levelGrid.cellHighlightRoot;
-
+    public void Init(LevelItemData[] itemConfigs) {
         //init pool
         if(!mPool)
             mPool = M8.PoolController.CreatePool(poolGroup);
@@ -106,7 +101,7 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
                 mItems.Add(item);
             }
 
-            item.Init(mPool, levelGrid, drag, itemConfig.count);
+            item.Init(mPool, itemConfig.count);
 
             item.gameObject.SetActive(true);
             item.transform.SetSiblingIndex(i);

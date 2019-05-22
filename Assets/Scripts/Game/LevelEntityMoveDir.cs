@@ -10,10 +10,26 @@ public class LevelEntityMoveDir : LevelEntityPlaceable {
     public const string parmType = "dirType";
 
     [Header("Display Dir")]
+    public Sprite dragIconSprite;
     public Transform displayDirRoot;
-    public Transform ghostDirRoot;
 
     public MoveDir dirType { get; private set; }
+
+    public override Sprite dragIcon { get { return dragIconSprite; } }
+    public override float dragIconRotate {
+        get {
+            switch(dirType) {
+                case MoveDir.Down:
+                    return 180f;
+                case MoveDir.Left:
+                    return 90f;
+                case MoveDir.Right:
+                    return -90f;
+                default:
+                    return 0f;
+            }
+        }
+    }
 
     protected override void Spawned(GenericParams parms) {
         if(parms != null) {
@@ -25,24 +41,8 @@ public class LevelEntityMoveDir : LevelEntityPlaceable {
     }
     
     private void ApplyDirDisplay() {
-        Vector3 angles;
-
-        switch(dirType) {
-            case MoveDir.Down:
-                angles = new Vector3(0f, 0f, 180f);
-                break;
-            case MoveDir.Left:
-                angles = new Vector3(0f, 0f, 90f);
-                break;
-            case MoveDir.Right:
-                angles = new Vector3(0f, 0f, -90f);
-                break;
-            default:
-                angles = Vector3.zero;
-                break;
-        }
+        Vector3 angles = new Vector3(0f, 0f, dragIconRotate);
 
         displayDirRoot.localEulerAngles = angles;
-        ghostDirRoot.localEulerAngles = angles;
     }
 }

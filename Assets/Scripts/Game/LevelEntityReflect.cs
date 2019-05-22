@@ -24,10 +24,22 @@ public class LevelEntityReflect : LevelEntityPlaceable {
 
     [Header("Display")]
     public SpriteRenderer iconSpriteRender;
-    public SpriteRenderer iconDragSpriteRender;
 
     public bool reflectX { get; private set; }
     public bool reflectY { get; private set; }
+
+    public override Sprite dragIcon {
+        get {
+            if(reflectX && reflectY)
+                return spriteDragXYReflect;
+            else if(reflectX)
+                return spriteDragXReflect;
+            else if(reflectY)
+                return spriteDragYReflect;
+
+            return null;
+        }
+    }
 
     protected override void Spawned(GenericParams parms) {
         reflectX = reflectY = false;
@@ -47,22 +59,22 @@ public class LevelEntityReflect : LevelEntityPlaceable {
             if(reflectX && reflectY) {
                 //diagonal
                 switch(quadrant) {
-                    case 1:
+                    case QuadrantType.Quadrant1:
                         iconSpriteRender.sprite = spriteReflectXYLL;
                         break;
-                    case 2:
+                    case QuadrantType.Quadrant2:
                         iconSpriteRender.sprite = spriteReflectXYLR;
                         break;
-                    case 3:
+                    case QuadrantType.Quadrant3:
                         iconSpriteRender.sprite = spriteReflectXYUR;
                         break;
-                    case 4:
+                    case QuadrantType.Quadrant4:
                         iconSpriteRender.sprite = spriteReflectXYUL;
                         break;
-                    case -1:
+                    case QuadrantType.AxisX:
                         iconSpriteRender.sprite = cellIndex.col - levelGrid.originCol > 0 ? spriteReflectXLeft : spriteReflectXRight;
                         break;
-                    case -2:
+                    case QuadrantType.AxisY:
                         iconSpriteRender.sprite = cellIndex.row - levelGrid.originRow > 0 ? spriteReflectYDown : spriteReflectYUp;
                         break;
                     default:
@@ -73,15 +85,15 @@ public class LevelEntityReflect : LevelEntityPlaceable {
             else if(reflectX) {
                 //vertical
                 switch(quadrant) {
-                    case 1:
-                    case 4:
+                    case QuadrantType.Quadrant1:
+                    case QuadrantType.Quadrant4:
                         iconSpriteRender.sprite = spriteReflectXLeft;
                         break;
-                    case 2:
-                    case 3:
+                    case QuadrantType.Quadrant2:
+                    case QuadrantType.Quadrant3:
                         iconSpriteRender.sprite = spriteReflectXRight;
                         break;
-                    case -1:
+                    case QuadrantType.AxisX:
                         iconSpriteRender.sprite = cellIndex.col - levelGrid.originCol > 0 ? spriteReflectXLeft : spriteReflectXRight;
                         break;
                     default:
@@ -92,15 +104,15 @@ public class LevelEntityReflect : LevelEntityPlaceable {
             else if(reflectY) {
                 //vertical
                 switch(quadrant) {
-                    case 1:
-                    case 2:
+                    case QuadrantType.Quadrant1:
+                    case QuadrantType.Quadrant2:
                         iconSpriteRender.sprite = spriteReflectYDown;
                         break;
-                    case 3:
-                    case 4:
+                    case QuadrantType.Quadrant3:
+                    case QuadrantType.Quadrant4:
                         iconSpriteRender.sprite = spriteReflectYUp;
                         break;
-                    case -2:
+                    case QuadrantType.AxisY:
                         iconSpriteRender.sprite = cellIndex.row - levelGrid.originRow > 0 ? spriteReflectYDown : spriteReflectYUp;
                         break;
                     default:
@@ -108,15 +120,6 @@ public class LevelEntityReflect : LevelEntityPlaceable {
                         break;
                 }
             }
-        }
-
-        if(iconDragSpriteRender) {
-            if(reflectX && reflectY)
-                iconDragSpriteRender.sprite = spriteDragXYReflect;
-            else if(reflectX)
-                iconDragSpriteRender.sprite = spriteDragXReflect;
-            else if(reflectY)
-                iconDragSpriteRender.sprite = spriteDragYReflect;
         }
     }
 }

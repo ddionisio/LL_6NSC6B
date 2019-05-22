@@ -10,9 +10,6 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
     public const string parmCellHighlight = "cellHighlight";
     public const string parmCount = "count";
 
-    [Header("Config")]
-    public string tagLevelEntityPlaceable = "LevelEntityPlaceable";
-
     [Header("Template")]
     public GameObject template;
     public int templateCapacity = 16;
@@ -35,24 +32,18 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
 
     public bool isDragging { get; private set; }
 
-    public LevelGrid levelGrid { get; private set; }
-
     public virtual float iconRotation { get { return 0f; } }
 
     private M8.PoolController mPool;
-
-    private DragDisplayWidget mDrag;
 
     private M8.CacheList<LevelEntityPlaceable> mActiveEntities;
 
     private M8.GenericParams mSpawnParms = new M8.GenericParams();
 
-    public virtual void Init(M8.PoolController aPool, LevelGrid aLevelGrid, DragDisplayWidget aDrag, int aCount) {
+    public virtual void Init(M8.PoolController aPool, int aCount) {
         if(iconImage) iconImage.transform.localEulerAngles = new Vector3(0f, 0f, iconRotation);
 
         mPool = aPool;
-        levelGrid = aLevelGrid;
-        mDrag = aDrag;
 
         if(mActiveEntities == null || mActiveEntities.Count < aCount)
             mActiveEntities = new M8.CacheList<LevelEntityPlaceable>(aCount);
@@ -73,10 +64,12 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
     }
 
     public void DragInvalidate() {
-        isDragging = false;
+        if(isDragging) {
+            if(PlayController.isInstantiated && PlayController.instance.levelGridPointer)
+                PlayController.instance.levelGridPointer.mode = LevelGridPointerWidget.Mode.Pointer;
+        }
 
-        if(mDrag)
-            mDrag.SetActive(false);
+        isDragging = false;
 
         RefreshDisplay();
     }
@@ -146,10 +139,11 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
 
         if(highlightGO) highlightGO.SetActive(false);
 
-        if(mDrag) {
+        var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
+        if(drag) {
             var iconSpr = iconImage ? iconImage.sprite : null;
-            mDrag.Setup(iconSpr, iconRotation);
-            mDrag.SetActive(true);
+            drag.SetupDrag(iconSpr, iconRotation);
+            drag.mode = LevelGridPointerWidget.Mode.Drag;
         }
                 
         RefreshDisplay();
@@ -168,55 +162,44 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         if(!isDragging)
             return;
 
+        DragUpdate(eventData);
+
+        var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
+
         //check spawnable
-        if(CheckPointerEventValid(eventData)) {
-            var cellIndex = levelGrid.GetCellIndex(eventData.pointerCurrentRaycast.worldPosition);
-            if(cellIndex.isValid && LevelEntityPlaceable.CheckPlaceable(levelGrid, cellIndex)) {
-                //check if there exists another, delete them if deletable
-                var ents = levelGrid.GetEntities(cellIndex);
-                if(ents != null) {
-                    for(int i = 0; i < ents.Count; i++) {
-                        var entPlaceable = ents[i] as LevelEntityPlaceable;
-                        if(entPlaceable)
-                            entPlaceable.Delete();
-                    }
+        if(drag && drag.isDragValid) {
+            var levelGrid = PlayController.instance.levelGrid;
+            var cellIndex = drag.pointerCellIndex;
+
+            //check if there exists another, delete them if deletable
+            var ents = levelGrid.GetEntities(cellIndex);
+            if(ents != null) {
+                for(int i = 0; i < ents.Count; i++) {
+                    var entPlaceable = ents[i] as LevelEntityPlaceable;
+                    if(entPlaceable)
+                        entPlaceable.Delete();
                 }
-
-                //spawn entity
-                mSpawnParms[LevelEntityPlaceable.parmCellIndex] = cellIndex;
-
-                ApplySpawnParms(mSpawnParms);
-
-                var ent = mPool.Spawn<LevelEntityPlaceable>(name + count.ToString(), levelGrid.entitiesRoot, mSpawnParms);
-
-                ent.poolData.despawnCallback += OnEntityDespawn;
-
-                mActiveEntities.Add(ent);
             }
+
+            //spawn entity
+            mSpawnParms[LevelEntityPlaceable.parmCellIndex] = cellIndex;
+
+            ApplySpawnParms(mSpawnParms);
+
+            var ent = mPool.Spawn<LevelEntityPlaceable>(name + count.ToString(), levelGrid.entitiesRoot, mSpawnParms);
+
+            ent.poolData.despawnCallback += OnEntityDespawn;
+
+            mActiveEntities.Add(ent);
         }
 
         DragInvalidate();
     }
 
     void DragUpdate(PointerEventData eventData) {
-        bool dragValid = false;
-        Vector2 dragCellPos = Vector2.zero;
-
-        if(CheckPointerEventValid(eventData)) {
-            //check if cell is valid
-            var cellIndex = levelGrid.GetCellIndex(eventData.pointerCurrentRaycast.worldPosition);
-            if(cellIndex.isValid && LevelEntityPlaceable.CheckPlaceable(levelGrid, cellIndex)) {
-                dragValid = true;
-                dragCellPos = levelGrid.GetCellPosition(cellIndex);
-            }
-        }
-
-        if(mDrag) {
-            mDrag.SetValid(dragValid);
-            mDrag.UpdateCellHighlightPos(dragCellPos);
-
-            mDrag.transform.position = eventData.position;
-        }
+        var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
+        if(drag)
+            drag.UpdatePointer(eventData);
     }
 
     void OnEntityDespawn(M8.PoolDataController pdc) {
@@ -233,23 +216,5 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         }
 
         RefreshDisplay();
-    }
-
-    private bool CheckPointerEventValid(PointerEventData eventData) {
-        if(!eventData.pointerCurrentRaycast.isValid)
-            return false;
-
-        if(!levelGrid)
-            return false;
-
-        var go = eventData.pointerCurrentRaycast.gameObject;
-
-        if(go != levelGrid.gameObject) {
-            //check if it's a placeable entity
-            if(!go.CompareTag(tagLevelEntityPlaceable))
-                return false;
-        }
-
-        return true;
     }
 }

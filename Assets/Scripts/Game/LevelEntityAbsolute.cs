@@ -17,9 +17,21 @@ public class LevelEntityAbsolute : LevelEntityPlaceable {
 
     [Header("Display")]
     public SpriteRenderer iconSpriteRender;
-    public SpriteRenderer iconSpriteDragRender;
 
     public AxisType axisType { get; private set; }
+
+    public override Sprite dragIcon {
+        get {
+            switch(axisType) {
+                case AxisType.X:
+                    return spriteDragAxisX;
+                case AxisType.Y:
+                    return spriteDragAxisY;
+            }
+
+            return null;
+        }
+    }
 
     protected override void Spawned(GenericParams parms) {
         axisType = AxisType.None;
@@ -36,17 +48,6 @@ public class LevelEntityAbsolute : LevelEntityPlaceable {
                     break;
                 case AxisType.Y:
                     iconSpriteRender.sprite = spriteAxisY;
-                    break;
-            }
-        }
-
-        if(iconSpriteDragRender) {
-            switch(axisType) {
-                case AxisType.X:
-                    iconSpriteDragRender.sprite = spriteDragAxisX;
-                    break;
-                case AxisType.Y:
-                    iconSpriteDragRender.sprite = spriteDragAxisY;
                     break;
             }
         }

@@ -17,6 +17,13 @@
     "on": "ON",
     "off": "OFF",
     "close": "CLOSE",
-    "clear": "CLEAR"
+    "clear": "CLEAR",
+    "origin": "Origin",
+    "axisX": "X - Axis",
+    "axisY": "Y - Axis",
+    "quadrant1": "Quadrant 1",
+    "quadrant2": "Quadrant 2",
+    "quadrant3": "Quadrant 3",
+    "quadrant4": "Quadrant 4"
   }
 }
