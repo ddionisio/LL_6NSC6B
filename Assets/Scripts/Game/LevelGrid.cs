@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGrid : MonoBehaviour
-{
+public class LevelGrid : MonoBehaviour {
+    [System.Serializable]
+    public struct CellGeneratorInfo {
+        public int paletteIndex;
+        public float brightnessOffset;
+    }
+
     [Header("Grid Info")]
     public Vector2 cellSize = new Vector2(1f, 1f);
     public int originCol = 2;
@@ -20,8 +25,14 @@ public class LevelGrid : MonoBehaviour
     public SpriteRenderer wallLineHBackTemplate;
     public SpriteRenderer wallLineVTemplate;
     public SpriteRenderer wallLineVBackTemplate;
+    public Vector2 wallLinePosOfs;
     public Vector2 wallLineOfs;
     public Vector2 wallLineBackOfs;
+
+    [Header("Cell Generator")]
+    public LevelTile cellGenTemplate;
+    public CellGeneratorInfo[] cellGenQuadrantInfos;
+    public CellGeneratorInfo cellGenAxisInfo;
 
     public Vector2 size { get { return new Vector2(numCol * cellSize.x, numRow * cellSize.y); } }
     public Vector2 extents { get { return new Vector2(numCol * cellSize.x * 0.5f, numRow * cellSize.y * 0.5f); } }

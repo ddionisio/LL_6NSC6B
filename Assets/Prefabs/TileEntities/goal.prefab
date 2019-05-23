@@ -67,7 +67,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   m_Color: {r: 1, g: 0.8431373, b: 0.6, a: 1}
   m_FlipX: 0
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a62f4648f78f7934db051c54b3040ff3, type: 3}
   m_Color: {r: 0.97647065, g: 0.5529412, b: 0.34509805, a: 1}
   m_FlipX: 0
@@ -289,7 +289,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: d65424c6f1d69dd4ca5342b3d9abcd67, type: 3}
   m_Color: {r: 0.97647065, g: 0.5529412, b: 0.34509805, a: 1}
   m_FlipX: 0
@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 3393024197577355487}
   - component: {fileID: 3393024197577355485}
   - component: {fileID: 3393024197577355486}
+  - component: {fileID: 446782805001257976}
   m_Layer: 0
   m_Name: goal
   m_TagString: Goal
@@ -344,7 +345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3393024197577355480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.125, y: -3.125, z: 0}
+  m_LocalPosition: {x: 3.125, y: -3.125, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3393024196775363605}
@@ -364,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c0950a0393256e4799e0a4850faa267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zOfs: 0
+  zOfs: -0.01
   _col: 7
   _row: 2
   animator: {fileID: 3393024197577355486}
@@ -683,6 +684,24 @@ MonoBehaviour:
       index: 0
       keyIndices: 0000000001000000020000000300000004000000
     _takeTrackCounts: 0300000006000000
+--- !u!114 &446782805001257976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3393024197577355480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c297231ee5bbd42a954585217b0cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bound:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.78125, y: 0.78125, z: 0.5}
+  color: {r: 1, g: 1, b: 1, a: 0}
+  solid: 1
+  useCollider: 0
 --- !u!1 &3393024197606029641
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,7 +771,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 65d8ee2638fa864428c0ea859562f366, type: 3}
   m_Color: {r: 0.97647065, g: 0.5529412, b: 0.34509805, a: 1}
   m_FlipX: 0

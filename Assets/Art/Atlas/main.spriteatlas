@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
     - {fileID: 102900000, guid: 08562eb8366106f4796ddd9051096a10, type: 3}
-    totalSpriteSurfaceArea: 117644
+    totalSpriteSurfaceArea: 117668
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -118,6 +118,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1e6c8be9d45e0214c9e16ff08c1c5f8c, type: 3}
   - {fileID: 21300000, guid: 82a1210a548c06e42b55b716f3ce4f35, type: 3}
   - {fileID: 21300000, guid: 0a84d21a9991069488a861460ac80857, type: 3}
+  - {fileID: 21300000, guid: 883da75ae6298ff4aa392e42671c18e3, type: 3}
   - {fileID: 21300000, guid: 7168da6aea1c4154bbc52d54856e6639, type: 3}
   - {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
   - {fileID: 21300000, guid: 040e5f8a43e1a674abd0a2bf5194f1bd, type: 3}
@@ -216,6 +217,7 @@ SpriteAtlas:
   - robert_down_idle_1
   - robert_up_idle_0
   - robert_down_idle_0
+  - droplet
   - gradient8x8
   - tile05
   - tileIconAbsolute_x

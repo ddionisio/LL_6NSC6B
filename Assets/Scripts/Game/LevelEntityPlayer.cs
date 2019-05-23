@@ -22,7 +22,7 @@ public class LevelEntityPlayer : LevelEntityMover {
                 //check if it's an enemy, die
                 if(entMover.CompareTag(tagEnemy)) {
                     //let enemy celebrate
-                    entMover.state = State.Victory;
+                    //entMover.state = State.Victory;
 
                     return State.Dead;
                 }

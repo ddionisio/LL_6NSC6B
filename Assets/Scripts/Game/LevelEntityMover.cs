@@ -30,6 +30,7 @@ public class LevelEntityMover : LevelEntity {
     public SpriteRenderer displaySpriteRender; //note: default facing right
     public Transform displayShadowRoot;
     public ParticleSystem warpFX;
+    public bool hideShadowOnDeath;
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -125,6 +126,7 @@ public class LevelEntityMover : LevelEntity {
     private CellIndex mWarpToCellIndex;
 
     private int mDefaultDisplaySortOrder;
+    private Vector2 mDefaultDisplaySpriteLPos;
 
     private Coroutine mRout;
 
@@ -185,8 +187,11 @@ public class LevelEntityMover : LevelEntity {
 
         mDefaultCellIndex = cellIndex;
 
-        if(displaySpriteRender)
+        if(displaySpriteRender) {
             mDefaultDisplaySortOrder = displaySpriteRender.sortingOrder;
+
+            mDefaultDisplaySpriteLPos = displaySpriteRender.transform.localPosition;
+        }
 
         PlayController.instance.modeChangedCallback += OnModeChanged;
 
@@ -465,6 +470,13 @@ public class LevelEntityMover : LevelEntity {
 
         SnapPosition();
 
+        if(displaySpriteRender) {
+            var t = displaySpriteRender.transform;
+            t.localPosition = mDefaultDisplaySpriteLPos;
+            t.localRotation = Quaternion.identity;
+            t.localScale = Vector3.one;
+        }
+
         prevCellIndex = cellIndex;
 
         int displaySortOrder = mDefaultDisplaySortOrder;
@@ -485,11 +497,13 @@ public class LevelEntityMover : LevelEntity {
                 break;
 
             case State.Dead:
-                if(displayShadowRoot)
+                if(animator && !string.IsNullOrEmpty(takeDead))
+                    animator.ResetTake(takeDead);
+
+                if(hideShadowOnDeath && displayShadowRoot)
                     displayShadowRoot.gameObject.SetActive(true);
                 break;
         }
-
 
         switch(mCurState) {
             case State.Moving:
@@ -520,11 +534,11 @@ public class LevelEntityMover : LevelEntity {
             case State.Dead:
                 displaySortOrder = deadDisplaySortOrder;
 
-                if(displayShadowRoot)
-                    displayShadowRoot.gameObject.SetActive(false);
-
                 if(animator && !string.IsNullOrEmpty(takeDead))
                     animator.Play(takeDead);
+
+                if(hideShadowOnDeath && displayShadowRoot)
+                    displayShadowRoot.gameObject.SetActive(false);
                 break;
 
             default:

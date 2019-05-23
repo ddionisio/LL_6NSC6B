@@ -172,6 +172,77 @@ public class LevelGridInspector : Editor {
                 }
             }
         }
+
+        bool isApplyCells = false, isCreateCell = false;
+
+        if(GUILayout.Button("Generate Cells")) {
+            isApplyCells = true;
+            isCreateCell = true;
+        }
+
+        if(GUILayout.Button("Refresh Cells")) {
+            isApplyCells = true;
+        }
+
+        if(isApplyCells) {
+            if(mTileCells == null)
+                mTileCells = dat.GenerateTileCells();
+
+            for(int r = 0; r < dat.numRow; r++) {
+                for(int c = 0; c < dat.numCol; c++) {
+                    var cell = new CellIndex(r, c);
+
+                    var quadType = dat.GetQuadrant(cell);
+
+                    LevelGrid.CellGeneratorInfo cellGenInfo;
+                    switch(quadType) {
+                        case QuadrantType.Quadrant1:
+                        case QuadrantType.Quadrant2:
+                        case QuadrantType.Quadrant3:
+                        case QuadrantType.Quadrant4:
+                            int quadIndex = (int)quadType - 1;
+                            if(dat.cellGenQuadrantInfos != null && dat.cellGenQuadrantInfos.Length > 0) {
+                                //clamp
+                                if(quadIndex < 0)
+                                    quadIndex = 0;
+                                else if(quadIndex >= dat.cellGenQuadrantInfos.Length)
+                                    quadIndex = dat.cellGenQuadrantInfos.Length - 1;
+
+                                cellGenInfo = dat.cellGenQuadrantInfos[quadIndex];
+                            }
+                            else
+                                cellGenInfo = dat.cellGenAxisInfo;
+                            break;
+
+                        default:
+                            cellGenInfo = dat.cellGenAxisInfo;
+                            break;
+                    }
+
+                    //check existing tile
+                    var tile = mTileCells[r, c];
+                    if(!tile && isCreateCell) {
+                        //generate
+                        tile = Instantiate(dat.cellGenTemplate, dat.GetCellPosition(cell), Quaternion.identity, dat.tilesRoot);
+                        mTileCells[r, c] = tile;
+                    }
+
+                    if(tile) {
+                        tile.name = string.Format("{0:D2}:{1:D2}", c, r);
+                        tile.transform.SetAsLastSibling();
+
+                        //apply display
+                        if(tile.tileSpriteRender) {
+                            var spritePalette = tile.tileSpriteRender.GetComponent<M8.SpriteColorFromPalette>();
+                            if(spritePalette) {
+                                spritePalette.index = cellGenInfo.paletteIndex;
+                                spritePalette.brightness = 1f + cellGenInfo.brightnessOffset;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void ApplyWallHorizontal(LevelGrid levelGrid, int sCol, int eCol, int row, bool isBack, bool isBottom) {
@@ -203,7 +274,7 @@ public class LevelGridInspector : Editor {
         var sprRender = Instantiate(sprRenderTemplate, levelGrid.wallRoot);
         sprRender.size = new Vector2(ePos.x - sPos.x, sprRender.size.y);
 
-        sprRender.transform.position = new Vector2(Mathf.Lerp(sPos.x, ePos.x, 0.5f), sPos.y);
+        sprRender.transform.position = new Vector2(Mathf.Lerp(sPos.x, ePos.x, 0.5f), sPos.y) + levelGrid.wallLinePosOfs;
     }
 
     private void ApplyWallVertical(LevelGrid levelGrid, int sRow, int eRow, int col, bool isBack, bool isLeft) {
@@ -235,6 +306,6 @@ public class LevelGridInspector : Editor {
         var sprRender = Instantiate(sprRenderTemplate, levelGrid.wallRoot);
         sprRender.size = new Vector2(sprRender.size.x, ePos.y - sPos.y);
 
-        sprRender.transform.position = new Vector2(sPos.x, Mathf.Lerp(sPos.y, ePos.y, 0.5f));
+        sprRender.transform.position = new Vector2(sPos.x, Mathf.Lerp(sPos.y, ePos.y, 0.5f)) + levelGrid.wallLinePosOfs;
     }
 }
