@@ -60,10 +60,6 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         if(!grid)
             return false;
 
-        if(cellIndex.col - grid.originCol == 2 && cellIndex.row - grid.originRow == 0) {
-            int i = 0;
-        }
-
         var tile = grid.GetTile(cellIndex);
 
         //Debug.Log(string.Format("cellIndex: {0}, {1}", cellIndex.col, cellIndex.row));

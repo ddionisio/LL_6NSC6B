@@ -29,6 +29,7 @@ public class LevelEntityMover : LevelEntity {
     public Transform displayRoot;
     public SpriteRenderer displaySpriteRender; //note: default facing right
     public Transform displayShadowRoot;
+    public ParticleSystem warpFX;
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -469,6 +470,13 @@ public class LevelEntityMover : LevelEntity {
         int displaySortOrder = mDefaultDisplaySortOrder;
 
         switch(prevState) {
+            case State.Warp:
+                if(warpFX) {
+                    var fxDat = warpFX.main;
+                    fxDat.loop = false;
+                }
+                break;
+
             case State.Jumping:
                 if(displayRoot)
                     displayRoot.localPosition = Vector3.zero;
@@ -489,6 +497,12 @@ public class LevelEntityMover : LevelEntity {
                 break;
 
             case State.Warp:
+                if(warpFX) {
+                    var fxDat = warpFX.main;
+                    fxDat.loop = true;
+                    warpFX.Play();
+                }
+
                 mRout = StartCoroutine(DoWarp());
                 break;
 
