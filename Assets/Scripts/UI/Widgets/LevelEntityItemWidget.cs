@@ -186,7 +186,7 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
 
             ApplySpawnParms(mSpawnParms);
 
-            var ent = mPool.Spawn<LevelEntityPlaceable>(name + count.ToString(), levelGrid.entitiesRoot, mSpawnParms);
+            var ent = mPool.Spawn<LevelEntityPlaceable>(template.name, name + count.ToString(), levelGrid.entitiesRoot, mSpawnParms);
 
             ent.poolData.despawnCallback += OnEntityDespawn;
 

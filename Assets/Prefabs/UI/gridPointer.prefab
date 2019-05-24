@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 951236635639243535}
   - component: {fileID: 951236635639243533}
   - component: {fileID: 951236635639243534}
+  - component: {fileID: 6385633415287565439}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -246,6 +247,21 @@ MonoBehaviour:
   m_Text: 'Quadrant 1
 
     (0, 0)'
+--- !u!114 &6385633415287565439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951236635639243528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.3647059, g: 0.14509805, b: 0.10980393, a: 1}
+  m_EffectDistance: {x: 1.5, y: -1.5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &951236635698541145
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.63529414}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

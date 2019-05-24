@@ -123,6 +123,8 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
     protected virtual void Spawned(M8.GenericParams parms) { }
     protected virtual void Despawned() { }
 
+    protected virtual void MoveFinish() { }
+
     void OnApplicationFocus(bool focus) {
         if(!Application.isPlaying)
             return;
@@ -243,6 +245,8 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         displayRoot.localPosition = Vector3.zero;
 
         mRout = null;
+
+        MoveFinish();
     }
 
     private void DragInvalidate() {

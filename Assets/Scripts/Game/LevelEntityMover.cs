@@ -20,7 +20,7 @@ public class LevelEntityMover : LevelEntity {
     public float moveChangeDirDelay = 0.15f;
 
     public float jumpHeight = 2f;
-    public float jumpDelay = 0.3f;
+    public float jumpDelay = 0.5f;
     public int jumpDisplaySortOrder = 100;
 
     public int deadDisplaySortOrder = -100;
@@ -136,7 +136,49 @@ public class LevelEntityMover : LevelEntity {
     /// Return state to switch to, if none, then evaluate further
     /// </summary>
     protected virtual State EvaluateEntity(LevelEntity ent) {
-        return State.None;
+        var toState = State.None;
+
+        //do our specific things
+        if(ent is LevelEntityMoveDir) {
+            //change dir
+            dir = ((LevelEntityMoveDir)ent).dirType;
+        }
+        else if(ent is LevelEntityReflect) {
+            var reflectEnt = (LevelEntityReflect)ent;
+
+            //apply reflect relative to origin
+            mWarpToCellIndex = cellIndex;
+
+            if(reflectEnt.reflectX) {
+                mWarpToCellIndex.col = levelGrid.originCol - (mWarpToCellIndex.col - levelGrid.originCol);
+            }
+
+            if(reflectEnt.reflectY) {
+                mWarpToCellIndex.row = levelGrid.originRow - (mWarpToCellIndex.row - levelGrid.originRow);
+            }
+
+            toState = State.Jumping;
+        }
+        else if(ent is LevelEntityAbsolute) {
+            var absEnt = (LevelEntityAbsolute)ent;
+            if(absEnt.axisType != AxisType.None) {
+                //apply abs. relative to origin
+                mWarpToCellIndex = cellIndex;
+
+                switch(absEnt.axisType) {
+                    case AxisType.X:
+                        mWarpToCellIndex.col = levelGrid.originCol + Mathf.Abs(mWarpToCellIndex.col - levelGrid.originCol);
+                        break;
+                    case AxisType.Y:
+                        mWarpToCellIndex.row = levelGrid.originRow + Mathf.Abs(mWarpToCellIndex.row - levelGrid.originRow);
+                        break;
+                }
+
+                toState = State.Jumping;
+            }
+        }
+
+        return toState;
     }
 
     /// <summary>
@@ -380,8 +422,17 @@ public class LevelEntityMover : LevelEntity {
         switch(PlayController.instance.curMode) {
             case PlayController.Mode.Running:
                 var toState = EvaluateCurrentTile();
-                if(toState != State.None)
-                    state = toState;
+                if(toState != State.None) {
+                    if(toState == State.Jumping) {
+                        //jump again? check if it's to a different cell
+                        if(mWarpToCellIndex != cellIndex)
+                            ApplyCurState(mCurState);
+                        else
+                            state = State.Moving; //ignore and move along
+                    }
+                    else
+                        state = toState;
+                }
                 else
                     state = State.Moving;
                 break;
@@ -407,46 +458,6 @@ public class LevelEntityMover : LevelEntity {
                     toState = EvaluateEntity(ents[i]);
                     if(toState != State.None)
                         break;
-
-                    //do our specific things
-                    if(ent is LevelEntityMoveDir) {
-                        //change dir
-                        dir = ((LevelEntityMoveDir)ent).dirType;
-                    }
-                    else if(ent is LevelEntityReflect) {
-                        var reflectEnt = (LevelEntityReflect)ent;
-
-                        //apply reflect relative to origin
-                        mWarpToCellIndex = cellIndex;
-
-                        if(reflectEnt.reflectX) {
-                            mWarpToCellIndex.col = levelGrid.originCol - (mWarpToCellIndex.col - levelGrid.originCol);
-                        }
-
-                        if(reflectEnt.reflectY) {
-                            mWarpToCellIndex.row = levelGrid.originRow - (mWarpToCellIndex.row - levelGrid.originRow);
-                        }
-
-                        toState = State.Jumping;
-                    }
-                    else if(ent is LevelEntityAbsolute) {
-                        var absEnt = (LevelEntityAbsolute)ent;
-                        if(absEnt.axisType != AxisType.None) {
-                            //apply abs. relative to origin
-                            mWarpToCellIndex = cellIndex;
-
-                            switch(absEnt.axisType) {
-                                case AxisType.X:
-                                    mWarpToCellIndex.col = levelGrid.originCol + Mathf.Abs(mWarpToCellIndex.col - levelGrid.originCol);
-                                    break;
-                                case AxisType.Y:
-                                    mWarpToCellIndex.row = levelGrid.originRow + Mathf.Abs(mWarpToCellIndex.row - levelGrid.originRow);
-                                    break;
-                            }
-
-                            toState = State.Jumping;
-                        }
-                    }
                 }
             }
         }

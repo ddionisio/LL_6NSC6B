@@ -83,4 +83,12 @@ public class LevelEntity : MonoBehaviour {
         }
 #endif
     }
+
+    void OnDrawGizmos() {
+        //this is here so this gameobject can be selected properly
+        if(levelGrid) {
+            Gizmos.color = Color.clear;
+            Gizmos.DrawCube(transform.position, new Vector3(levelGrid.cellSize.x, levelGrid.cellSize.y, 0f));
+        }
+    }
 }

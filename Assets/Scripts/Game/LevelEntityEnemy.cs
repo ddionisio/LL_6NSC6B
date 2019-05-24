@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelEntityEnemy : LevelEntityMover {
+    [Header("Data Enemy")]
+    [M8.TagSelector]
+    public string tagEntityKill = "Player";
 
     private LevelEntityMover mEntDeadMover; //current dead mover on cell
 
@@ -12,8 +15,12 @@ public class LevelEntityEnemy : LevelEntityMover {
 
     protected override State EvaluateEntity(LevelEntity ent) {
         if(ent is LevelEntityMover) {
-            var entMover = (LevelEntityMover)ent;            
-            if(entMover.state == State.Dead)
+            var entMover = (LevelEntityMover)ent;
+            if(ent.CompareTag(tagEntityKill)) {
+                if(entMover.state == State.Moving)
+                    entMover.state = State.Dead;
+            }
+            else if(entMover.state == State.Dead)
                 mEntDeadMover = entMover;
         }
 

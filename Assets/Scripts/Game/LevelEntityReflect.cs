@@ -53,6 +53,14 @@ public class LevelEntityReflect : LevelEntityPlaceable {
         }
 
         //determine display
+        ApplySprite();
+    }
+
+    protected override void MoveFinish() {
+        ApplySprite();
+    }
+
+    private void ApplySprite() {
         if(iconSpriteRender) {
             var quadrant = levelGrid.GetQuadrant(cellIndex);
 

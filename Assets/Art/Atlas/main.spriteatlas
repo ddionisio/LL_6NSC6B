@@ -46,16 +46,18 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
     - {fileID: 102900000, guid: 08562eb8366106f4796ddd9051096a10, type: 3}
-    totalSpriteSurfaceArea: 117668
+    totalSpriteSurfaceArea: 135114
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 5b990320388c4fd4abca200664f4b1b7, type: 3}
   - {fileID: 21300000, guid: 7d117940d647dcb48b9d57d1f7f72d28, type: 3}
+  - {fileID: 21300000, guid: 83590d80095144b47a95eb1a2723dfe3, type: 3}
   - {fileID: 21300000, guid: be98f690b6a68d8478a95623f406a172, type: 3}
   - {fileID: 21300000, guid: 75db0101a487bc94c8c4305b92914eb4, type: 3}
   - {fileID: 21300000, guid: 5ed7cd01c36b80f4588c3709e317573b, type: 3}
   - {fileID: 21300000, guid: f4683e31b11d8c249ac19e37611319cd, type: 3}
+  - {fileID: 21300000, guid: 96cf0a5116fcf4447b08a09cf0f9aadb, type: 3}
   - {fileID: 21300000, guid: b674b9717cf49554baca94acaa03ff03, type: 3}
   - {fileID: 21300000, guid: 3821ed81270146041a91f097758a2b70, type: 3}
   - {fileID: 21300002, guid: 2c182d91a96c3c949bcbade9ea5d4ba4, type: 3}
@@ -65,6 +67,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 8b4c8102d63c11144b78f8e21ec54b16, type: 3}
   - {fileID: 21300002, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
   - {fileID: 21300000, guid: bf8c0222be72dfd48a68e5cf2a7ed5c1, type: 3}
+  - {fileID: 21300000, guid: b264d2325e43d5842bf0697da135b3b4, type: 3}
+  - {fileID: 21300000, guid: ad9e52c286014dd4db0926b2951744ce, type: 3}
   - {fileID: 21300000, guid: 9d8b82f2d19993a49ba4cae9ccb08605, type: 3}
   - {fileID: 21300000, guid: 1abaebf232c3b9d409c5c9383ee84f5d, type: 3}
   - {fileID: 21300000, guid: 4ff1eb1344204574ea70f90a0b8c59b0, type: 3}
@@ -78,12 +82,15 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
   - {fileID: 21300000, guid: 44a2e43498084d140b46c5499e074241, type: 3}
   - {fileID: 21300000, guid: d985b654a2dd4e54482f774cec3f7b9c, type: 3}
+  - {fileID: 21300000, guid: e3183c742e07dab4f9ba7a53d49f4324, type: 3}
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
   - {fileID: 21300000, guid: ed3ee745814d1bf44a0a1ff9061127df, type: 3}
+  - {fileID: 21300000, guid: 1d2864c5d3c56a6439c21c071bcf16dc, type: 3}
   - {fileID: 21300000, guid: e86f0116e4afa034b87bc5fa78862f9e, type: 3}
   - {fileID: 21300000, guid: a8c26226fff848b43bf89cf0d3fab033, type: 3}
   - {fileID: 21300000, guid: 65d8ee2638fa864428c0ea859562f366, type: 3}
+  - {fileID: 21300000, guid: dd8c1646fcf096243af993ccbbce0e45, type: 3}
   - {fileID: 21300000, guid: c4bb9846c0fffd94fa99d320b072b76e, type: 3}
   - {fileID: 21300000, guid: ea4ece76ecd61aa409f6b84526993e33, type: 3}
   - {fileID: 21300000, guid: cd412d8684d925f4ba0ce690380537f0, type: 3}
@@ -101,6 +108,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b5f1f248fc842084cb79fa132167e30b, type: 3}
   - {fileID: 21300000, guid: a62f4648f78f7934db051c54b3040ff3, type: 3}
   - {fileID: 21300000, guid: e0d4f398d1114bd49b5590dac9b45479, type: 3}
+  - {fileID: 21300000, guid: 84db07a8344b8e445842c4aa665c6796, type: 3}
   - {fileID: 21300010, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300006, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
   - {fileID: 21300000, guid: 02cb7109eec577d45a27167e2308de23, type: 3}
@@ -112,6 +120,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fb399b294e73afc41873564d99c6eb7e, type: 3}
   - {fileID: 21300000, guid: 412dc649ccff3e2479903954f4073628, type: 3}
   - {fileID: 21300000, guid: bb8a087995e8ab149b0f5c36c07f3d96, type: 3}
+  - {fileID: 21300000, guid: 5c5d64a9a48a79a47a9c133c4278fcd8, type: 3}
   - {fileID: 21300000, guid: ade22ab9236235c4993d840cb79a5c9e, type: 3}
   - {fileID: 21300000, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
   - {fileID: 21300002, guid: 1936bac986127cb4bad904bfad92c266, type: 3}
@@ -120,10 +129,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0a84d21a9991069488a861460ac80857, type: 3}
   - {fileID: 21300000, guid: 883da75ae6298ff4aa392e42671c18e3, type: 3}
   - {fileID: 21300000, guid: 7168da6aea1c4154bbc52d54856e6639, type: 3}
+  - {fileID: 21300000, guid: 5b690d6a8f102c64c818914992ef6f25, type: 3}
   - {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
   - {fileID: 21300000, guid: 040e5f8a43e1a674abd0a2bf5194f1bd, type: 3}
   - {fileID: 21300000, guid: 5952baaa48d611842a22716276cee699, type: 3}
   - {fileID: 21300000, guid: 9b9eebfa17341404cabcd7d06aa4eb64, type: 3}
+  - {fileID: 21300000, guid: 7f7bbb6bd2b5e364690d6e17cdaabb84, type: 3}
   - {fileID: 21300000, guid: d9928e6bf08716943b6bf50a56f6e53c, type: 3}
   - {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
   - {fileID: 21300000, guid: 781b8debc0b4b7741bb22f7e896e042d, type: 3}
@@ -151,10 +162,12 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - robert_down_idle_2
   - robert_down_die_0
+  - enemy_right_idle_0
   - star
   - tileIconReflect_x_right
   - arrow
   - downArrow
+  - enemy_down_move_0
   - tileHighlightCorner
   - blob4
   - tutorialArrow2_bottom
@@ -164,6 +177,8 @@ SpriteAtlas:
   - robert_down_die_1
   - shadeWhite_bottomLeft
   - shadeWhite
+  - enemy_right_move_0
+  - enemy_up_move_0
   - robert_up_idle_1
   - explodePixel2
   - robert_down_move_1
@@ -177,12 +192,15 @@ SpriteAtlas:
   - tile02
   - explodePixel3
   - circleGlow
+  - enemy_up_idle_0
   - explodePixel5
   - tile04
   - devicerBody
+  - enemy_down_idle_0
   - robert_right_move_1
   - xAbsolute
   - goal
+  - enemy_down_die_0
   - robert_right_idle_1
   - yAbsolute
   - xyReflect
@@ -200,6 +218,7 @@ SpriteAtlas:
   - tutorialHandPointDown
   - starGoal
   - robert_down_move_0
+  - enemy_down_move_1
   - blank4x4_top
   - blank4x4_bottomLeft
   - blank4x4_bottom
@@ -211,6 +230,7 @@ SpriteAtlas:
   - robert_up_idle_2
   - robert_up_move_0
   - optionButton
+  - enemy_down_die_1
   - cellHighlightCorner
   - shade
   - shade_bottom
@@ -219,10 +239,12 @@ SpriteAtlas:
   - robert_down_idle_0
   - droplet
   - gradient8x8
+  - enemy_up_move_1
   - tile05
   - tileIconAbsolute_x
   - ringGlow
   - robert_right_idle_0
+  - enemy_right_move_1
   - tileIconReflect_y_down
   - tile03
   - blob2

@@ -91,6 +91,10 @@ public class LevelTile : MonoBehaviour {
                 Gizmos.DrawCube(new Vector3(pos.x + hCellSize.x - lineThickness * 0.5f, pos.y, 0f), new Vector3(lineThickness, cellSize.y));
             if(isWallW)
                 Gizmos.DrawCube(new Vector3(pos.x - hCellSize.x + lineThickness * 0.5f, pos.y, 0f), new Vector3(lineThickness, cellSize.y));
+
+            //this is here so this gameobject can be selected properly
+            Gizmos.color = Color.clear;
+            Gizmos.DrawCube(transform.position, new Vector3(levelGrid.cellSize.x, levelGrid.cellSize.y, 0f));
         }
     }
 }
