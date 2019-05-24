@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using M8;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LevelEntityReflect : LevelEntityPlaceable {
     public const string parmReflectX = "reflectX";
@@ -41,6 +42,54 @@ public class LevelEntityReflect : LevelEntityPlaceable {
         }
     }
 
+    public static void ApplyCellDestination(PointerEventData pointerEventData, bool isReflectX, bool isReflectY) {
+        var drag = PlayController.instance.levelGridPointer;
+
+        var pointerCellIndex = drag ? drag.GetCellIndex(pointerEventData) : new CellIndex(-1, -1);
+        ApplyCellDestination(pointerCellIndex, isReflectX, isReflectY);
+    }
+
+    public static void ApplyCellDestination(CellIndex pointerCellIndex, bool isReflectX, bool isReflectY) {
+        var levelGrid = PlayController.instance.levelGrid;
+
+        if(levelGrid) {
+            bool isDestActive = false;
+
+            if(pointerCellIndex.isValid) {
+                if(levelGrid.cellDestGO) levelGrid.cellDestGO.SetActive(true);
+
+                var srcPos = levelGrid.GetCellPosition(pointerCellIndex);
+
+                var destCellIndex = new CellIndex(
+                    isReflectY ? levelGrid.originRow - (pointerCellIndex.row - levelGrid.originRow) : pointerCellIndex.row,
+                    isReflectX ? levelGrid.originCol - (pointerCellIndex.col - levelGrid.originCol) : pointerCellIndex.col);
+
+                if(pointerCellIndex != destCellIndex) {
+                    var destPos = levelGrid.GetCellPosition(destCellIndex);
+
+                    var dpos = destPos - srcPos;
+                    var len = dpos.magnitude;
+                    var dir = dpos / len;
+
+                    isDestActive = true;
+
+                    if(levelGrid.cellDestReticleRoot) levelGrid.cellDestReticleRoot.position = destPos;
+
+                    if(levelGrid.cellDestSpriteRender) {
+                        var t = levelGrid.cellDestSpriteRender.transform;
+
+                        t.position = srcPos;
+                        t.up = dir;
+
+                        levelGrid.cellDestSpriteRender.size = new Vector2(levelGrid.cellDestSpriteRender.size.x, len);
+                    }
+                }
+            }
+
+            if(levelGrid.cellDestGO) levelGrid.cellDestGO.SetActive(isDestActive);
+        }
+    }
+
     protected override void Spawned(GenericParams parms) {
         reflectX = reflectY = false;
 
@@ -58,6 +107,22 @@ public class LevelEntityReflect : LevelEntityPlaceable {
 
     protected override void MoveFinish() {
         ApplySprite();
+    }
+
+    protected override void OnDragUpdate(PointerEventData ptrData) {
+        ApplyCellDestination(ptrData, reflectX, reflectY);
+    }
+    protected override void OnDragInvalidate() {
+        if(PlayController.instance.levelGrid.cellDestGO)
+            PlayController.instance.levelGrid.cellDestGO.SetActive(false);
+    }
+    protected override void OnPointerEnter(PointerEventData eventData) {
+        ApplyCellDestination(cellIndex, reflectX, reflectY);
+    }
+    protected override void OnPointerExit(PointerEventData eventData) {
+        var levelGrid = PlayController.instance.levelGrid;
+        if(levelGrid && levelGrid.cellDestGO)
+            levelGrid.cellDestGO.SetActive(false);
     }
 
     private void ApplySprite() {

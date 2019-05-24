@@ -54,6 +54,23 @@ public class LevelGridPointerWidget : MonoBehaviour {
         }
     }
 
+    public CellIndex GetCellIndex(PointerEventData ptrData) {
+        var levelGrid = PlayController.instance.levelGrid;
+        var _pointerCellIndex = new CellIndex(-1, -1);
+
+        if(levelGrid && ptrData.pointerCurrentRaycast.isValid) {
+            var go = ptrData.pointerCurrentRaycast.gameObject;
+            if(go == levelGrid.gameObject || go.CompareTag(tagDragLevelEntityPlaceable)) {
+                _pointerCellIndex = levelGrid.GetCellIndex(ptrData.pointerCurrentRaycast.worldPosition);
+            }
+        }
+
+        if(_pointerCellIndex.isValid && !LevelEntityPlaceable.CheckPlaceable(levelGrid, _pointerCellIndex))
+            _pointerCellIndex.row = _pointerCellIndex.col = -1;
+
+        return _pointerCellIndex;
+    }
+
     public void UpdatePointer(PointerEventData ptrData) {
         var lastPointerCellIndex = pointerCellIndex;
         pointerCellIndex = new CellIndex(-1, -1);

@@ -72,6 +72,8 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         isDragging = false;
 
         RefreshDisplay();
+
+        DragInvalidated();
     }
 
     public void RefreshDisplay() {
@@ -117,6 +119,9 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
     }
 
     protected virtual void ApplySpawnParms(M8.GenericParams parms) { }
+
+    protected virtual void DragUpdated(PointerEventData eventData) { }
+    protected virtual void DragInvalidated() { }
     
     void OnApplicationFocus(bool focus) {
         if(!focus)
@@ -198,8 +203,11 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
 
     void DragUpdate(PointerEventData eventData) {
         var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
-        if(drag)
+        if(drag) {
             drag.UpdatePointer(eventData);
+
+            DragUpdated(eventData);
+        }
     }
 
     void OnEntityDespawn(M8.PoolDataController pdc) {

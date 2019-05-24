@@ -19,6 +19,10 @@ public class LevelGrid : MonoBehaviour {
     public Transform entitiesRoot;
     public Transform cellHighlightRoot; //use for placing tiles
 
+    public GameObject cellDestGO;
+    public Transform cellDestReticleRoot;
+    public SpriteRenderer cellDestSpriteRender;
+
     [Header("Wall")]
     public Transform wallRoot;
     public SpriteRenderer wallLineHTemplate;
@@ -237,6 +241,7 @@ public class LevelGrid : MonoBehaviour {
 
     void Awake() {
         if(cellHighlightRoot) cellHighlightRoot.gameObject.SetActive(false);
+        if(cellDestGO) cellDestGO.SetActive(false);
     }
 
     void OnDrawGizmos() {

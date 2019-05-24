@@ -125,6 +125,12 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
     protected virtual void MoveFinish() { }
 
+    protected virtual void OnDragBegin() { }
+    protected virtual void OnDragUpdate(PointerEventData eventData) { }
+    protected virtual void OnDragInvalidate() { }
+    protected virtual void OnPointerEnter(PointerEventData eventData) { }
+    protected virtual void OnPointerExit(PointerEventData eventData) { }
+
     void OnApplicationFocus(bool focus) {
         if(!Application.isPlaying)
             return;
@@ -184,10 +190,15 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData) {
         if(highlightGO) highlightGO.SetActive(isInteractible);
+
+        if(isInteractible)
+            OnPointerEnter(eventData);
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData) {
         if(highlightGO) highlightGO.SetActive(false);
+
+        OnPointerExit(eventData);
     }
 
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData) {
@@ -259,7 +270,12 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
         if(displayColorGroup) displayColorGroup.Revert();
 
-        if(levelGrid && levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.gameObject.SetActive(false);
+        if(levelGrid) {
+            if(levelGrid.cellHighlightRoot) levelGrid.cellHighlightRoot.gameObject.SetActive(false);
+            if(levelGrid.cellDestGO) levelGrid.cellDestGO.SetActive(false);
+        }
+
+        OnDragInvalidate();
     }
 
     private void DragBegin() {
@@ -274,12 +290,16 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
             drag.SetupDrag(dragIcon, dragIconRotate);
             drag.mode = LevelGridPointerWidget.Mode.Drag;
         }
+
+        OnDragBegin();
     }
 
     private void DragUpdate(PointerEventData eventData) {
         var drag = PlayController.isInstantiated ? PlayController.instance.levelGridPointer : null;
         if(drag)
             drag.UpdatePointer(eventData);
+
+        OnDragUpdate(eventData);
     }
 
     private void DragEnd() {
