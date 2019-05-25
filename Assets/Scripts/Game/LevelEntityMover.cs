@@ -65,7 +65,7 @@ public class LevelEntityMover : LevelEntity {
     public string takeWarpOut;
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeWarpIn;
-
+        
     [Header("Signal Listen")]
     public M8.Signal signalListenVictory;
     public M8.Signal signalListenReset; //revert to starting position much like going to edit mode
@@ -188,6 +188,8 @@ public class LevelEntityMover : LevelEntity {
         return State.None;
     }
 
+    protected virtual void OnMoveCurrentTile() { }
+
     void OnDisable() {
         if(!Application.isPlaying)
             return;
@@ -203,8 +205,8 @@ public class LevelEntityMover : LevelEntity {
             return;
 
         if(levelGrid) {
-            _row = mDefaultCellIndex.row;
-            _col = mDefaultCellIndex.col;
+            mCellIndex = mDefaultCellIndex;
+            SnapPosition();
 
             levelGrid.AddEntity(this);
         }
@@ -227,6 +229,7 @@ public class LevelEntityMover : LevelEntity {
         if(!Application.isPlaying)
             return;
 
+        RefreshCellIndex();
         mDefaultCellIndex = cellIndex;
 
         if(displaySpriteRender) {
@@ -303,6 +306,8 @@ public class LevelEntityMover : LevelEntity {
         var changeDirWait = moveChangeDirDelay > 0f ? new WaitForSeconds(moveChangeDirDelay) : null;
 
         while(mCurState == State.Moving) {
+            OnMoveCurrentTile();
+
             //ensure current dir is the same
             var toDir = EvalDir(dir);
             if(dir != toDir) {

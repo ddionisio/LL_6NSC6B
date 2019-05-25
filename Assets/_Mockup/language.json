@@ -24,6 +24,7 @@
     "quadrant1": "Quadrant 1",
     "quadrant2": "Quadrant 2",
     "quadrant3": "Quadrant 3",
-    "quadrant4": "Quadrant 4"
+    "quadrant4": "Quadrant 4",
+    "hintTooltip": "Press this button to show hints."
   }
 }

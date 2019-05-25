@@ -15,6 +15,9 @@ public class LevelEntityGoal : LevelEntity {
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeCollect;
 
+    [Header("FX")]
+    public EffectSpawner collectFxSpawner;
+
     [Header("Signal Listen")]
     public M8.Signal signalListenReset;
 
@@ -48,8 +51,10 @@ public class LevelEntityGoal : LevelEntity {
         if(!Application.isPlaying)
             return;
 
-        if(levelGrid)
+        if(levelGrid) {
+            RefreshCellIndex();
             levelGrid.AddEntity(this);
+        }
 
         ApplyCurState();
 
@@ -80,6 +85,9 @@ public class LevelEntityGoal : LevelEntity {
             case State.Collected:
                 if(animator && !string.IsNullOrEmpty(takeCollect))
                     animator.Play(takeCollect);
+
+                if(collectFxSpawner)
+                    collectFxSpawner.Spawn();
                 break;
         }
     }

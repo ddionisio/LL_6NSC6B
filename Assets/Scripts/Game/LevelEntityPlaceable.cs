@@ -151,8 +151,7 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
 
         //setup cell
         if(_cellIndex.isValid) {
-            _row = _cellIndex.row;
-            _col = _cellIndex.col;
+            mCellIndex = _cellIndex;
 
             if(levelGrid)
                 levelGrid.AddEntity(this);

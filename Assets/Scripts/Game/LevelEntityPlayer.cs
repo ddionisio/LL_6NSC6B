@@ -7,6 +7,10 @@ public class LevelEntityPlayer : LevelEntityMover {
     [M8.TagSelector]
     public string tagEnemy = "Enemy";
 
+    [Header("Tile Brightness Info")]
+    public float tileBrightOfs = 0.2f;
+    public float tileBrightDelay = 0.3f;
+
     private LevelEntityMover mEntDeadMover; //current dead mover on cell
 
     protected override void EvaluateBegin() {
@@ -45,5 +49,12 @@ public class LevelEntityPlayer : LevelEntityMover {
         }
 
         return base.EvaluateTile(tile);
+    }
+
+    protected override void OnMoveCurrentTile() {
+        //do brightness on current tile
+        var tile = levelGrid.GetTile(cellIndex);
+        if(tile)
+            tile.BrightnessFade(tileBrightOfs, tileBrightDelay);
     }
 }

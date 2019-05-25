@@ -16,19 +16,18 @@ public class LevelEntity : MonoBehaviour {
         }
     }
 
-    public int col { get { return _col; } }
-    public int row { get { return _row; } }
+    public int col { get { return mCellIndex.col; } }
+    public int row { get { return mCellIndex.row; } }
 
     public CellIndex cellIndex {
-        get { return new CellIndex(_row, _col); }
+        get { return mCellIndex; }
         set {
-            if(_col != value.col || _row != value.row) {
+            if(mCellIndex != value) {
                 //update reference in grid
                 if(levelGrid)
                     levelGrid.RemoveEntity(this);
 
-                _col = value.col;
-                _row = value.row;
+                mCellIndex = value;
 
                 if(levelGrid)
                     levelGrid.AddEntity(this);
@@ -50,21 +49,21 @@ public class LevelEntity : MonoBehaviour {
         }
     }
 
-    [HideInInspector]
-    [SerializeField]
-    protected int _col = -1;
-    [SerializeField]
-    [HideInInspector]
-    protected int _row = -1;
+    protected CellIndex mCellIndex;
 
     private LevelGrid mLevelGrid;
-    
+        
     /// <summary>
     /// Refresh position to current cell
     /// </summary>
     public void SnapPosition() {
-        var pos = levelGrid.GetCellPosition(_col, _row);
+        var pos = levelGrid.GetCellPosition(cellIndex);
         transform.position = new Vector3(pos.x, pos.y, zOfs);
+    }
+
+    protected void RefreshCellIndex() {
+        if(levelGrid)
+            mCellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
     }
 
     protected virtual void Update() {
@@ -72,13 +71,12 @@ public class LevelEntity : MonoBehaviour {
         if(!Application.isPlaying) {
             //snap to cell if parent is level grid
             if(levelGrid) {
-                var _cellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
+                mCellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
 
-                _col = _cellIndex.col;
-                _row = _cellIndex.row;
-
-                if(_cellIndex.isValid)
-                    SnapPosition();
+                if(mCellIndex.isValid) {
+                    Vector2 pos = levelGrid.GetCellPosition(mCellIndex);
+                    transform.position = new Vector3(pos.x, pos.y, zOfs);
+                }
             }
         }
 #endif

@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Goal
   - GridPointer
+  - Hint
   layers:
   - Default
   - TransparentFX

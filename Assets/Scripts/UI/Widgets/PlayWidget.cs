@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayWidget : MonoBehaviour {
+    public const string sceneVarEditCounter = "editCount";
+
     [Header("Data")]
     public float clickBusyDelay = 0.4f;
 
@@ -24,6 +26,15 @@ public class PlayWidget : MonoBehaviour {
     public bool isHidden { get { return displayGO ? displayGO.activeSelf : false; } }
 
     private Coroutine mRout;
+
+    public static int editCounter {
+        get {
+            if(M8.SceneState.isInstantiated)
+                return M8.SceneState.instance.local.GetValue(sceneVarEditCounter);
+            else
+                return 0;
+        }
+    }
 
     void OnDisable() {
         mRout = null;
@@ -96,6 +107,11 @@ public class PlayWidget : MonoBehaviour {
 
         switch(PlayController.instance.curMode) {
             case PlayController.Mode.Editing:
+                if(M8.SceneState.isInstantiated) {
+                    var counter = M8.SceneState.instance.local.GetValue(sceneVarEditCounter);
+                    M8.SceneState.instance.local.SetValue(sceneVarEditCounter, counter + 1, false);
+                }
+
                 PlayController.instance.curMode = PlayController.Mode.Running;
                 break;
             case PlayController.Mode.Running:

@@ -232,12 +232,10 @@ public class LevelGridInspector : Editor {
                         tile.transform.SetAsLastSibling();
 
                         //apply display
-                        if(tile.tileSpriteRender) {
-                            var spritePalette = tile.tileSpriteRender.GetComponent<M8.SpriteColorFromPalette>();
-                            if(spritePalette) {
-                                spritePalette.index = cellGenInfo.paletteIndex;
-                                spritePalette.brightness = 1f + cellGenInfo.brightnessOffset;
-                            }
+                        var spritePalette = tile.tileSpritePalette;
+                        if(spritePalette) {
+                            spritePalette.index = cellGenInfo.paletteIndex;
+                            spritePalette.brightness = 1f + cellGenInfo.brightnessOffset;
                         }
                     }
                 }
