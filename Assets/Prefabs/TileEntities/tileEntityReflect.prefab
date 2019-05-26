@@ -127,8 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zOfs: -0.01
-  _col: 6
-  _row: 3
   moveEase: 4
   moveDelay: 0.15
   displayRoot: {fileID: 1457077563724702028}

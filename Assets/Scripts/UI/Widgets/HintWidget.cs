@@ -10,6 +10,7 @@ public class HintWidget : MonoBehaviour {
     [M8.TagSelector]
     public string tagHintRoot = "Hint";
     public int editCount = 4; //how many times edit mode is done before showing it
+    public float editDelay = 36000f; //how long before we show the hint
 
     [Header("Display")]
     public GameObject displayGO;
@@ -23,6 +24,10 @@ public class HintWidget : MonoBehaviour {
     public string tooltipTakeEnter;
     [M8.Animator.TakeSelector(animatorField = "tooltipAnimator")]
     public string tooltipTakeExit;
+
+    private bool mFirstPlayTimeIsApplied;
+    private float mFirstPlayTime; //time since the first play has been hit
+
 
     private GameObject mHintRootGO;
 
@@ -46,7 +51,14 @@ public class HintWidget : MonoBehaviour {
     }
 
     void OnChangeMode(PlayController.Mode mode) {
-        bool isActive = PlayWidget.editCounter >= editCount;
+        if(mode == PlayController.Mode.Running) {
+            if(!mFirstPlayTimeIsApplied) {
+                mFirstPlayTime = Time.time;
+                mFirstPlayTimeIsApplied = true;
+            }
+        }
+
+        bool isActive = PlayWidget.editCounter >= editCount || (mFirstPlayTimeIsApplied && Time.time - mFirstPlayTime >= editDelay);
         bool isInteract = mode == PlayController.Mode.Editing;
 
         if(isActive) {
@@ -77,7 +89,7 @@ public class HintWidget : MonoBehaviour {
 
     void OnClick() {
         if(mHintRootGO)
-            mHintRootGO.SetActive(true);
+            mHintRootGO.SetActive(!mHintRootGO.activeSelf);
     }
 
     IEnumerator DoShowHint() {

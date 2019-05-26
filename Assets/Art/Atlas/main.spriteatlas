@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
     - {fileID: 102900000, guid: 08562eb8366106f4796ddd9051096a10, type: 3}
-    totalSpriteSurfaceArea: 135546
+    totalSpriteSurfaceArea: 137386
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -151,6 +151,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: b678ba2d7d4bed94abb27c65899b8595, type: 3}
   - {fileID: 21300000, guid: 10ecd36dbe0458a47998ce192062d20f, type: 3}
   - {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
+  - {fileID: 21300000, guid: d58ea5dd7b2cd834bab80f9a60a12cd6, type: 3}
   - {fileID: 21300000, guid: 78396dfd0fc81624f926371f83b0d67c, type: 3}
   - {fileID: 21300000, guid: 6847380e932d6a441b0d6f9f71a3cfb2, type: 3}
   - {fileID: 21300000, guid: 7b0c485e9e1f508448843c029bc3bfd4, type: 3}
@@ -262,6 +263,7 @@ SpriteAtlas:
   - circleFrameSmall
   - tileIconReflect_xy_downRight
   - wallVerticalBack
+  - hintButton
   - robert_down_victory_0
   - robert_down_die_2
   - robert_up_move_1

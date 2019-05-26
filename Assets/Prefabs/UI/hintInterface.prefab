@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagHintRoot: Hint
-  editCount: 4
+  editCount: 5
   displayGO: {fileID: 3012523266533277745}
   button: {fileID: 8586902722458864551}
   tooltipDelay: 4
@@ -407,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &590456932092264635
 RectTransform:
   m_ObjectHideFlags: 0
