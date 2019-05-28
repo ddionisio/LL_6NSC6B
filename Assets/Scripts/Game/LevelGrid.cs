@@ -9,6 +9,21 @@ public class LevelGrid : MonoBehaviour {
         public float brightnessOffset;
     }
 
+    [System.Serializable]
+    public struct GridTileInfo {
+        public SpriteRenderer spriteRender;
+        public Vector2 ofs;
+
+        public void Apply(LevelGrid grid) {
+            if(spriteRender) {
+                var s = spriteRender.size;
+                s.x = grid.numCol * grid.cellSize.x + ofs.x;
+                s.y = grid.numRow * grid.cellSize.y + ofs.y;
+                spriteRender.size = s;
+            }
+        }
+    }
+
     [Header("Grid Info")]
     public Vector2 cellSize = new Vector2(1f, 1f);
     public int originCol = 2;
@@ -22,6 +37,9 @@ public class LevelGrid : MonoBehaviour {
     public GameObject cellDestGO;
     public Transform cellDestReticleRoot;
     public SpriteRenderer cellDestSpriteRender;
+
+    [Header("Grid Tile")]
+    public GridTileInfo[] gridTiles;
 
     [Header("Wall")]
     public Transform wallRoot;
@@ -208,12 +226,12 @@ public class LevelGrid : MonoBehaviour {
         lpos += extents;
 
         int col = Mathf.FloorToInt(lpos.x / cellSize.x);
-        if(col < 0 || col >= numCol)
-            col = -1;
+        //if(col < 0 || col >= numCol)
+            //col = -1;
 
         int row = Mathf.FloorToInt(lpos.y / cellSize.y);
-        if(row < 0 || row >= numRow)
-            row = -1;
+        //if(row < 0 || row >= numRow)
+            //row = -1;
 
         return new CellIndex(row, col);
     }

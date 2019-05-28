@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
     - {fileID: 102900000, guid: 08562eb8366106f4796ddd9051096a10, type: 3}
-    totalSpriteSurfaceArea: 137386
+    totalSpriteSurfaceArea: 139911
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -54,6 +54,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 7d117940d647dcb48b9d57d1f7f72d28, type: 3}
   - {fileID: 21300000, guid: 83590d80095144b47a95eb1a2723dfe3, type: 3}
   - {fileID: 21300000, guid: be98f690b6a68d8478a95623f406a172, type: 3}
+  - {fileID: 21300000, guid: c8fd57b050c70a64cb60a1839a7878a5, type: 3}
   - {fileID: 21300000, guid: 75db0101a487bc94c8c4305b92914eb4, type: 3}
   - {fileID: 21300000, guid: 5ed7cd01c36b80f4588c3709e317573b, type: 3}
   - {fileID: 21300000, guid: f4683e31b11d8c249ac19e37611319cd, type: 3}
@@ -86,6 +87,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 21c769e4040edd24e83c0830fb109b60, type: 3}
   - {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
   - {fileID: 21300000, guid: ed3ee745814d1bf44a0a1ff9061127df, type: 3}
+  - {fileID: 21300000, guid: e9c8ee955c09c344aa79e9bb93b94216, type: 3}
   - {fileID: 21300000, guid: 1d2864c5d3c56a6439c21c071bcf16dc, type: 3}
   - {fileID: 21300000, guid: e86f0116e4afa034b87bc5fa78862f9e, type: 3}
   - {fileID: 21300000, guid: a8c26226fff848b43bf89cf0d3fab033, type: 3}
@@ -166,6 +168,7 @@ SpriteAtlas:
   - robert_down_die_0
   - enemy_right_idle_0
   - star
+  - gridCell
   - tileIconReflect_x_right
   - arrow
   - downArrow
@@ -198,6 +201,7 @@ SpriteAtlas:
   - explodePixel5
   - tile04
   - devicerBody
+  - outline1x1
   - enemy_down_idle_0
   - robert_right_move_1
   - xAbsolute

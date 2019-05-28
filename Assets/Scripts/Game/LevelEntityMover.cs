@@ -67,7 +67,6 @@ public class LevelEntityMover : LevelEntity {
     public string takeWarpIn;
         
     [Header("Signal Listen")]
-    public M8.Signal signalListenVictory;
     public M8.Signal signalListenReset; //revert to starting position much like going to edit mode
 
     public State state {
@@ -118,6 +117,8 @@ public class LevelEntityMover : LevelEntity {
     }
 
     public CellIndex prevCellIndex { get; private set; }
+
+    public event System.Action moveUpdateCallback;
         
     private State mCurState = State.None;
     private MoveDir mCurDir;
@@ -129,6 +130,28 @@ public class LevelEntityMover : LevelEntity {
     private Vector2 mDefaultDisplaySpriteLPos;
 
     private Coroutine mRout;
+
+    public void WarpTo(int col, int row) {
+        WarpTo(new CellIndex(row, col));
+    }
+
+    public void WarpTo(CellIndex dest) {
+
+        switch(state) {
+            case State.Warp:
+                //if we are warping, change it to warp to default
+                if(mWarpToCellIndex != dest) {
+                    mWarpToCellIndex = dest;
+                    ApplyCurState(State.Warp);
+                }
+                break;
+
+            default:
+                mWarpToCellIndex = dest;
+                state = State.Warp;
+                break;
+        }
+    }
 
     protected virtual void EvaluateBegin() { }
 
@@ -221,7 +244,6 @@ public class LevelEntityMover : LevelEntity {
         if(PlayController.isInstantiated)
             PlayController.instance.modeChangedCallback -= OnModeChanged;
 
-        if(signalListenVictory) signalListenVictory.callback -= OnSignalVictory;
         if(signalListenReset) signalListenReset.callback -= OnSignalReset;
     }
 
@@ -240,7 +262,6 @@ public class LevelEntityMover : LevelEntity {
 
         PlayController.instance.modeChangedCallback += OnModeChanged;
 
-        if(signalListenVictory) signalListenVictory.callback += OnSignalVictory;
         if(signalListenReset) signalListenReset.callback += OnSignalReset;
     }
 
@@ -272,10 +293,6 @@ public class LevelEntityMover : LevelEntity {
         }
     }
 
-    void OnSignalVictory() {
-        state = State.Victory;
-    }
-
     void OnSignalReset() {
         dir = startDir;
 
@@ -285,20 +302,7 @@ public class LevelEntityMover : LevelEntity {
         }
         else {
             //warp back to original position
-            switch(state) {
-                case State.Warp:
-                    //if we are warping, change it to warp to default
-                    if(mWarpToCellIndex != mDefaultCellIndex) {
-                        mWarpToCellIndex = mDefaultCellIndex;
-                        ApplyCurState(State.Warp);
-                    }
-                    break;
-
-                default:
-                    mWarpToCellIndex = mDefaultCellIndex;
-                    state = State.Warp;
-                    break;
-            }
+            WarpTo(mDefaultCellIndex);
         }
     }
 
@@ -307,6 +311,9 @@ public class LevelEntityMover : LevelEntity {
 
         while(mCurState == State.Moving) {
             OnMoveCurrentTile();
+
+            if(moveUpdateCallback != null)
+                moveUpdateCallback();
 
             //ensure current dir is the same
             var toDir = EvalDir(dir);

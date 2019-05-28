@@ -22,6 +22,10 @@ public class LevelGridInspector : Editor {
                 mBoxColl.offset = Vector2.zero;
                 mBoxColl.size = new Vector2(dat.cellSize.x * dat.numCol, dat.cellSize.y * dat.numRow);
             }
+
+            //update grid cells
+            for(int i = 0; i < dat.gridTiles.Length; i++)
+                dat.gridTiles[i].Apply(dat);
         }
 
         M8.EditorExt.Utility.DrawSeparator();

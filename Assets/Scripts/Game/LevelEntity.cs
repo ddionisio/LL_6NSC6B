@@ -73,10 +73,10 @@ public class LevelEntity : MonoBehaviour {
             if(levelGrid) {
                 mCellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
 
-                if(mCellIndex.isValid) {
+                //if(mCellIndex.isValid) {
                     Vector2 pos = levelGrid.GetCellPosition(mCellIndex);
                     transform.position = new Vector3(pos.x, pos.y, zOfs);
-                }
+                //}
             }
         }
 #endif

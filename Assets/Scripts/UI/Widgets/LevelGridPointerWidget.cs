@@ -74,8 +74,8 @@ public class LevelGridPointerWidget : MonoBehaviour {
     public void UpdatePointer(PointerEventData ptrData) {
         var lastPointerCellIndex = pointerCellIndex;
         pointerCellIndex = new CellIndex(-1, -1);
-
-        //grab grid
+                
+        var curMode = PlayController.instance.curMode;
         var levelGrid = PlayController.instance.levelGrid;
 
         //determine cell and validity
@@ -88,9 +88,9 @@ public class LevelGridPointerWidget : MonoBehaviour {
             }   
         }
 
-        if(mode == Mode.Drag) {
-            bool isCellHighlightRefresh = false;
+        var isCellHighlightShow = pointerCellIndex.isValid && curMode == PlayController.Mode.Editing;
 
+        if(mode == Mode.Drag) {
             var _isDragValid = pointerCellIndex.isValid && LevelEntityPlaceable.CheckPlaceable(levelGrid, pointerCellIndex);
             if(isDragValid != _isDragValid) {
                 isDragValid = _isDragValid;
@@ -101,24 +101,19 @@ public class LevelGridPointerWidget : MonoBehaviour {
                                 
                 if(levelGrid && levelGrid.cellHighlightRoot)
                     levelGrid.cellHighlightRoot.gameObject.SetActive(isDragValid);
-
-                isCellHighlightRefresh = isDragValid;
             }
-            else if(isDragValid && pointerCellIndex != lastPointerCellIndex)
-                isCellHighlightRefresh = true;
 
-            //update cell highlight
-            if(isCellHighlightRefresh && levelGrid.cellHighlightRoot)
-                levelGrid.cellHighlightRoot.position = levelGrid.GetCellPosition(pointerCellIndex);
+            if(!isDragValid)
+                isCellHighlightShow = false;
         }
-        
+
         //show pointer info?
         bool isPointerRefresh = false;
 
         bool isPointerCoordValid;
         //if(levelGrid.GetTile(pointerCellIndex) == null) //only show if there's a tile
             //isPointerCoordValid = false;
-        if(PlayController.instance.curMode != PlayController.Mode.Editing) //only show if we are in edit mode
+        if(curMode != PlayController.Mode.Editing) //only show if we are in edit mode
             isPointerCoordValid = false;
         else
             isPointerCoordValid = pointerCellIndex.isValid;
@@ -144,6 +139,16 @@ public class LevelGridPointerWidget : MonoBehaviour {
 
                 pointerDescText.text = mDescStringBuff.ToString();
             }
+        }
+
+        //cell highlight
+        if(levelGrid.cellHighlightRoot) {
+            if(isCellHighlightShow) {
+                levelGrid.cellHighlightRoot.gameObject.SetActive(true);
+                levelGrid.cellHighlightRoot.position = levelGrid.GetCellPosition(pointerCellIndex);
+            }
+            else
+                levelGrid.cellHighlightRoot.gameObject.SetActive(false);
         }
     }
 
@@ -186,7 +191,8 @@ public class LevelGridPointerWidget : MonoBehaviour {
     }
 
     private void ApplyCurrentMode() {
-        if(dragPointerGO) dragPointerGO.SetActive(mMode == Mode.Drag);
+        //if(dragPointerGO) dragPointerGO.SetActive(mMode == Mode.Drag);
+        if(dragPointerGO) dragPointerGO.SetActive(false);
         if(dragDisplayGO) dragDisplayGO.SetActive(mMode == Mode.Drag);
 
         if(PlayController.isInstantiated && PlayController.instance.levelGrid && PlayController.instance.levelGrid.cellHighlightRoot)
