@@ -12,6 +12,7 @@ TagManager:
   - Goal
   - GridPointer
   - Hint
+  - DragGuide
   layers:
   - Default
   - TransparentFX

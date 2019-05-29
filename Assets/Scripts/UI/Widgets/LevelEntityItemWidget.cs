@@ -118,6 +118,25 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         mActiveEntities.Remove(ent);
     }
 
+    /// <summary>
+    /// Get an active item (first element in active list)
+    /// </summary>
+    public LevelEntityPlaceable GetActiveItem() {
+        return mActiveEntities.Count > 0 ? mActiveEntities[0] : null;
+    }
+
+    /// <summary>
+    /// Get active item that matches given cell
+    /// </summary>
+    public LevelEntityPlaceable GetActiveItemFromCell(CellIndex cellIndex) {
+        for(int i = 0; i < mActiveEntities.Count; i++) {
+            if(mActiveEntities[i].cellIndex == cellIndex)
+                return mActiveEntities[i];
+        }
+
+        return null;
+    }
+
     protected virtual void ApplySpawnParms(M8.GenericParams parms) { }
 
     protected virtual void DragUpdated(PointerEventData eventData) { }

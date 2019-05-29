@@ -4,6 +4,10 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "gameData", menuName = "Game/Game Data", order = 0)]
 public class GameData : M8.SingletonScriptableObject<GameData> {
+    [Header("Level Data")]
+    public string levelSceneNamePrefix = "level";
+    public M8.SceneAssetPath levelEnd;
+
     [Header("Quadrant Text Refs")]
     [M8.Localize]
     public string[] quadrantTextRefs; //1-4
@@ -42,5 +46,20 @@ public class GameData : M8.SingletonScriptableObject<GameData> {
         }
 
         return "";
+    }
+
+
+
+    /// <summary>
+    /// Load the next level based on current progress. Load end if progress is complete
+    /// </summary>
+    public void LoadLevelFromProgress() {
+        int curProgress = LoLManager.instance.curProgress;
+        if(curProgress < LoLManager.instance.progressMax) {
+            var levelSceneName = levelSceneNamePrefix + curProgress.ToString();
+            M8.SceneManager.instance.LoadScene(levelSceneName);
+        }
+        else
+            levelEnd.Load();
     }
 }

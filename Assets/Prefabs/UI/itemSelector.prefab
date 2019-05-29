@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolGroup: levelEntityPlacer
+  tagDragGuide: DragGuide
   panelGO: {fileID: 5063501676487050025}
   itemsRoot: {fileID: 5063501674927736253}
   animator: {fileID: 5063501674506744463}

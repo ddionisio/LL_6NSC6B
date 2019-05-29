@@ -32,6 +32,9 @@ public class DragToGuideWidget : MonoBehaviour {
 
     public bool isActive { get { return displayRootGO ? displayRootGO.activeSelf : false; } }
 
+    public Vector2 dragStart { get { return mDragStart; } }
+    public Vector2 dragEnd { get { return mDragEnd; } }
+
     private Vector2 mDragStart;
     private Vector2 mDragEnd;
 
