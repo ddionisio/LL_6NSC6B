@@ -25,6 +25,6 @@ public class LevelEntityMoverDisplayWidget : MonoBehaviour {
 
     void OnMoveUpdate() {
         if(cellText)
-            cellText.text = string.Format(cellTextFormat, entityMover.cellIndex.col, entityMover.cellIndex.row);
+            cellText.text = string.Format(cellTextFormat, entityMover.cellIndex.col - entityMover.levelGrid.originCol, entityMover.cellIndex.row - entityMover.levelGrid.originRow);
     }
 }
