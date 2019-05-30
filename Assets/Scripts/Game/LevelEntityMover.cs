@@ -23,14 +23,13 @@ public class LevelEntityMover : LevelEntity {
     public float jumpDelay = 0.5f;
     public int jumpDisplaySortOrder = 100;
 
-    public int deadDisplaySortOrder = -100;
-
     [Header("Display")]
     public Transform displayRoot;
     public SpriteRenderer displaySpriteRender; //note: default facing right
     public Transform displayShadowRoot;
     public ParticleSystem warpFX;
     public bool hideShadowOnDeath;
+    public GameObject displayDeadGO;
 
     [Header("Animation")]
     public M8.Animator.Animate animator;
@@ -119,7 +118,9 @@ public class LevelEntityMover : LevelEntity {
     public CellIndex prevCellIndex { get; private set; }
 
     public event System.Action moveUpdateCallback;
-        
+
+    protected Coroutine mRout;
+
     private State mCurState = State.None;
     private MoveDir mCurDir;
 
@@ -128,8 +129,10 @@ public class LevelEntityMover : LevelEntity {
 
     private int mDefaultDisplaySortOrder;
     private Vector2 mDefaultDisplaySpriteLPos;
-
-    private Coroutine mRout;
+        
+    public void SetDefaultCell(CellIndex cellIndex) {
+        mDefaultCellIndex = cellIndex;
+    }
 
     public void WarpTo(int col, int row) {
         WarpTo(new CellIndex(row, col));
@@ -207,11 +210,13 @@ public class LevelEntityMover : LevelEntity {
     /// <summary>
     /// Return state to switch to, if none, then evaluate further
     /// </summary>
-    protected virtual State EvaluateTile(LevelTile tile) {
+    protected virtual State EvaluateObstacle(LevelEntityObstacle obstacle) {
         return State.None;
     }
 
     protected virtual void OnMoveCurrentTile() { }
+
+    protected virtual void OnDeadPost() { }
 
     void OnDisable() {
         if(!Application.isPlaying)
@@ -259,6 +264,8 @@ public class LevelEntityMover : LevelEntity {
 
             mDefaultDisplaySpriteLPos = displaySpriteRender.transform.localPosition;
         }
+
+        if(displayDeadGO) displayDeadGO.SetActive(false);
 
         PlayController.instance.modeChangedCallback += OnModeChanged;
 
@@ -455,10 +462,26 @@ public class LevelEntityMover : LevelEntity {
         }
     }
 
+    IEnumerator DoDead() {
+        if(animator && !string.IsNullOrEmpty(takeDead))
+            yield return animator.PlayWait(takeDead);
+
+        if(displayDeadGO) displayDeadGO.SetActive(true);
+
+        mRout = null;
+
+        OnDeadPost();
+    }
+
     private State EvaluateCurrentTile() {
         var toState = State.None;
 
         EvaluateBegin();
+
+        //check if tile is empty, should be dead
+        var tile = levelGrid.GetTile(cellIndex);
+        if(!tile)
+            return State.Dead;
 
         //evaluate
         var ents = levelGrid.GetEntities(cellIndex);
@@ -475,11 +498,11 @@ public class LevelEntityMover : LevelEntity {
         }
 
         if(toState == State.None) {
-            var tile = levelGrid.GetTile(cellIndex);
-            if(tile)
-                toState = EvaluateTile(tile);
-            else //tile is empty, should be dead
-                toState = State.Dead;
+            if(levelGrid.tileObstacles != null) {
+                var obstacle = levelGrid.tileObstacles[row, col];
+                if(obstacle)
+                    toState = EvaluateObstacle(obstacle);
+            }
         }
 
         return toState;
@@ -525,6 +548,8 @@ public class LevelEntityMover : LevelEntity {
 
                 if(hideShadowOnDeath && displayShadowRoot)
                     displayShadowRoot.gameObject.SetActive(true);
+
+                if(displayDeadGO) displayDeadGO.SetActive(false);
                 break;
         }
 
@@ -555,13 +580,10 @@ public class LevelEntityMover : LevelEntity {
                 break;
 
             case State.Dead:
-                displaySortOrder = deadDisplaySortOrder;
-
-                if(animator && !string.IsNullOrEmpty(takeDead))
-                    animator.Play(takeDead);
-
                 if(hideShadowOnDeath && displayShadowRoot)
                     displayShadowRoot.gameObject.SetActive(false);
+
+                mRout = StartCoroutine(DoDead());
                 break;
 
             default:

@@ -10,15 +10,12 @@ public class LevelTile : MonoBehaviour {
     public bool isWallS;
     public bool isWallW;
 
-    public bool isPit;
-
     [Header("Tile")]
     public Sprite[] tileSpriteVariants;
     public SpriteRenderer tileSpriteRender;
 
     [Header("Displays")]
-    public Transform displayRoot;    
-    public GameObject pitGO;
+    public Transform displayRoot;
 
     public LevelGrid levelGrid {
         get {
@@ -38,8 +35,6 @@ public class LevelTile : MonoBehaviour {
             _row = value.row;
         }
     }
-
-    public bool isPlaceable { get { return !(isPit); } }
 
     public M8.SpriteColorFromPalette tileSpritePalette {
         get {

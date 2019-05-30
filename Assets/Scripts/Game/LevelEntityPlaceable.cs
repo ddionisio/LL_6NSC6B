@@ -60,13 +60,23 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         if(!grid)
             return false;
 
+        if(cellIndex.col < 0 || cellIndex.row < 0)
+            return false;
+
         var tile = grid.GetTile(cellIndex);
 
         //Debug.Log(string.Format("cellIndex: {0}, {1}", cellIndex.col, cellIndex.row));
 
-        //check tile, ensure it is blank
-        if(tile == null || !tile.isPlaceable)
+        //check tile
+        if(tile == null)
             return false;
+
+        //check obstacle
+        var obstacles = grid.tileObstacles;
+        if(obstacles != null) {
+            if(cellIndex.row < obstacles.GetLength(0) && cellIndex.col < obstacles.GetLength(1) && grid.tileObstacles[cellIndex.row, cellIndex.col])
+                return false;
+        }
 
         var ents = grid.GetEntities(cellIndex);
 

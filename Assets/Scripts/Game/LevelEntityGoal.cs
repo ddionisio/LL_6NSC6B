@@ -8,6 +8,9 @@ public class LevelEntityGoal : LevelEntity {
         Collected
     }
 
+    [Header("Data")]
+    public bool isPersistState = false; //if true, do not change state when mode change
+
     [Header("Animation")]
     public M8.Animator.Animate animator;
     [M8.Animator.TakeSelector(animatorField = "animator")]
@@ -64,13 +67,15 @@ public class LevelEntityGoal : LevelEntity {
     }
 
     void OnSignalReset() {
-        state = State.Normal;
+        if(!isPersistState)
+            state = State.Normal;
     }
 
     void OnModeChanged(PlayController.Mode mode) {
         switch(mode) {
             case PlayController.Mode.Editing:
-                state = State.Normal;
+                if(!isPersistState)
+                    state = State.Normal;
                 break;
         }
     }

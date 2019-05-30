@@ -32,6 +32,7 @@ public class LevelGrid : MonoBehaviour {
     public int numRow = 5;
     public Transform tilesRoot;
     public Transform entitiesRoot;
+    public Transform obstaclesRoot;
     public Transform cellHighlightRoot; //use for placing tiles
 
     public GameObject cellDestGO;
@@ -71,6 +72,25 @@ public class LevelGrid : MonoBehaviour {
         }
     }
 
+    public LevelEntityObstacle[,] tileObstacles {
+        get {
+            if(mTileObstacles == null || mTileObstacles.GetLength(0) != numRow || mTileObstacles.GetLength(1) != numCol) {
+                mTileObstacles = new LevelEntityObstacle[numRow, numCol];
+
+                var tileObstacles = obstaclesRoot ? obstaclesRoot.GetComponentsInChildren<LevelEntityObstacle>(true) : null;
+                if(tileObstacles != null) {
+                    for(int i = 0; i < tileObstacles.Length; i++) {
+                        var ent = tileObstacles[i];
+                        ent.RefreshCellIndex();
+                        mTileObstacles[ent.row, ent.col] = ent;
+                    }
+                }
+            }
+
+            return mTileObstacles;
+        }
+    }
+
     public LevelEntityGoal[] goals {
         get {
             if(mGoals == null)
@@ -81,6 +101,7 @@ public class LevelGrid : MonoBehaviour {
     }
 
     private LevelTile[,] mTileCells; //[row][col]
+    private LevelEntityObstacle[,] mTileObstacles; //[row][col]
     private LevelEntityGoal[] mGoals;
 
     private const int entityListCapacity = 4;

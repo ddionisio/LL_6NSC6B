@@ -6,6 +6,7 @@ public class LevelEntityPlayer : LevelEntityMover {
     [Header("Data Player")]
     [M8.TagSelector]
     public string tagEnemy = "Enemy";
+    public float deathToEditDelay = 1.5f;
 
     [Header("Tile Brightness Info")]
     public float tileBrightOfs = 0.2f;
@@ -40,15 +41,15 @@ public class LevelEntityPlayer : LevelEntityMover {
         return base.EvaluateEntity(ent);
     }
 
-    protected override State EvaluateTile(LevelTile tile) {
+    protected override State EvaluateObstacle(LevelEntityObstacle obstacle) {
         //check hole
-        if(tile.isPit) {
+        if(obstacle.mode == LevelEntityObstacle.Mode.Hole) {
             //die if it's not filled
             if(!mEntDeadMover)
                 return State.Dead;
         }
 
-        return base.EvaluateTile(tile);
+        return base.EvaluateObstacle(obstacle);
     }
 
     protected override void OnMoveCurrentTile() {
@@ -56,5 +57,17 @@ public class LevelEntityPlayer : LevelEntityMover {
         var tile = levelGrid.GetTile(cellIndex);
         if(tile)
             tile.BrightnessFade(tileBrightOfs, tileBrightDelay);
+    }
+
+    protected override void OnDeadPost() {
+        mRout = StartCoroutine(DoChangeToEditMode());
+    }
+
+    IEnumerator DoChangeToEditMode() {
+        yield return new WaitForSeconds(deathToEditDelay);
+
+        mRout = null;
+
+        PlayController.instance.curMode = PlayController.Mode.Editing;
     }
 }

@@ -27,14 +27,14 @@ public class LevelEntityEnemy : LevelEntityMover {
         return base.EvaluateEntity(ent);
     }
 
-    protected override State EvaluateTile(LevelTile tile) {
+    protected override State EvaluateObstacle(LevelEntityObstacle obstacle) {
         //check hole
-        if(tile.isPit) {
+        if(obstacle.mode == LevelEntityObstacle.Mode.Hole) {
             //die if it's not filled
             if(!mEntDeadMover)
                 return State.Dead;
         }
 
-        return base.EvaluateTile(tile);
+        return base.EvaluateObstacle(obstacle);
     }
 }

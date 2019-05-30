@@ -114,8 +114,6 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     }
 
     public void Clear() {
-        DragGuideHide();
-
         for(int i = 0; i < mItems.Count; i++) {
             var itm = mItems[i];
             if(itm && itm.gameObject.activeSelf) {
@@ -221,39 +219,46 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
 
     IEnumerator DoDragGuide() {
         while(mDragGuideItem) {
-            //check if there's an active item to destination
-            var activeItem = mDragGuideItem.GetActiveItemFromCell(mDragGuideDest);
-            if(activeItem) {
+            if(PlayController.instance.curMode == PlayController.Mode.Running) {
                 //hide guide
                 if(mDragGuide.isActive)
                     mDragGuide.Hide();
             }
             else {
-                activeItem = mDragGuideItem.GetActiveItem();
+                //check if there's an active item to destination
+                var activeItem = mDragGuideItem.GetActiveItemFromCell(mDragGuideDest);
                 if(activeItem) {
-                    //show drag guide to dest from entity
-                    if(mDragGuideSrc != activeItem.cellIndex) {
-                        mDragGuideSrc = activeItem.cellIndex;
-                        mDragGuideSrcUIPos = Camera.main.WorldToScreenPoint(activeItem.position);
+                    //hide guide
+                    if(mDragGuide.isActive)
+                        mDragGuide.Hide();
+                }
+                else {
+                    activeItem = mDragGuideItem.GetActiveItem();
+                    if(activeItem) {
+                        //show drag guide to dest from entity
+                        if(mDragGuideSrc != activeItem.cellIndex) {
+                            mDragGuideSrc = activeItem.cellIndex;
+                            mDragGuideSrcUIPos = Camera.main.WorldToScreenPoint(activeItem.position);
+                        }
+
+                        if(mDragGuide.isActive)
+                            mDragGuide.UpdatePositions(mDragGuideSrcUIPos, mDragGuideDestUIPos);
+                        else
+                            mDragGuide.Show(false, mDragGuideSrcUIPos, mDragGuideDestUIPos);
                     }
+                    else if(curState == State.Shown) {
+                        //show drag guide to dest from item
+                        mDragGuideSrc = new CellIndex(-1, -1);
+                        mDragGuideSrcUIPos = mDragGuideItem.iconImage.transform.position;
 
-                    if(mDragGuide.isActive)
-                        mDragGuide.UpdatePositions(mDragGuideSrcUIPos, mDragGuideDestUIPos);
-                    else
-                        mDragGuide.Show(false, mDragGuideSrcUIPos, mDragGuideDestUIPos);
+                        if(mDragGuide.isActive)
+                            mDragGuide.UpdatePositions(mDragGuideSrcUIPos, mDragGuideDestUIPos);
+                        else
+                            mDragGuide.Show(false, mDragGuideSrcUIPos, mDragGuideDestUIPos);
+                    }
+                    else if(mDragGuide.isActive)
+                        mDragGuide.Hide();
                 }
-                else if(curState == State.Shown) {
-                    //show drag guide to dest from item
-                    mDragGuideSrc = new CellIndex(-1, -1);
-                    mDragGuideSrcUIPos = mDragGuideItem.iconImage.transform.position;
-
-                    if(mDragGuide.isActive)
-                        mDragGuide.UpdatePositions(mDragGuideSrcUIPos, mDragGuideDestUIPos);
-                    else
-                        mDragGuide.Show(false, mDragGuideSrcUIPos, mDragGuideDestUIPos);
-                }
-                else if(mDragGuide.isActive)
-                    mDragGuide.Hide();
             }
 
             yield return null;

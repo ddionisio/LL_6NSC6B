@@ -13,9 +13,5 @@ public class LevelTileInspector : Editor {
         M8.EditorExt.Utility.DrawSeparator();
 
         EditorGUILayout.LabelField("Grid Cell", string.Format("{0}, {1}", dat.col, dat.row));
-
-        //update display actives based on flags
-        if(dat.pitGO && dat.pitGO.activeSelf != dat.isPit)
-            dat.pitGO.SetActive(dat.isPit);
     }
 }

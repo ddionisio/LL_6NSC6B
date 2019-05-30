@@ -61,7 +61,7 @@ public class LevelEntity : MonoBehaviour {
         transform.position = new Vector3(pos.x, pos.y, zOfs);
     }
 
-    protected void RefreshCellIndex() {
+    public void RefreshCellIndex() {
         if(levelGrid)
             mCellIndex = levelGrid.GetCellIndexLocal(transform.localPosition);
     }

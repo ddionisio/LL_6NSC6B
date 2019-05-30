@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2113742357556594888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5549371876175902937}
+  m_Layer: 8
+  m_Name: obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5549371876175902937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113742357556594888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2318745389959956092}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2318745389813985036
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,6 +142,7 @@ Transform:
   - {fileID: 8846196685826064985}
   - {fileID: 2318745390349584021}
   - {fileID: 2318745390207313103}
+  - {fileID: 5549371876175902937}
   - {fileID: 2318745391464027674}
   - {fileID: 2318745391376535389}
   - {fileID: 2318745391457259606}
@@ -138,6 +169,7 @@ MonoBehaviour:
   numRow: 9
   tilesRoot: {fileID: 2318745390349584021}
   entitiesRoot: {fileID: 2318745390207313103}
+  obstaclesRoot: {fileID: 5549371876175902937}
   cellHighlightRoot: {fileID: 2318745391457259606}
   cellDestGO: {fileID: 2318745390903623103}
   cellDestReticleRoot: {fileID: 5515483400366329624}
@@ -441,7 +473,7 @@ Transform:
   - {fileID: 5515483400366329624}
   - {fileID: 2318745390101983922}
   m_Father: {fileID: 2318745389959956092}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2318745391354814602
 GameObject:
@@ -550,7 +582,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2318745389959956092}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2318745391457259605
 GameObject:
@@ -587,7 +619,7 @@ Transform:
   - {fileID: 2318745389813985037}
   - {fileID: 2318745391528887735}
   m_Father: {fileID: 2318745389959956092}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2318745391457259608
 MonoBehaviour:
@@ -929,7 +961,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2318745389959956092}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2318745391528887734
 GameObject:
