@@ -139,10 +139,9 @@ public class LevelEntityMover : LevelEntity {
     }
 
     public void WarpTo(CellIndex dest) {
-
         switch(state) {
             case State.Warp:
-                //if we are warping, change it to warp to default
+                //restart warping
                 if(mWarpToCellIndex != dest) {
                     mWarpToCellIndex = dest;
                     ApplyCurState(State.Warp);
@@ -152,6 +151,27 @@ public class LevelEntityMover : LevelEntity {
             default:
                 mWarpToCellIndex = dest;
                 state = State.Warp;
+                break;
+        }
+    }
+
+    public void JumpTo(int col, int row) {
+        JumpTo(new CellIndex(row, col));
+    }
+
+    public void JumpTo(CellIndex dest) {
+        switch(state) {
+            case State.Jumping:
+                //restart jumping
+                if(mWarpToCellIndex != dest) {
+                    mWarpToCellIndex = dest;
+                    ApplyCurState(State.Jumping);
+                }
+                break;
+
+            default:
+                mWarpToCellIndex = dest;
+                state = State.Jumping;
                 break;
         }
     }
