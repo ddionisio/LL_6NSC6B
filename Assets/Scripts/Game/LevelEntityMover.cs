@@ -333,14 +333,18 @@ public class LevelEntityMover : LevelEntity {
         }
     }
 
+    private void MoveUpdate() {
+        OnMoveCurrentTile();
+
+        if(moveUpdateCallback != null)
+            moveUpdateCallback();
+    }
+
     IEnumerator DoMove() {
         var changeDirWait = moveChangeDirDelay > 0f ? new WaitForSeconds(moveChangeDirDelay) : null;
 
         while(mCurState == State.Moving) {
-            OnMoveCurrentTile();
-
-            if(moveUpdateCallback != null)
-                moveUpdateCallback();
+            MoveUpdate();
 
             //ensure current dir is the same
             var toDir = EvalDir(dir);
@@ -385,6 +389,7 @@ public class LevelEntityMover : LevelEntity {
 
                         var toState = EvaluateCurrentTile();
                         if(toState != State.None) {
+                            MoveUpdate(); //allow one last move update before changing state
                             state = toState;
                             yield break;
                         }

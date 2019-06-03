@@ -307,7 +307,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagHintRoot: Hint
-  editCount: 5
+  editCount: 6
+  editDelay: 36000
   displayGO: {fileID: 3012523266533277745}
   button: {fileID: 8586902722458864551}
   tooltipDelay: 4

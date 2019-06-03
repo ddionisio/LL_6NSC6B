@@ -82,7 +82,8 @@ public class LevelGrid : MonoBehaviour {
                     for(int i = 0; i < tileObstacles.Length; i++) {
                         var ent = tileObstacles[i];
                         ent.RefreshCellIndex();
-                        mTileObstacles[ent.row, ent.col] = ent;
+                        if(ent.col >= 0 && ent.col < numCol && ent.row >= 0 && ent.row < numRow)
+                            mTileObstacles[ent.row, ent.col] = ent;
                     }
                 }
             }
