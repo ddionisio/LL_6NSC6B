@@ -48,6 +48,13 @@
     "lesson2_3": "Now let's help Robert move from Quadrant 1 to Quadrant 2.",
     "lesson2_4": "Nice! Next stop: Quadrant 3.",
     "lesson2_5": "One last destination: Quadrant 4.",
-    "lesson2_6": "Excellent! Now we are ready to patch the system!"
+    "lesson2_6": "Excellent! Now we are ready to patch the system!",
+    "lesson3_0": "Now we will go over reflection.",
+    "lesson3_1": "A point is reflected by flipping the signs of its values: positive to negative, and vice-versa.",
+    "lesson3_2": "Here you can see the X value reflected across the Y-axis.",
+    "lesson3_3": "…and the Y value, which is reflected across the X-axis.",
+    "lesson3_4": "By reflecting both the X and Y, you can see the line connecting both points run across the origin.",
+    "lesson3_5": "The two points have an equal distance from the origin.",
+    "lesson3_6": "Now let's put this into practice! Place the matching reflections on the highlighted tiles."
   }
 }
