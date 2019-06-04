@@ -189,7 +189,7 @@ public class LevelGridInspector : Editor {
         }
 
         if(isApplyCells) {
-            if(mTileCells == null)
+            if(mTileCells == null || mTileCells.GetLength(0) != dat.numRow || mTileCells.GetLength(1) != dat.numCol)
                 mTileCells = dat.GenerateTileCells();
 
             for(int r = 0; r < dat.numRow; r++) {

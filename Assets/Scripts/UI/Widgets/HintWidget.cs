@@ -9,8 +9,6 @@ public class HintWidget : MonoBehaviour {
     [Header("Data")]
     [M8.TagSelector]
     public string tagHintRoot = "Hint";
-    public int editCount = 4; //how many times edit mode is done before showing it
-    public float editDelay = 36000f; //how long before we show the hint
 
     [Header("Display")]
     public GameObject displayGO;
@@ -58,7 +56,7 @@ public class HintWidget : MonoBehaviour {
             }
         }
 
-        bool isActive = PlayWidget.editCounter >= editCount || (mFirstPlayTimeIsApplied && Time.time - mFirstPlayTime >= editDelay);
+        bool isActive = PlayWidget.editCounter >= GameData.instance.hintEditCount || (mFirstPlayTimeIsApplied && Time.time - mFirstPlayTime >= GameData.instance.hintEditDelay);
         bool isInteract = mode == PlayController.Mode.Editing;
 
         if(isActive) {

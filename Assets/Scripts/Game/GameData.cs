@@ -8,6 +8,10 @@ public class GameData : M8.SingletonScriptableObject<GameData> {
     public string levelSceneNamePrefix = "level";
     public M8.SceneAssetPath levelEnd;
 
+    [Header("Hint Data")]
+    public int hintEditCount = 5; //how many times edit mode is done before showing it
+    public float hintEditDelay = 36000f; //how long before we show the hint
+
     [Header("Quadrant Text Refs")]
     [M8.Localize]
     public string[] quadrantTextRefs; //1-4
