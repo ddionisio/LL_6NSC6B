@@ -26,6 +26,7 @@ public class LevelGridPointerWidget : MonoBehaviour {
     public GameObject pointerDisplayGO;
     public Text pointerDescText; //display: quadrant 1, 2, ...etc. or axis-X/Y, Origin
     public string pointerCoordStringFormat = "({0}, {1})";
+    public bool isPointerDisabled;
     
     public Mode mode {
         get { return mMode; }
@@ -120,7 +121,7 @@ public class LevelGridPointerWidget : MonoBehaviour {
 
         if(mIsPointerCoordValid != isPointerCoordValid) { 
             mIsPointerCoordValid = isPointerCoordValid;
-            if(pointerDisplayGO) pointerDisplayGO.SetActive(mIsPointerCoordValid);
+            if(pointerDisplayGO) pointerDisplayGO.SetActive(mIsPointerCoordValid && !isPointerDisabled);
 
             isPointerRefresh = mIsPointerCoordValid;
         }

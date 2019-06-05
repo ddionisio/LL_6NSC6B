@@ -6,7 +6,8 @@
   },
   "en": {
     "welcome": "Welcome!",
-    "title": "Grid Lock",
+    "title": "ROBERT QUEST",
+    "title_sub": "Escape From Quadrant",
     "credits": "CREDITS",
     "credits_desc": "Written by: David Dionisio\nMusic from: Kevin Macleod",
     "play": "PLAY",
@@ -32,6 +33,7 @@
     "hintTooltip": "Press this button to show hints.",
     "dragItemTip": "Drag the item to the designated point.",
     "playButtonTip": "Press this button to play.",
+    "lesson1_begin": "In order to help Robert further, we must first learn about the coordinate plane.",
     "lesson1_0": "The coordinate plane is a two-dimensional surface made up of two lines: horizontal and vertical.",
     "lesson1_1": "First, let's look at the horizontal line: The X-axis.",
     "lesson1_2": "From the origin, the positive X values go right.",
@@ -48,13 +50,16 @@
     "lesson2_3": "Now let's help Robert move from Quadrant 1 to Quadrant 2.",
     "lesson2_4": "Nice! Next stop: Quadrant 3.",
     "lesson2_5": "One last destination: Quadrant 4.",
-    "lesson2_6": "Excellent! Now we are ready to patch the system!",
+    "lesson2_6": "Excellent! You are now ready to guide Robert back to his family.",
     "lesson3_0": "Now we will go over reflection.",
     "lesson3_1": "A point is reflected by flipping the signs of its values: positive to negative, and vice-versa.",
     "lesson3_2": "Here you can see the X value reflected across the Y-axis.",
     "lesson3_3": "…and the Y value, which is reflected across the X-axis.",
     "lesson3_4": "By reflecting both the X and Y, you can see the line connecting both points run across the origin.",
     "lesson3_5": "The two points have an equal distance from the origin.",
-    "lesson3_6": "Now let's put this into practice! Place the matching reflections on the highlighted tiles."
+    "lesson3_6": "Now let's put this into practice! Place the matching reflections on the highlighted tiles.",
+    "intro_0": "This is Robert. He has been running in circles for aeons.",
+    "intro_1": "Please, break this cycle so that he may be reunited with his family!",
+    "intro_2": "Excellent! With your guidance, he can finally move forward."
   }
 }

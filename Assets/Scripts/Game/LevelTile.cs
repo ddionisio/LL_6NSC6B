@@ -9,6 +9,7 @@ public class LevelTile : MonoBehaviour {
     public bool isWallE;
     public bool isWallS;
     public bool isWallW;
+    public bool isPlaceableBlocked; //if true, cannot put placeable on this tile
 
     [Header("Tile")]
     public Sprite[] tileSpriteVariants;
@@ -174,7 +175,7 @@ public class LevelTile : MonoBehaviour {
                 Gizmos.DrawCube(new Vector3(pos.x - hCellSize.x + lineThickness * 0.5f, pos.y, 0f), new Vector3(lineThickness, cellSize.y));
 
             //this is here so this gameobject can be selected properly
-            Gizmos.color = Color.clear;
+            Gizmos.color = isPlaceableBlocked ? new Color(0.3f, 0.3f, 0f, 0.5f) : Color.clear;
             Gizmos.DrawCube(transform.position, new Vector3(levelGrid.cellSize.x, levelGrid.cellSize.y, 0f));
         }
     }

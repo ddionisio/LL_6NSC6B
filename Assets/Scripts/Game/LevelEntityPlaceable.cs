@@ -71,6 +71,9 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         if(tile == null)
             return false;
 
+        if(tile.isPlaceableBlocked)
+            return false;
+
         //check obstacle
         var obstacles = grid.tileObstacles;
         if(obstacles != null) {
