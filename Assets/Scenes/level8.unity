@@ -207,7 +207,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -304,7 +304,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -362,6 +362,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -560,7 +561,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -570,6 +571,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &64305094
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9b7fd263fce09024bb6e6607df1b4500, type: 3}
+        m_Scale: {x: 1, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.085
+    m_Colors:
+    - _Color: {r: 0.13960785, g: 0.1592157, b: 0.18352942, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &69558128
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +697,7 @@ MonoBehaviour:
   isWallE: 1
   isWallS: 0
   isWallW: 1
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -677,6 +757,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -774,8 +855,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -872,7 +953,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -882,6 +963,91 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &122178740
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_ShaderKeywords: FILL_SOLID_COLOR POLYGON_8 POLYGON_MAP _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &129747344
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +1079,84 @@ Transform:
   m_Father: {fileID: 354190252}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &133003415
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts1_1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9b7fd263fce09024bb6e6607df1b4500, type: 3}
+        m_Scale: {x: 1, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.15
+    m_Colors:
+    - _Color: {r: 0.082745105, g: 0.08313727, b: 0.0909804, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &137735108
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +1205,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -1120,8 +1365,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1249,7 +1494,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -1346,7 +1591,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -1356,6 +1601,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &229827561
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts0
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3a06a3d9058b4e849b79ec3d39e4602b, type: 3}
+        m_Scale: {x: 1, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.07
+    m_Colors:
+    - _Color: {r: 0.24823533, g: 0.24941179, b: 0.2729412, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &271652688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1766,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1539,8 +1862,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1598,6 +1921,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -1726,8 +2050,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1737,6 +2061,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &312898473
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts0
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3a06a3d9058b4e849b79ec3d39e4602b, type: 3}
+        m_Scale: {x: 1, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.07
+    m_Colors:
+    - _Color: {r: 0.26000002, g: 0.2411765, b: 0.29529414, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &324839086
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +2257,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -1982,8 +2384,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2041,6 +2443,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -2139,7 +2542,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -2197,6 +2600,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 1
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -2294,8 +2698,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2336,6 +2740,91 @@ Transform:
   m_Father: {fileID: 1282586780}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &401268871
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_ShaderKeywords: FILL_SOLID_COLOR RECTANGLE _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &415383025
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,8 +2911,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2464,91 +2953,6 @@ Transform:
   m_Father: {fileID: 848394918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &423568543
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_ShaderKeywords: FILL_SOLID_COLOR POLYGON_8 POLYGON_MAP _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &432214842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2984,84 @@ Transform:
   m_Father: {fileID: 1916291109}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &457374143
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundSquares1_2
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4697b5cb36750b04daffd1cdd29f562f, type: 3}
+        m_Scale: {x: 1.5, y: 1.5}
+        m_Offset: {x: -1.16, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.08
+    m_Colors:
+    - _Color: {r: 0.124117665, g: 0.124705896, b: 0.1364706, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &462033058
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,7 +3149,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -2795,7 +3277,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -2953,8 +3435,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3012,6 +3494,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -3102,6 +3585,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -3261,8 +3745,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3389,8 +3873,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3487,7 +3971,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -3584,7 +4068,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -3642,6 +4126,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -3848,6 +4333,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -3865,20 +4351,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2318745389509295120}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &723365348
+--- !u!21 &700152118
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_ShaderKeywords: FILL_SOLID_COLOR POLYGON_16 POLYGON_MAP _EMISSION
-  m_LightmapFlags: 1
+  m_Name: backgroundTexts1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -3905,8 +4391,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 9b7fd263fce09024bb6e6607df1b4500, type: 3}
+        m_Scale: {x: 1, y: 2}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -3922,7 +4408,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -3933,23 +4418,95 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
     - _UVSec: 0
     - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.085
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.11215687, g: 0.14352942, b: 0.18117648, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
+--- !u!21 &705531282
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts1_1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9b7fd263fce09024bb6e6607df1b4500, type: 3}
+        m_Scale: {x: 1, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.15
+    m_Colors:
+    - _Color: {r: 0.08666667, g: 0.08039217, b: 0.09843138, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &723633445
 GameObject:
   m_ObjectHideFlags: 0
@@ -3998,6 +4555,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -4095,8 +4653,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4192,8 +4750,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4251,6 +4809,7 @@ MonoBehaviour:
   isWallE: 1
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -4510,8 +5069,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4607,8 +5166,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4705,7 +5264,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4763,6 +5322,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -4861,7 +5421,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -4919,6 +5479,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -5017,7 +5578,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5027,6 +5588,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &867632277
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts0_1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3a06a3d9058b4e849b79ec3d39e4602b, type: 3}
+        m_Scale: {x: 1, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.08
+    m_Colors:
+    - _Color: {r: 0.116470605, g: 0.09941177, b: 0.14705884, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &881482409
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,6 +5751,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -5210,7 +5850,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5399,8 +6039,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5496,8 +6136,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5555,6 +6195,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -5652,8 +6293,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5749,8 +6390,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5846,8 +6487,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5857,6 +6498,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &1031460094
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts0_1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3a06a3d9058b4e849b79ec3d39e4602b, type: 3}
+        m_Scale: {x: 1, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.08
+    m_Colors:
+    - _Color: {r: 0.11215687, g: 0.14352942, b: 0.18117648, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1033539268
 GameObject:
   m_ObjectHideFlags: 0
@@ -5905,6 +6624,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -5964,6 +6684,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -6023,6 +6744,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -6121,7 +6843,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -6218,7 +6940,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -6338,6 +7060,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 1
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -6436,7 +7159,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -6533,7 +7256,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6591,6 +7314,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -6733,6 +7457,84 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ae6a07484e1b74289e2b52d69fad84, type: 3}
+--- !u!21 &1224447315
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundSquares0
+  m_Shader: {fileID: 4800000, guid: 128768bd3c1625c41a61d17c58e86538, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 16233098945c2d342a3ba95c18d2e7a2, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.05
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 0.41372553, g: 0.4156863, b: 0.454902, a: 0.06}
 --- !u!1 &1234014322
 GameObject:
   m_ObjectHideFlags: 0
@@ -6820,7 +7622,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -6916,8 +7718,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7013,8 +7815,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7072,6 +7874,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -7131,6 +7934,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -7190,6 +7994,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -7318,8 +8123,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7447,7 +8252,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
-  m_Color: {r: 0.5058824, g: 0.4039216, b: 0.70980394, a: 1}
+  m_Color: {r: 0.82745105, g: 0.8313726, b: 0.909804, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7543,8 +8348,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7640,8 +8445,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7699,6 +8504,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -7797,7 +8603,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -7807,6 +8613,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!21 &1374636815
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundSquares1_3
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4697b5cb36750b04daffd1cdd29f562f, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: -2.6, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.1
+    m_Colors:
+    - _Color: {r: 0.055843137, g: 0.06368628, b: 0.07341177, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1396844716
 GameObject:
   m_ObjectHideFlags: 0
@@ -7894,7 +8778,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -7991,7 +8875,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -8087,8 +8971,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8184,8 +9068,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8282,7 +9166,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -8402,6 +9286,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -8461,6 +9346,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -8520,6 +9406,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 1
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -8649,7 +9536,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -8745,8 +9632,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8973,8 +9860,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9071,7 +9958,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -9198,8 +10085,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9296,7 +10183,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -9392,8 +10279,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9489,8 +10376,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9587,7 +10474,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -9645,6 +10532,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -9656,91 +10544,6 @@ MonoBehaviour:
   displayRoot: {fileID: 2009621822}
   _col: 5
   _row: 2
---- !u!21 &1682974988
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Shapes2D Material
-  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
-  m_ShaderKeywords: FILL_SOLID_COLOR RECTANGLE _EMISSION
-  m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _BumpMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DetailNormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _EmissionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MetallicGlossMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - _BumpScale: 1
-    - _ColorMask: 15
-    - _Cutoff: 0.5
-    - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
-    - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _Shapes2D_DstAlpha: 1
-    - _Shapes2D_DstBlend: 10
-    - _Shapes2D_SrcAlpha: 1
-    - _Shapes2D_SrcBlend: 1
-    - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    - _UVSec: 0
-    - _ZWrite: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1701233363
 GameObject:
   m_ObjectHideFlags: 0
@@ -9828,7 +10631,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -9886,6 +10689,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -10015,7 +10819,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -10111,8 +10915,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10208,8 +11012,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -10298,6 +11102,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 1
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -10357,6 +11162,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -10416,6 +11222,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -10427,6 +11234,84 @@ MonoBehaviour:
   displayRoot: {fileID: 1459761480}
   _col: 2
   _row: 6
+--- !u!21 &1784504845
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundSquares1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4697b5cb36750b04daffd1cdd29f562f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.04
+    m_Colors:
+    - _Color: {r: 0.11215687, g: 0.14352942, b: 0.18117648, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1825994513
 GameObject:
   m_ObjectHideFlags: 0
@@ -10514,7 +11399,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -10719,6 +11604,7 @@ MonoBehaviour:
   isWallE: 1
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -10817,7 +11703,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 4b5ad28e32e0f8941baaca7ad7807c3a, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -10875,6 +11761,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11019,6 +11906,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11116,8 +12004,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11213,8 +12101,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11317,7 +12205,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 906d69ebadf48f745aadf03fc02ba887, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11375,6 +12263,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11386,12 +12275,175 @@ MonoBehaviour:
   displayRoot: {fileID: 168730883}
   _col: 0
   _row: 4
+--- !u!21 &1955118018
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts1_1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9b7fd263fce09024bb6e6607df1b4500, type: 3}
+        m_Scale: {x: 1, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.15
+    m_Colors:
+    - _Color: {r: 0.082745105, g: 0.08313727, b: 0.0909804, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1955539466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2318745391464027674, guid: 57e866061caf4244288bcd32feb6b3f6,
     type: 3}
   m_PrefabInstance: {fileID: 2318745389509295120}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1962666352
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shapes2D Material
+  m_Shader: {fileID: 4800000, guid: 44f74e30da9814584b2fdcdbe799e51a, type: 3}
+  m_ShaderKeywords: FILL_SOLID_COLOR POLYGON_16 POLYGON_MAP _EMISSION
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Shapes2D_DstAlpha: 1
+    - _Shapes2D_DstBlend: 10
+    - _Shapes2D_SrcAlpha: 1
+    - _Shapes2D_SrcBlend: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &1963634006
 GameObject:
   m_ObjectHideFlags: 0
@@ -11510,7 +12562,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c4b2e9d77ab4974790ddbdadc99f6c5, type: 3}
-  m_Color: {r: 0.39705884, g: 0.058823533, b: 0.40588236, a: 1}
+  m_Color: {r: 0.5235294, g: 0.5970589, b: 0.68823534, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -11568,6 +12620,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11658,6 +12711,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11717,6 +12771,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11807,6 +12862,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -11904,8 +12960,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f795851523dbc14418da3a809b25410d, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12033,7 +13089,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6ef634af6e815cf4382c77167489fc8a, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -12228,7 +13284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a3b310f44d1a645bfbac55afb4e22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 11400000, guid: cf55f907d4f831243bbdfab32552e734, type: 2}
+  source: {fileID: 11400000, guid: 3a2ebd390083cfc4d9155f8c895f3751, type: 2}
   sourceIndex: 0
   destination: {fileID: 11400000, guid: f8634fa7a36a5b84199403ab43866ec0, type: 2}
   destinationIndex: 0
@@ -12322,7 +13378,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 81c5b5f330691c746add8bdd03114206, type: 3}
-  m_Color: {r: 0.7411765, g: 0.10980392, b: 0.7576471, a: 1}
+  m_Color: {r: 0.9772549, g: 1.1145099, b: 1.284706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -12419,7 +13475,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0463817a51e6d4a4f8f3522a8601b6e8, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12477,6 +13533,7 @@ MonoBehaviour:
   isWallE: 0
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -12536,6 +13593,7 @@ MonoBehaviour:
   isWallE: 1
   isWallS: 0
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -12595,6 +13653,7 @@ MonoBehaviour:
   isWallE: 1
   isWallS: 1
   isWallW: 0
+  isPlaceableBlocked: 0
   tileSpriteVariants:
   - {fileID: 21300000, guid: 237f8407351ec99478afa682dc4797be, type: 3}
   - {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
@@ -12722,6 +13781,84 @@ Transform:
   m_Father: {fileID: 1276028479}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &2128209339
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: backgroundTexts1
+  m_Shader: {fileID: 4800000, guid: 4ca8d8ed0ef45464aa21ca98fd29672b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9b7fd263fce09024bb6e6607df1b4500, type: 3}
+        m_Scale: {x: 1, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _UVSec: 0
+    - _ZWrite: 1
+    - speedX: 0
+    - speedY: 0.085
+    m_Colors:
+    - _Color: {r: 0.11215687, g: 0.14352942, b: 0.18117648, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - colorMod1: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2135409563
 GameObject:
   m_ObjectHideFlags: 0
@@ -12808,8 +13945,8 @@ SpriteRenderer:
   m_SortingLayerID: -378981573
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 09e6375c091593f4797c007afa4897e4, type: 3}
-  m_Color: {r: 0.52156866, g: 0.2627451, b: 0.6392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c04f6df3f111b2346abec0ff436f8faa, type: 3}
+  m_Color: {r: 0.56078434, g: 0.7176471, b: 0.9058824, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12890,21 +14027,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_projectionMatrixMode
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1210220378415603629, guid: eac1558ad089ed74084bbe08f399dbe6,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.114999995
-      objectReference: {fileID: 0}
-    - target: {fileID: 1210220378415603629, guid: eac1558ad089ed74084bbe08f399dbe6,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.09966666
-      objectReference: {fileID: 0}
-    - target: {fileID: 1210220378415603629, guid: eac1558ad089ed74084bbe08f399dbe6,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.161
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eac1558ad089ed74084bbe08f399dbe6, type: 3}
@@ -13287,26 +14409,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5316559307789396419, guid: 046f02b53ceffce4097f19cc79446287,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 670964909}
-    - target: {fileID: 5316559308078825298, guid: 046f02b53ceffce4097f19cc79446287,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2117973015}
-    - target: {fileID: 5316559308274948435, guid: 046f02b53ceffce4097f19cc79446287,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 1921293304}
-    - target: {fileID: 5316559307406621850, guid: 046f02b53ceffce4097f19cc79446287,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 1854256763}
     - target: {fileID: 5316559307282788351, guid: 046f02b53ceffce4097f19cc79446287,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -13357,6 +14459,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5316559308274948435, guid: 046f02b53ceffce4097f19cc79446287,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 1921293304}
+    - target: {fileID: 5316559307406621850, guid: 046f02b53ceffce4097f19cc79446287,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 1854256763}
+    - target: {fileID: 5316559307789396419, guid: 046f02b53ceffce4097f19cc79446287,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 670964909}
+    - target: {fileID: 5316559308078825298, guid: 046f02b53ceffce4097f19cc79446287,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2117973015}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046f02b53ceffce4097f19cc79446287, type: 3}
 --- !u!1001 &6539097947207619589

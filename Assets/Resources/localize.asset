@@ -19,3 +19,7 @@ MonoBehaviour:
   languageExtraInfos:
   - key: welcome
     voiceDuration: 1.5
+  - key: end_0
+    voiceDuration: 5
+  - key: end_1
+    voiceDuration: 2

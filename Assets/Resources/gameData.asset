@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a37ae1e8ae75046ade86a272884b73, type: 3}
   m_Name: gameData
   m_EditorClassIdentifier: 
+  levelSceneNamePrefix: level
+  levelEnd:
+    name: end
+    path: Assets/Scenes/end.unity
+  hintEditCount: 5
+  hintEditDelay: 36000
   quadrantTextRefs:
   - quadrant1
   - quadrant2

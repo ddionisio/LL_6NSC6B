@@ -7,6 +7,7 @@ public class LevelEntityPlayer : LevelEntityMover {
     [M8.TagSelector]
     public string tagEnemy = "Enemy";
     public float deathToEditDelay = 1.5f;
+    public bool isDeathToEdit = true;
 
     [Header("Tile Brightness Info")]
     public float tileBrightOfs = 0.2f;
@@ -60,7 +61,8 @@ public class LevelEntityPlayer : LevelEntityMover {
     }
 
     protected override void OnDeadPost() {
-        mRout = StartCoroutine(DoChangeToEditMode());
+        if(isDeathToEdit)
+            mRout = StartCoroutine(DoChangeToEditMode());
     }
 
     IEnumerator DoChangeToEditMode() {

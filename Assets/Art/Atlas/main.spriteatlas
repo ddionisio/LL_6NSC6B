@@ -46,7 +46,7 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 606b4390ffb2fe54e99760a13bbf8b54, type: 3}
     - {fileID: 102900000, guid: 3e02471eabe1c8b46b9781479347ecb7, type: 3}
     - {fileID: 102900000, guid: 08562eb8366106f4796ddd9051096a10, type: 3}
-    totalSpriteSurfaceArea: 139659
+    totalSpriteSurfaceArea: 141164
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -89,6 +89,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ed3ee745814d1bf44a0a1ff9061127df, type: 3}
   - {fileID: 21300000, guid: e9c8ee955c09c344aa79e9bb93b94216, type: 3}
   - {fileID: 21300000, guid: 1d2864c5d3c56a6439c21c071bcf16dc, type: 3}
+  - {fileID: 21300000, guid: 32838fd525c8e4947a91217e016c673e, type: 3}
   - {fileID: 21300000, guid: e86f0116e4afa034b87bc5fa78862f9e, type: 3}
   - {fileID: 21300000, guid: a8c26226fff848b43bf89cf0d3fab033, type: 3}
   - {fileID: 21300000, guid: 65d8ee2638fa864428c0ea859562f366, type: 3}
@@ -203,6 +204,7 @@ SpriteAtlas:
   - devicerBody
   - outline1x1
   - enemy_down_idle_0
+  - beam
   - robert_right_move_1
   - xAbsolute
   - goal
