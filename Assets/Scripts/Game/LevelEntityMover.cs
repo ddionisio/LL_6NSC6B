@@ -116,6 +116,7 @@ public class LevelEntityMover : LevelEntity {
     }
 
     public CellIndex prevCellIndex { get; private set; }
+    public CellIndex warpToCellIndex { get { return mWarpToCellIndex; } }
 
     public event System.Action moveUpdateCallback;
 
@@ -292,7 +293,7 @@ public class LevelEntityMover : LevelEntity {
         if(signalListenReset) signalListenReset.callback += OnSignalReset;
     }
 
-    void OnModeChanged(PlayController.Mode mode) {
+    protected virtual void OnModeChanged(PlayController.Mode mode) {
         switch(mode) {
             case PlayController.Mode.Editing:
                 OnSignalReset();
@@ -343,9 +344,9 @@ public class LevelEntityMover : LevelEntity {
     IEnumerator DoMove() {
         var changeDirWait = moveChangeDirDelay > 0f ? new WaitForSeconds(moveChangeDirDelay) : null;
 
-        while(mCurState == State.Moving) {
-            MoveUpdate();
+        yield return null;
 
+        while(mCurState == State.Moving) {
             //ensure current dir is the same
             var toDir = EvalDir(dir);
             if(dir != toDir) {
@@ -354,6 +355,8 @@ public class LevelEntityMover : LevelEntity {
                 yield return changeDirWait;
                 continue;
             }
+
+            MoveUpdate();
 
             //check if we are heading to prev cell, try another route
             if(nextCellIndex == prevCellIndex) {

@@ -13,6 +13,9 @@ public class LevelEntityPlayer : LevelEntityMover {
     public float tileBrightOfs = 0.2f;
     public float tileBrightDelay = 0.3f;
 
+    [Header("Display Player")]
+    public Transform editDirDisplayRoot;
+
     private LevelEntityMover mEntDeadMover; //current dead mover on cell
 
     protected override void EvaluateBegin() {
@@ -63,6 +66,43 @@ public class LevelEntityPlayer : LevelEntityMover {
     protected override void OnDeadPost() {
         if(isDeathToEdit)
             mRout = StartCoroutine(DoChangeToEditMode());
+    }
+
+    protected override void OnModeChanged(PlayController.Mode mode) {
+        base.OnModeChanged(mode);
+
+        switch(mode) {
+            case PlayController.Mode.Editing:
+                if(editDirDisplayRoot) {
+                    switch(dir) {
+                        case MoveDir.Up:
+                            editDirDisplayRoot.localRotation = Quaternion.identity;
+                            break;
+                        case MoveDir.Down:
+                            editDirDisplayRoot.up = Vector3.down;
+                            break;
+                        case MoveDir.Left:
+                            editDirDisplayRoot.up = Vector3.left;
+                            break;
+                        case MoveDir.Right:
+                            editDirDisplayRoot.up = Vector3.right;
+                            break;
+                    }
+
+                    editDirDisplayRoot.gameObject.SetActive(true);
+                }
+                break;
+
+            default:
+                if(editDirDisplayRoot) editDirDisplayRoot.gameObject.SetActive(false);
+                break;
+        }
+    }
+
+    protected override void Awake() {
+        base.Awake();
+
+        if(editDirDisplayRoot) editDirDisplayRoot.gameObject.SetActive(false);
     }
 
     IEnumerator DoChangeToEditMode() {
