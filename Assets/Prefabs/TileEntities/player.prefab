@@ -4971,6 +4971,9 @@ MonoBehaviour:
   takeDead: dead
   takeWarpOut: warpOut
   takeWarpIn: warpIn
+  sfxDead: wrong
+  sfxWarp: magic
+  sfxJump: jump
   signalListenReset: {fileID: 11400000, guid: 6793917885f7b2e4ba8a00042794ac73, type: 2}
   tagEnemy: Enemy
   deathToEditDelay: 1.5
@@ -11412,7 +11415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7909731830887462819
 Transform:
   m_ObjectHideFlags: 0

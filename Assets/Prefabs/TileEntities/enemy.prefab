@@ -84,7 +84,6 @@ MonoBehaviour:
   jumpHeight: 2
   jumpDelay: 0.5
   jumpDisplaySortOrder: 100
-  deadDisplaySortOrder: -100
   displayRoot: {fileID: 3101336602532926097}
   displaySpriteRender: {fileID: 3101336601555744946}
   displayShadowRoot: {fileID: 3101336601203450899}
@@ -105,6 +104,9 @@ MonoBehaviour:
   takeDead: dead
   takeWarpOut: warp_out
   takeWarpIn: warp_in
+  sfxDead: boop
+  sfxWarp: 
+  sfxJump: jump
   signalListenReset: {fileID: 11400000, guid: 6793917885f7b2e4ba8a00042794ac73, type: 2}
   tagEntityKill: Player
 --- !u!114 &3101336601549040523

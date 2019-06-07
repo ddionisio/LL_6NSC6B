@@ -21,6 +21,10 @@ public class LevelEntityGoal : LevelEntity {
     [Header("FX")]
     public EffectSpawner collectFxSpawner;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string sfxCollect;
+
     [Header("Signal Listen")]
     public M8.Signal signalListenReset;
 
@@ -88,6 +92,9 @@ public class LevelEntityGoal : LevelEntity {
                 break;
 
             case State.Collected:
+                if(!string.IsNullOrEmpty(sfxCollect))
+                    M8.SoundPlaylist.instance.Play(sfxCollect, false);
+
                 if(animator && !string.IsNullOrEmpty(takeCollect))
                     animator.Play(takeCollect);
 

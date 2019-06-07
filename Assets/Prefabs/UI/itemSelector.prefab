@@ -57,6 +57,8 @@ MonoBehaviour:
   animator: {fileID: 5063501674506744463}
   takeEnter: enter
   takeExit: exit
+  sfxEnter: paletteOpen
+  sfxExit: paletteClose
 --- !u!114 &5063501674506744463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e12aaffa850be4db3c282d4d6148dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
+  delay: 0.5
   isRealtime: 0
   ignoreDrag: 1
   input: {fileID: 0}
@@ -489,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3208c7ade34784eb92281584183c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: click
+  sound: computerBeep
   mode: 0
 --- !u!1 &5063501674766601086
 GameObject:

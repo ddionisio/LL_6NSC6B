@@ -70,7 +70,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userData: {fileID: 11400000, guid: f046408e22ed041489b05881e4821f14, type: 2}
-  autoSave: 1
+  autoSaveOnSceneChange: 1
+  autoSaveOnApplicationExit: 1
   localStateCache: 0
   globalStartData: []
   startData: []
@@ -122,7 +123,7 @@ MonoBehaviour:
   _loadOnInstance: 1
   _masterVolumeDefault: 1
   _soundVolumeDefault: 0.5
-  _musicVolumeDefault: 0.6
+  _musicVolumeDefault: 0.3
 --- !u!81 &81823375801939880
 AudioListener:
   m_ObjectHideFlags: 0

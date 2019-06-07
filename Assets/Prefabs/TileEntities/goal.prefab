@@ -286,10 +286,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zOfs: -1
+  isPersistState: 0
   animator: {fileID: 3393024197577355486}
   takeNormal: normal
   takeCollect: collected
   collectFxSpawner: {fileID: 2372813156490438000}
+  sfxCollect: correct
   signalListenReset: {fileID: 11400000, guid: 6793917885f7b2e4ba8a00042794ac73, type: 2}
 --- !u!114 &3393024197577355486
 MonoBehaviour:

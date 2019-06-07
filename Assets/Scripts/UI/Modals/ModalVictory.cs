@@ -12,6 +12,10 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalActive {
     public string progressTakeFilled = "filled";
     public string progressTakeFill = "fill";
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string sfxVictory;
+
     private M8.Animator.Animate[] mProgressAnims;
 
     public void Next() {
@@ -42,5 +46,8 @@ public class ModalVictory : M8.ModalController, M8.IModalPush, M8.IModalActive {
             else if(i >= curProgress)
                 mProgressAnims[i].Play(progressTakeEmpty);
         }
+
+        if(!string.IsNullOrEmpty(sfxVictory))
+            M8.SoundPlaylist.instance.Play(sfxVictory, false);
     }
 }

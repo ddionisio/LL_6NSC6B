@@ -13563,6 +13563,7 @@ MonoBehaviour:
   progressTakeEmpty: empty
   progressTakeFilled: filled
   progressTakeFill: fill
+  sfxVictory: success
 --- !u!114 &2229200436855399937
 MonoBehaviour:
   m_ObjectHideFlags: 0

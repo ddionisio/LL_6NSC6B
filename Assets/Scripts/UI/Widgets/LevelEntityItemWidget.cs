@@ -24,6 +24,10 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         
     public Text countText;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string sfxDragBegin = "tap";
+
     public int count { get { return mActiveEntities != null ? mActiveEntities.Capacity - mActiveEntities.Count : 0; } }
 
     public int activeCount { get { return mActiveEntities != null ? mActiveEntities.Count : 0; } }
@@ -173,6 +177,9 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         RefreshDisplay();
 
         DragUpdate(eventData);
+
+        if(!string.IsNullOrEmpty(sfxDragBegin))
+            M8.SoundPlaylist.instance.Play(sfxDragBegin, false);
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData) {

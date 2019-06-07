@@ -25,6 +25,12 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeExit;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string sfxEnter;
+    [M8.SoundPlaylist]
+    public string sfxExit;
+
     public State curState {
         get { return mCurState; }
         private set {
@@ -202,6 +208,9 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     IEnumerator DoShow() {
         if(panelGO) panelGO.SetActive(true);
 
+        if(!string.IsNullOrEmpty(sfxEnter))
+            M8.SoundPlaylist.instance.Play(sfxEnter, false);
+
         if(animator && !string.IsNullOrEmpty(takeEnter))
             yield return animator.PlayWait(takeEnter);
 
@@ -209,6 +218,9 @@ public class LevelEntityItemGroupWidget : MonoBehaviour {
     }
 
     IEnumerator DoHide() {
+        if(!string.IsNullOrEmpty(sfxExit))
+            M8.SoundPlaylist.instance.Play(sfxExit, false);
+
         if(animator && !string.IsNullOrEmpty(takeExit))
             yield return animator.PlayWait(takeExit);
 

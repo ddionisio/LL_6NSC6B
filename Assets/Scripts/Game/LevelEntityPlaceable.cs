@@ -27,6 +27,16 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeDelete;
 
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string sfxSpawn = "boop";
+    [M8.SoundPlaylist]
+    public string sfxDragBegin = "tap";
+    [M8.SoundPlaylist]
+    public string sfxDragDrop = "boop";
+    [M8.SoundPlaylist]
+    public string sfxDelete = "computerBeep";
+
     public bool isInteractible {
         get {
             if(mRout != null)
@@ -183,6 +193,9 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
         if(animator && !string.IsNullOrEmpty(takeSpawn))
             animator.Play(takeSpawn);
 
+        if(!string.IsNullOrEmpty(sfxSpawn))
+            M8.SoundPlaylist.instance.Play(sfxSpawn, false);
+
         Spawned(parms);
     }
 
@@ -237,6 +250,9 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
     }
 
     IEnumerator DoDelete() {
+        if(!string.IsNullOrEmpty(sfxDelete))
+            M8.SoundPlaylist.instance.Play(sfxDelete, false);
+
         if(animator && !string.IsNullOrEmpty(takeDelete))
             yield return animator.PlayWait(takeDelete);
 
@@ -303,6 +319,9 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
             drag.mode = LevelGridPointerWidget.Mode.Drag;
         }
 
+        if(!string.IsNullOrEmpty(sfxDragBegin))
+            M8.SoundPlaylist.instance.Play(sfxDragBegin, false);
+
         OnDragBegin();
     }
 
@@ -337,6 +356,9 @@ public class LevelEntityPlaceable : LevelEntity, M8.IPoolSpawn, M8.IPoolDespawn,
             if(isMoveValid) {
                 var toPos = levelGrid.GetCellPosition(cellIndex);
                 MoveTo(toPos);
+
+                if(!string.IsNullOrEmpty(sfxDragDrop))
+                    M8.SoundPlaylist.instance.Play(sfxDragDrop, false);
             }
         }
 

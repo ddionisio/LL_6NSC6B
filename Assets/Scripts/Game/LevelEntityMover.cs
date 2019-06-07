@@ -64,7 +64,15 @@ public class LevelEntityMover : LevelEntity {
     public string takeWarpOut;
     [M8.Animator.TakeSelector(animatorField = "animator")]
     public string takeWarpIn;
-        
+
+    [Header("Audio")]
+    [M8.SoundPlaylist]
+    public string sfxDead;
+    [M8.SoundPlaylist]
+    public string sfxWarp;
+    [M8.SoundPlaylist]
+    public string sfxJump;
+
     [Header("Signal Listen")]
     public M8.Signal signalListenReset; //revert to starting position much like going to edit mode
 
@@ -410,6 +418,9 @@ public class LevelEntityMover : LevelEntity {
     }
 
     IEnumerator DoWarp() {
+        if(!string.IsNullOrEmpty(sfxWarp))
+            M8.SoundPlaylist.instance.Play(sfxWarp, false);
+
         if(animator && !string.IsNullOrEmpty(takeWarpOut))
             yield return animator.PlayWait(takeWarpOut);
 
@@ -439,6 +450,9 @@ public class LevelEntityMover : LevelEntity {
     }
 
     IEnumerator DoJump() {
+        if(!string.IsNullOrEmpty(sfxJump))
+            M8.SoundPlaylist.instance.Play(sfxJump, false);
+
         var startPos = position;
         var endPos = levelGrid.GetCellPosition(mWarpToCellIndex);
 
@@ -491,6 +505,9 @@ public class LevelEntityMover : LevelEntity {
     }
 
     IEnumerator DoDead() {
+        if(!string.IsNullOrEmpty(sfxDead))
+            M8.SoundPlaylist.instance.Play(sfxDead, false);
+
         if(animator && !string.IsNullOrEmpty(takeDead))
             yield return animator.PlayWait(takeDead);
 
