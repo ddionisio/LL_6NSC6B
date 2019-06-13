@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2676075666534158453}
   - component: {fileID: 1800462692487940278}
+  - component: {fileID: 1658203363537430080}
   m_Layer: 0
   m_Name: tileHighlightCorner (3)
   m_TagString: Untagged
@@ -48,7 +49,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e83ac30213f1d45408bf3b8631da5125, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: b674b9717cf49554baca94acaa03ff03, type: 3}
-  m_Color: {r: 0.7686275, g: 0.3803922, b: 0.227451, a: 1}
+  m_Color: {r: 0.7401961, g: 0.86764705, b: 1.0441177, a: 1}
   m_FlipX: 0
   m_FlipY: 1
   m_DrawMode: 0
@@ -79,6 +80,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1658203363537430080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808519349918210852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318530966553e1542a8dd27fd3607103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _palette: {fileID: 11400000, guid: f8634fa7a36a5b84199403ab43866ec0, type: 2}
+  _index: 4
+  _brightness: 1.25
+  _alpha: 1
+  _target: {fileID: 1800462692487940278}
 --- !u!1 &4608611540280483431
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5228336481799802615}
   - component: {fileID: 7380489241130316793}
+  - component: {fileID: 2164337072169305949}
   m_Layer: 0
   m_Name: tileHighlightCorner (2)
   m_TagString: Untagged
@@ -161,7 +180,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e83ac30213f1d45408bf3b8631da5125, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,7 +201,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: b674b9717cf49554baca94acaa03ff03, type: 3}
-  m_Color: {r: 0.7686275, g: 0.3803922, b: 0.227451, a: 1}
+  m_Color: {r: 0.7401961, g: 0.86764705, b: 1.0441177, a: 1}
   m_FlipX: 1
   m_FlipY: 1
   m_DrawMode: 0
@@ -192,6 +211,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2164337072169305949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6992524826112089791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318530966553e1542a8dd27fd3607103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _palette: {fileID: 11400000, guid: f8634fa7a36a5b84199403ab43866ec0, type: 2}
+  _index: 4
+  _brightness: 1.25
+  _alpha: 1
+  _target: {fileID: 7380489241130316793}
 --- !u!1 &7855018726671936669
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9008077993095525156}
   - component: {fileID: 5818639720245227648}
+  - component: {fileID: 762249338188593735}
   m_Layer: 0
   m_Name: tileHighlightCorner
   m_TagString: Untagged
@@ -240,7 +277,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e83ac30213f1d45408bf3b8631da5125, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -261,7 +298,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: b674b9717cf49554baca94acaa03ff03, type: 3}
-  m_Color: {r: 0.7686275, g: 0.3803922, b: 0.227451, a: 1}
+  m_Color: {r: 0.7401961, g: 0.86764705, b: 1.0441177, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -271,6 +308,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &762249338188593735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855018726671936669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318530966553e1542a8dd27fd3607103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _palette: {fileID: 11400000, guid: f8634fa7a36a5b84199403ab43866ec0, type: 2}
+  _index: 4
+  _brightness: 1.25
+  _alpha: 1
+  _target: {fileID: 5818639720245227648}
 --- !u!1 &9211165154570855073
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684573165502939134}
   - component: {fileID: 2505845622278417715}
+  - component: {fileID: 8597112140359948227}
   m_Layer: 0
   m_Name: tileHighlightCorner (1)
   m_TagString: Untagged
@@ -319,7 +374,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e83ac30213f1d45408bf3b8631da5125, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,7 +395,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 21
   m_Sprite: {fileID: 21300000, guid: b674b9717cf49554baca94acaa03ff03, type: 3}
-  m_Color: {r: 0.7686275, g: 0.3803922, b: 0.227451, a: 1}
+  m_Color: {r: 0.7401961, g: 0.86764705, b: 1.0441177, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -350,3 +405,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8597112140359948227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211165154570855073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 318530966553e1542a8dd27fd3607103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _palette: {fileID: 11400000, guid: f8634fa7a36a5b84199403ab43866ec0, type: 2}
+  _index: 4
+  _brightness: 1.25
+  _alpha: 1
+  _target: {fileID: 2505845622278417715}

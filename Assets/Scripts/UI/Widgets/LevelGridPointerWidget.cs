@@ -99,9 +99,8 @@ public class LevelGridPointerWidget : MonoBehaviour {
                     dragColorGroup.Revert();
                 else
                     dragColorGroup.ApplyColor(dragColorInvalid);
-                                
-                if(levelGrid && levelGrid.cellHighlightRoot)
-                    levelGrid.cellHighlightRoot.gameObject.SetActive(isDragValid);
+
+                CellHighlightSetActive(isDragValid);
             }
 
             if(!isDragValid)
@@ -145,11 +144,12 @@ public class LevelGridPointerWidget : MonoBehaviour {
         //cell highlight
         if(levelGrid.cellHighlightRoot) {
             if(isCellHighlightShow) {
-                levelGrid.cellHighlightRoot.gameObject.SetActive(true);
                 levelGrid.cellHighlightRoot.position = levelGrid.GetCellPosition(pointerCellIndex);
+                CellHighlightSetActive(true);
+
             }
             else
-                levelGrid.cellHighlightRoot.gameObject.SetActive(false);
+                CellHighlightSetActive(false);
         }
     }
 
@@ -196,8 +196,7 @@ public class LevelGridPointerWidget : MonoBehaviour {
         if(dragPointerGO) dragPointerGO.SetActive(false);
         if(dragDisplayGO) dragDisplayGO.SetActive(mMode == Mode.Drag);
 
-        if(PlayController.isInstantiated && PlayController.instance.levelGrid && PlayController.instance.levelGrid.cellHighlightRoot)
-            PlayController.instance.levelGrid.cellHighlightRoot.gameObject.SetActive(mMode == Mode.Drag);
+        CellHighlightSetActive(mMode == Mode.Drag);
 
         if(pointerRoot)
             pointerRoot.gameObject.SetActive(mMode != Mode.None);
@@ -207,6 +206,74 @@ public class LevelGridPointerWidget : MonoBehaviour {
 
         isDragValid = true;
         dragColorGroup.Revert();
+    }
+
+    private void CellHighlightSetActive(bool active) {
+        if(!PlayController.isInstantiated || !PlayController.instance.levelGrid)
+            return;
+
+        var lvlGrid = PlayController.instance.levelGrid;
+
+        bool isPointerActive = false;
+        bool isDotXActive = false;
+        bool isDotYActive = false;
+        bool isLineXActive = false;
+        bool isLineYActive = false;
+
+        if(active && lvlGrid.cellHighlightRoot) {
+            var cellInd = lvlGrid.GetCellIndex(lvlGrid.cellHighlightRoot.position);
+
+            if(cellInd.col >= 0 && cellInd.col < lvlGrid.numCol && cellInd.row >= 0 && cellInd.row < lvlGrid.numRow) {
+                isPointerActive = true;
+
+                //not in origin?
+                if(cellInd.col != lvlGrid.originCol || cellInd.row != lvlGrid.originRow) {
+                    //along y-axis?
+                    if(cellInd.row != lvlGrid.originRow) {
+                        isDotYActive = true;
+                        if(lvlGrid.cellHighlightSpriteRenderDotY) lvlGrid.cellHighlightSpriteRenderDotY.transform.position = lvlGrid.GetCellPosition(cellInd.col, lvlGrid.originRow);
+
+                        isLineYActive = true;
+                        if(lvlGrid.cellHighlightSpriteRenderLineY) {
+                            var dRow = cellInd.row - lvlGrid.originRow;
+                            lvlGrid.cellHighlightSpriteRenderLineY.transform.position = lvlGrid.GetCellPosition(cellInd.col, lvlGrid.originRow);
+                            var s = lvlGrid.cellHighlightSpriteRenderLineY.size;
+                            s.y = Mathf.Abs(dRow) * lvlGrid.cellSize.y;
+                            lvlGrid.cellHighlightSpriteRenderLineY.size = s;
+                            if(dRow > 0)
+                                lvlGrid.cellHighlightSpriteRenderLineY.transform.localRotation = Quaternion.identity;
+                            else
+                                lvlGrid.cellHighlightSpriteRenderLineY.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                        }
+                    }
+
+                    //along x-axis?
+                    if(cellInd.col != lvlGrid.originCol) {
+                        isDotXActive = true;
+                        if(lvlGrid.cellHighlightSpriteRenderDotX) lvlGrid.cellHighlightSpriteRenderDotX.transform.position = lvlGrid.GetCellPosition(lvlGrid.originCol, cellInd.row);
+
+                        isLineXActive = true;
+                        if(lvlGrid.cellHighlightSpriteRenderLineX) {
+                            var dCol = cellInd.col - lvlGrid.originCol;
+                            lvlGrid.cellHighlightSpriteRenderLineX.transform.position = lvlGrid.GetCellPosition(lvlGrid.originCol, cellInd.row);
+                            var s = lvlGrid.cellHighlightSpriteRenderLineX.size;
+                            s.y = Mathf.Abs(dCol) * lvlGrid.cellSize.y;
+                            lvlGrid.cellHighlightSpriteRenderLineX.size = s;
+                            if(dCol > 0)
+                                lvlGrid.cellHighlightSpriteRenderLineX.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                            else
+                                lvlGrid.cellHighlightSpriteRenderLineX.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                        }
+                    }
+                }
+            }
+        }
+
+        if(lvlGrid.cellHighlightRoot) lvlGrid.cellHighlightRoot.gameObject.SetActive(isPointerActive);
+        if(lvlGrid.cellHighlightSpriteRenderDotX) lvlGrid.cellHighlightSpriteRenderDotX.gameObject.SetActive(isDotXActive);
+        if(lvlGrid.cellHighlightSpriteRenderDotY) lvlGrid.cellHighlightSpriteRenderDotY.gameObject.SetActive(isDotYActive);
+        if(lvlGrid.cellHighlightSpriteRenderLineX) lvlGrid.cellHighlightSpriteRenderLineX.gameObject.SetActive(isLineXActive);
+        if(lvlGrid.cellHighlightSpriteRenderLineY) lvlGrid.cellHighlightSpriteRenderLineY.gameObject.SetActive(isLineYActive);
     }
 
     private PointerEventData GetLastPointerEventData() {

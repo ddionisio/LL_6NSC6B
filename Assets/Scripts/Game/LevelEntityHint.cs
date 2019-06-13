@@ -25,6 +25,33 @@ public class LevelEntityHint : LevelEntity {
     public SpriteRenderer iconSpriteRender;
     public float iconReflectScale = 0.85f;
 
+    public string itemNameFromType {
+        get {
+            switch(type) {
+                case HintType.Up:
+                    return "itemMoveDirUp";
+                case HintType.Down:
+                    return "itemMoveDirDown";
+                case HintType.Left:
+                    return "itemMoveDirLeft";
+                case HintType.Right:
+                    return "itemMoveDirRight";
+                case HintType.ReflectX:
+                    return "itemReflectX";
+                case HintType.ReflectY:
+                    return "itemReflectY";
+                case HintType.ReflectXY:
+                    return "itemReflectXY";
+                case HintType.AbsoluteX:
+                    return "itemAbsoluteX";
+                case HintType.AbsoluteY:
+                    return "itemAbsoluteY";
+                default:
+                    return "";
+            }
+        }
+    }
+
     public float GetIconRotation() {
         switch(type) {
             case HintType.Down:
@@ -56,5 +83,9 @@ public class LevelEntityHint : LevelEntity {
             return iconSprites[sprInd];
 
         return iconSpriteRender ? iconSpriteRender.sprite : null;
+    }
+
+    void OnEnable() {
+        RefreshCellIndex();
     }
 }
