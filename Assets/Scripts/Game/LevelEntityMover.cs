@@ -126,6 +126,8 @@ public class LevelEntityMover : LevelEntity {
     public CellIndex prevCellIndex { get; private set; }
     public CellIndex warpToCellIndex { get { return mWarpToCellIndex; } }
 
+    public CellIndex defaultCellIndex { get { return mDefaultCellIndex; } }
+
     public event System.Action moveUpdateCallback;
 
     protected Coroutine mRout;
