@@ -196,10 +196,34 @@ MonoBehaviour:
     type: 3}
   cellGenQuadrantInfos:
   - paletteIndex: 1
-    brightnessOffset: 0
+    brightnessOffset: -0.25
   cellGenAxisInfo:
     paletteIndex: 2
-    brightnessOffset: 0
+    brightnessOffset: -0.25
+  gridLinePaletteIndex: 1
+  gridLineAxisPaletteIndex: 2
+  gridLineSprAll: {fileID: 21300000, guid: 1d1b204c3633f264d87451c29ebf2ffb, type: 3}
+  gridLineSprUp: {fileID: 21300000, guid: 5078145d7229f5a48aa0e880591c2657, type: 3}
+  gridLineSprDown: {fileID: 21300000, guid: 57afa34af7b378b4abbd5a7328b1d80c, type: 3}
+  gridLineSprLeft: {fileID: 21300000, guid: 10b0475695c42bc45ace706b611aaefc, type: 3}
+  gridLineSprRight: {fileID: 21300000, guid: fa4a1467ecafd9448bbe5daa7d8fa7dd, type: 3}
+  gridLineSprLeftRight: {fileID: 21300000, guid: c4e26373f7a1d834aa32245c53521bea,
+    type: 3}
+  gridLineSprUpDown: {fileID: 21300000, guid: 8cfa1ce3485fd5747bac954104af67bf, type: 3}
+  gridLineSprDownLeft: {fileID: 21300000, guid: e228ebaff26a92d4ab5c8b495587a8ba,
+    type: 3}
+  gridLineSprDownRight: {fileID: 21300000, guid: 54c686fd2ad8af7449851efa3ab22182,
+    type: 3}
+  gridLineSprUpLeft: {fileID: 21300000, guid: 9681db96a20a7a0428f40f9e65dc906c, type: 3}
+  gridLineSprUpRight: {fileID: 21300000, guid: c559cba374248f344b78549ff66cd132, type: 3}
+  gridLineSprUpDownLeft: {fileID: 21300000, guid: 3b0ac7bdb698e80498a957a7b11f3506,
+    type: 3}
+  gridLineSprUpDownRight: {fileID: 21300000, guid: 59b6dbcdf6b031c4b855b1dd7c10106e,
+    type: 3}
+  gridLineSprUpLeftRight: {fileID: 21300000, guid: a2a14dab02d98414b866c033c71480ee,
+    type: 3}
+  gridLineSprDownLeftRight: {fileID: 21300000, guid: 8026a6742223270479190957f0051700,
+    type: 3}
 --- !u!61 &2318745389959956093
 BoxCollider2D:
   m_ObjectHideFlags: 0

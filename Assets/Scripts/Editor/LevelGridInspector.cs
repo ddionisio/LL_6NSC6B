@@ -5,6 +5,30 @@ using UnityEditor;
 
 [CustomEditor(typeof(LevelGrid))]
 public class LevelGridInspector : Editor {
+    [System.Flags]
+    public enum SideFlag {
+        None = 0x0,
+
+        Up = 0x1,
+        Down = 0x2,
+        Left = 0x4,
+        Right = 0x8,
+
+        All = Up | Down | Left | Right,
+
+        LeftRight = Left | Right,
+        UpDown = Up | Down,
+
+        DownLeft = Down | Left,
+        DownRight = Down | Right,
+        UpLeft = Up | Left,
+        UpRight = Up | Right,
+
+        UpDownLeft = Up | Down | Left,
+        UpDownRight = Up | Down | Right,
+        UpLeftRight = Up | Left | Right,
+        DownLeftRight = Down | Left | Right
+    }
     
     private BoxCollider2D mBoxColl;
     private LevelTile[,] mTileCells;
@@ -225,15 +249,41 @@ public class LevelGridInspector : Editor {
 
                     //check existing tile
                     var tile = mTileCells[r, c];
-                    if(!tile && isCreateCell) {
-                        //generate
-                        tile = Instantiate(dat.cellGenTemplate, dat.GetCellPosition(cell), Quaternion.identity, dat.tilesRoot);
-                        mTileCells[r, c] = tile;
+
+                    //preserve flags
+                    bool isWallN = false;
+                    bool isWallE = false;
+                    bool isWallS = false;
+                    bool isWallW = false;
+                    bool isPlaceableBlocked = false;
+
+                    if(tile) {
+                        if(!isCreateCell) {
+                            isWallN = tile.isWallN;
+                            isWallE = tile.isWallE;
+                            isWallS = tile.isWallS;
+                            isWallW = tile.isWallW;
+                            isPlaceableBlocked = tile.isPlaceableBlocked;
+                        }
+
+                        DestroyImmediate(tile.gameObject);
                     }
+                    else if(!isCreateCell) //ignore empty tile
+                        continue;
+
+                    //generate
+                    tile = Instantiate(dat.cellGenTemplate, dat.GetCellPosition(cell), Quaternion.identity, dat.tilesRoot);
+                    mTileCells[r, c] = tile;
 
                     if(tile) {
                         tile.name = string.Format("{0:D2}:{1:D2}", c, r);
                         tile.transform.SetAsLastSibling();
+
+                        if(tile.gridLineSpriteRender) {
+                            var colorPal = tile.gridLineSpriteRender.GetComponent<M8.SpriteColorFromPalette>();
+                            if(colorPal)
+                                colorPal.index = r == dat.originRow || c == dat.originCol ? dat.gridLineAxisPaletteIndex : dat.gridLinePaletteIndex;
+                        }
 
                         //apply display
                         var spritePalette = tile.tileSpritePalette;
@@ -241,10 +291,109 @@ public class LevelGridInspector : Editor {
                             spritePalette.index = cellGenInfo.paletteIndex;
                             spritePalette.brightness = 1f + cellGenInfo.brightnessOffset;
                         }
+
+                        //apply flags
+                        tile.isWallN = isWallN;
+                        tile.isWallE = isWallE;
+                        tile.isWallS = isWallS;
+                        tile.isWallW = isWallW;
+                        tile.isPlaceableBlocked = isPlaceableBlocked;
                     }
                 }
             }
+
+            //apply grid lines
+            for(int r = 0; r < dat.numRow; r++) {
+                for(int c = 0; c < dat.numCol; c++) {
+                    var tile = mTileCells[r, c];
+                    if(tile && tile.gridLineSpriteRender) {
+                        var sideFlags = GetFlags(r, c);
+                        if(sideFlags != SideFlag.None) {
+                            tile.gridLineSpriteRender.gameObject.SetActive(true);
+
+                            switch(sideFlags) {
+                                case SideFlag.All:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprAll;
+                                    break;
+
+                                case SideFlag.Up:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUp;
+                                    break;
+                                case SideFlag.Down:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprDown;
+                                    break;
+                                case SideFlag.Left:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprLeft;
+                                    break;
+                                case SideFlag.Right:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprRight;
+                                    break;
+
+                                case SideFlag.LeftRight:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprLeftRight;
+                                    break;
+                                case SideFlag.UpDown:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUpDown;
+                                    break;
+
+                                case SideFlag.DownLeft:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprDownLeft;
+                                    break;
+                                case SideFlag.DownRight:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprDownRight;
+                                    break;
+                                case SideFlag.UpLeft:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUpLeft;
+                                    break;
+                                case SideFlag.UpRight:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUpRight;
+                                    break;
+
+                                case SideFlag.UpDownLeft:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUpDownLeft;
+                                    break;
+                                case SideFlag.UpDownRight:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUpDownRight;
+                                    break;
+                                case SideFlag.UpLeftRight:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprUpLeftRight;
+                                    break;
+                                case SideFlag.DownLeftRight:
+                                    tile.gridLineSpriteRender.sprite = dat.gridLineSprDownLeftRight;
+                                    break;
+                            }
+                        }
+                        else {
+                            tile.gridLineSpriteRender.gameObject.SetActive(false);
+                        }
+                    }
+                }
+            }
+
+            EditorUtility.SetDirty(dat);
         }
+    }
+
+    private SideFlag GetFlags(int r, int c) {
+        SideFlag ret = SideFlag.None;
+
+        //check left
+        if(c - 1 >= 0 && mTileCells[r, c - 1])
+            ret |= SideFlag.Left;
+
+        //check right
+        if(c + 1 < mTileCells.GetLength(1) && mTileCells[r, c + 1])
+            ret |= SideFlag.Right;
+
+        //check down
+        if(r - 1 >= 0 && mTileCells[r - 1, c] && mTileCells[r - 1, c])
+            ret |= SideFlag.Down;
+
+        //check up
+        if(r + 1 < mTileCells.GetLength(0) && mTileCells[r + 1, c])
+            ret |= SideFlag.Up;
+
+        return ret;
     }
 
     private void ApplyWallHorizontal(LevelGrid levelGrid, int sCol, int eCol, int row, bool isBack, bool isBottom) {

@@ -57,6 +57,30 @@ public class LevelGrid : MonoBehaviour {
     public CellGeneratorInfo[] cellGenQuadrantInfos;
     public CellGeneratorInfo cellGenAxisInfo;
 
+    [Header("Grid Line Generator")]
+    public int gridLinePaletteIndex;
+    public int gridLineAxisPaletteIndex;
+
+    public Sprite gridLineSprAll;
+
+    public Sprite gridLineSprUp;
+    public Sprite gridLineSprDown;
+    public Sprite gridLineSprLeft;
+    public Sprite gridLineSprRight;
+
+    public Sprite gridLineSprLeftRight;
+    public Sprite gridLineSprUpDown;
+
+    public Sprite gridLineSprDownLeft;
+    public Sprite gridLineSprDownRight;    
+    public Sprite gridLineSprUpLeft;
+    public Sprite gridLineSprUpRight;
+    
+    public Sprite gridLineSprUpDownLeft;
+    public Sprite gridLineSprUpDownRight;
+    public Sprite gridLineSprUpLeftRight;
+    public Sprite gridLineSprDownLeftRight;
+
     public Vector2 size { get { return new Vector2(numCol * cellSize.x, numRow * cellSize.y); } }
     public Vector2 extents { get { return new Vector2(numCol * cellSize.x * 0.5f, numRow * cellSize.y * 0.5f); } }
     public Vector2 min { get { return center - extents; } }

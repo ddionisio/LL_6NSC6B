@@ -17,6 +17,7 @@ public class LevelTile : MonoBehaviour {
 
     [Header("Displays")]
     public Transform displayRoot;
+    public SpriteRenderer gridLineSpriteRender;
 
     public LevelGrid levelGrid {
         get {
