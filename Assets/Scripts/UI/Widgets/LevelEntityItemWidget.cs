@@ -129,6 +129,10 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
         return mActiveEntities.Count > 0 ? mActiveEntities[0] : null;
     }
 
+    public LevelEntityPlaceable GetActiveItem(int index) {
+        return index >= 0 && index < mActiveEntities.Count ? mActiveEntities[index] : null;
+    }
+
     /// <summary>
     /// Get active item that matches given cell
     /// </summary>

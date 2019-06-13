@@ -57,6 +57,7 @@ public class ModalQuadrantQuestion : M8.ModalController, M8.IModalPush, M8.IModa
         for(int i = 0; i < answerButtons.Length; i++) {
             answerButtons[i].interactable = false;
             mAnswerAnimators[i].ResetTake(answerTakeEnter);
+            mAnswerAnimators[i].gameObject.SetActive(false);
         }
 
         mAnswerIndex = -1;
@@ -171,6 +172,7 @@ public class ModalQuadrantQuestion : M8.ModalController, M8.IModalPush, M8.IModa
         var wait = new WaitForSeconds(answerShowDelay);
 
         for(int i = 0; i < mAnswerAnimators.Length; i++) {
+            mAnswerAnimators[i].gameObject.SetActive(true);
             mAnswerAnimators[i].Play(answerTakeEnter);
             answerButtons[i].interactable = true;
             yield return wait;

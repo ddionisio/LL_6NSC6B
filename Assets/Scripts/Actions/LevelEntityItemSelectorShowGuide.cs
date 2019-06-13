@@ -25,7 +25,7 @@ namespace HutongGames.PlayMaker.Actions.Game {
             var go = Fsm.GetOwnerDefaultTarget(gameObject);
             if(UpdateCache(go)) {
                 var destCell = new CellIndex(row.Value, col.Value);
-                cachedComponent.DragGuideShow(itemName.Value, destCell);
+                cachedComponent.DragGuideShow(itemName.Value, destCell, null);
             }
 
             Finish();

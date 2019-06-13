@@ -149,7 +149,7 @@ public class HintWidget : MonoBehaviour {
                     var hintItm = mHintItems[i];
 
                     if(!CheckCellIndex(hintItm.itemNameFromType, hintItm.cellIndex)) {
-                        mItemSelectUI.DragGuideShow(hintItm.itemNameFromType, hintItm.cellIndex);
+                        mItemSelectUI.DragGuideShow(hintItm.itemNameFromType, hintItm.cellIndex, EvalItem);
 
                         while(!CheckCellIndex(hintItm.itemNameFromType, hintItm.cellIndex))
                             yield return wait;
@@ -163,6 +163,17 @@ public class HintWidget : MonoBehaviour {
         }
 
         mDragGuideRout = null;
+    }
+
+    private bool EvalItem(LevelEntityPlaceable itm) {
+        //check if this is already properly placed over a hint item
+        for(int i = 0; i < mHintItems.Length; i++) {
+            var hintItm = mHintItems[i];
+            if(hintItm.itemNameFromType == itm.name && itm.cellIndex == hintItm.cellIndex)
+                return false;
+        }
+
+        return true;
     }
 
     private bool CheckCellIndex(string entName, CellIndex cellIndex) {
