@@ -1,1 +1,13 @@
 Robert is trapped in an endless loop! Rescue him from his predicament by using the knowledge of coordinates and quadrants.
+
+Controls:
+Use the touchpad or mouse for interactions.
+
+To drag/drop an item – press and hold the item of interest using the touchpad or mouse. While pressing, slide towards where you want to drop the item, and then release the touchpad or mouse left button.
+
+You can delete a placed item on the level by pressing it for a second.
+
+To clear all items on the board, press and hold the CLEAR button (red) during edit mode (when the stop button is pressed).
+
+Hints:
+After a few tries, a hint button will display at the bottom left (lightbulb). Press this button if stuck at the current level.

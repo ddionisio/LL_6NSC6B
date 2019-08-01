@@ -12,10 +12,12 @@ public class HintWidget : MonoBehaviour {
     [M8.TagSelector]
     public string tagItemSelect = "ItemSelector";
     public bool alwaysShowHint; //if true, hints will be shown during edit mode regardless of button click
+    public bool isPanelMode = true; //if true, show hints via panel
 
     [Header("Display")]
     public GameObject displayGO;
     public Button button;
+    public HintContainerWidget hintPanelContainer;
 
     [Header("Tooltip")]
     public float tooltipDelay = 4f;
@@ -63,6 +65,11 @@ public class HintWidget : MonoBehaviour {
         if(mHintRootGO) {
             mHintItems = mHintRootGO.GetComponentsInChildren<LevelEntityHint>(true);
         }
+
+        if(hintPanelContainer) {
+            hintPanelContainer.Setup(mHintItems);
+            hintPanelContainer.gameObject.SetActive(false);
+        }
     }
 
     void OnChangeMode(PlayController.Mode mode) {
@@ -98,7 +105,7 @@ public class HintWidget : MonoBehaviour {
             if(displayGO) displayGO.SetActive(false);
         }
                 
-        if(alwaysShowHint && mode == PlayController.Mode.Editing) {
+        if(!isPanelMode && alwaysShowHint && mode == PlayController.Mode.Editing) {
             if(mHintRootGO)
                 mHintRootGO.SetActive(true);
 
@@ -119,18 +126,42 @@ public class HintWidget : MonoBehaviour {
             if(mItemSelectUI)
                 mItemSelectUI.DragGuideHide();
         }
+
+        if(hintPanelContainer) hintPanelContainer.gameObject.SetActive(false);
     }
 
     void OnClick() {
-        if(mHintRootGO) {
-            mHintRootGO.SetActive(!mHintRootGO.activeSelf);
+        if(isPanelMode) {
+            if(hintPanelContainer && !hintPanelContainer.gameObject.activeSelf) {
+                hintPanelContainer.gameObject.SetActive(true);
 
-            if(mHintRootGO.activeSelf) {
                 if(mDragGuideRout != null)
                     StopCoroutine(mDragGuideRout);
-                mDragGuideRout = StartCoroutine(DoShowDragGuide());
+                mDragGuideRout = StartCoroutine(DoPanelRefresh());
             }
         }
+        else {
+            if(mHintRootGO) {
+                mHintRootGO.SetActive(!mHintRootGO.activeSelf);
+
+                if(mHintRootGO.activeSelf) {
+                    if(mDragGuideRout != null)
+                        StopCoroutine(mDragGuideRout);
+                    mDragGuideRout = StartCoroutine(DoShowDragGuide());
+                }
+            }
+        }
+    }
+
+    IEnumerator DoPanelRefresh() {        
+        var wait = new WaitForSeconds(0.5f);
+
+        while(hintPanelContainer.gameObject.activeSelf) {
+            hintPanelContainer.Refresh();
+            yield return wait;
+        }
+
+        mDragGuideRout = null;
     }
 
     IEnumerator DoShowDragGuide() {

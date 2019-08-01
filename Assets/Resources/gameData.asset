@@ -16,7 +16,7 @@ MonoBehaviour:
   levelEnd:
     name: end
     path: Assets/Scenes/end.unity
-  hintEditCount: 5
+  hintEditCount: 4
   hintEditDelay: 36000
   quadrantTextRefs:
   - quadrant1
