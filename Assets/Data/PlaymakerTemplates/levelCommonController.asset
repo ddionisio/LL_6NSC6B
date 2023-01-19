@@ -39,6 +39,7 @@ MonoBehaviour:
         toState: Wait Game Mode
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -122,6 +123,7 @@ MonoBehaviour:
         toState: Edit Mode
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -194,6 +196,7 @@ MonoBehaviour:
         toState: Wait Goals
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -257,6 +260,7 @@ MonoBehaviour:
         toState: Victory
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -337,6 +341,7 @@ MonoBehaviour:
         toState: Open Victory Modal
         linkStyle: 0
         linkConstraint: 0
+        linkTarget: 0
         colorIndex: 0
       actionData:
         actionNames:
@@ -425,7 +430,7 @@ MonoBehaviour:
         actionEnabled: 01
         actionIsOpen: 01
         actionStartIndex: 00000000
-        actionHashCodes: 6bee5d02
+        actionHashCodes: eee26701
         unityObjectParams: []
         fsmGameObjectParams:
         - useVariable: 0
@@ -454,7 +459,13 @@ MonoBehaviour:
         fsmEnumParams: []
         fsmFloatParams: []
         fsmIntParams: []
-        fsmBoolParams: []
+        fsmBoolParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -469,16 +480,17 @@ MonoBehaviour:
         customTypeSizes: 02000000
         customTypeNames:
         - HutongGames.PlayMaker.Actions.M8.FsmModalManager
-        paramDataType: 120000000c0000000c000000280000000700000013000000
+        paramDataType: 12000000110000000c0000000c000000280000000700000013000000
         paramName:
         - modal
+        - waitClose
         - paramNames
         - paramObjects
         - manager
         - from
         - gameObject
-        paramDataPos: 000000000000000001000000000000000000000000000000
-        paramByteDataSize: 000000000000000000000000000000000400000000000000
+        paramDataPos: 00000000000000000000000001000000000000000000000000000000
+        paramByteDataSize: 00000000000000000000000000000000000000000400000000000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -517,10 +529,13 @@ MonoBehaviour:
     password: 
     locked: 0
     manualUpdate: 0
+    outVariableIndices: 
     keepDelayedEventsOnStateExit: 0
     preprocessed: 0
     ExposedEvents: []
+    OutputEvents: []
     RestartOnEnable: 1
+    ResetVariablesOnEnable: 0
     EnableDebugFlow: 0
     EnableBreakpoints: 1
     editorFlags: 1
