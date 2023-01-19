@@ -45,6 +45,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -56,6 +57,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -137,6 +139,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   takeSpawn: 
   takeDelete: 
+  sfxSpawn: boop
+  sfxDragBegin: tap
+  sfxDragDrop: boop
+  sfxDelete: computerBeep
   spriteReflectXLeft: {fileID: 21300000, guid: 12d765fb1034f034bbbb6f0ac6df8425, type: 3}
   spriteReflectXRight: {fileID: 21300000, guid: 75db0101a487bc94c8c4305b92914eb4,
     type: 3}
@@ -163,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e12aaffa850be4db3c282d4d6148dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.5
+  delay: 0.3
   isRealtime: 0
   ignoreDrag: 0
   input: {fileID: 0}
@@ -181,8 +187,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   clickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -197,8 +201,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!61 &8263592560970741715
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -270,6 +272,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -281,6 +284,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -385,6 +389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -400,6 +409,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -412,16 +426,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829288374362912332, guid: 6dfddc3a03793df42b2381275f4f2fc2,
         type: 3}
