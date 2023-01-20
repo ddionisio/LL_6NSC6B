@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1219815696, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
-  m_Name: levelCommonControllerQuadrantQuestion
+  m_Name: levelCommonControllerQuestion
   m_EditorClassIdentifier: 
   category: General
   fsm:
@@ -120,7 +120,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Quadrant Question
+        toState: Question
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -554,14 +554,14 @@ MonoBehaviour:
         paramName: []
         paramDataPos: 
         paramByteDataSize: 
-    - name: Quadrant Question
+    - name: Question
       description: 
       colorIndex: 0
       position:
         serializedVersion: 2
         x: 448
         y: 150
-        width: 155
+        width: 100
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -602,11 +602,11 @@ MonoBehaviour:
         layoutOptionParams: []
         fsmStringParams:
         - useVariable: 1
-          name: modalQuadrantQuestion
+          name: modalQuestion
           tooltip: 
-          showInInspector: 0
+          showInInspector: 1
           networkSync: 0
-          value: quadrantSelect
+          value: 
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -693,11 +693,11 @@ MonoBehaviour:
         layoutOptionParams: []
         fsmStringParams:
         - useVariable: 1
-          name: modalQuadrantQuestion
+          name: modalQuestion
           tooltip: 
-          showInInspector: 0
+          showInInspector: 1
           networkSync: 0
-          value: quadrantSelect
+          value: 
         fsmObjectParams: []
         fsmVarParams: []
         fsmArrayParams: []
@@ -934,7 +934,13 @@ MonoBehaviour:
       floatVariables: []
       intVariables: []
       boolVariables: []
-      stringVariables: []
+      stringVariables:
+      - useVariable: 1
+        name: modalQuestion
+        tooltip: 
+        showInInspector: 1
+        networkSync: 0
+        value: 
       vector2Variables: []
       vector3Variables: []
       colorVariables: []
@@ -954,7 +960,7 @@ MonoBehaviour:
       enumVariables: []
       categories:
       - 
-      variableCategoryIDs: 00000000
+      variableCategoryIDs: 0000000000000000
     description: 
     docUrl: 
     showStateLabel: 0

@@ -68,7 +68,8 @@
     "complete": "COMPLETE",
     "level_complete": "LEVEL COMPLETE",
     "quadrant_title": "QUADRANT",
-    "quadrant_question": "Which quadrant will Robert teleport in?"
+    "quadrant_question": "Which quadrant will Robert teleport in?",
+    "coord_question": "What coordinate will Robert teleport in?"
   },
   "es": {
     "welcome": "Bienvenido!",
@@ -134,6 +135,7 @@
     "complete": "COMPLETO",
     "level_complete": "NIVEL COMPLETO",
     "quadrant_title": "CUADRANTE",
-    "quadrant_question": "¿En qué cuadrante se teletransportará Robert?"
+    "quadrant_question": "¿En qué cuadrante se teletransportará Robert?",
+    "coord_question": ""
   }
 }
