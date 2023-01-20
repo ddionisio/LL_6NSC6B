@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7359361605943191820}
   - component: {fileID: 2018984528414851030}
-  - component: {fileID: 3225731805791172961}
   - component: {fileID: 2494805928174554316}
   - component: {fileID: 28709646563760537}
   - component: {fileID: 2733134783033276295}
@@ -89,24 +88,6 @@ MonoBehaviour:
   levelString: level
   stackEnable: 0
   isTimeScaleOverride: 0
---- !u!114 &3225731805791172961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194420389975777772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e65d349e51d234c89acc2e07263bcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  userData: {fileID: 11400000, guid: f046408e22ed041489b05881e4821f14, type: 2}
-  autoSaveOnSceneChange: 0
-  autoSaveOnApplicationExit: 0
-  localStateCache: 0
-  globalStartData: []
-  startData: []
 --- !u!114 &2494805928174554316
 MonoBehaviour:
   m_ObjectHideFlags: 0

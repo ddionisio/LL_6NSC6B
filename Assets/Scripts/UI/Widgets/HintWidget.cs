@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HintWidget : MonoBehaviour {
-    public const string sceneVarToolTipShown = "hintToolTipShown";
-
     [Header("Data")]
     [M8.TagSelector]
     public string tagHintRoot = "Hint";
@@ -35,6 +33,8 @@ public class HintWidget : MonoBehaviour {
     private LevelEntityItemGroupWidget mItemSelectUI;
 
     private bool mIsShowDelayExpired;
+
+    private int mEditCount;
 
     private Coroutine mRout;
     private Coroutine mShowTooltipRout;
@@ -70,6 +70,8 @@ public class HintWidget : MonoBehaviour {
     }
 
     void Awake() {
+        mEditCount = 0;
+
         button.onClick.AddListener(OnClick);
 
         if(alwaysShowHint)
@@ -95,8 +97,14 @@ public class HintWidget : MonoBehaviour {
             isInteract = false;
         }
         else {
-            isActive = mIsShowDelayExpired || PlayWidget.editCounter >= GameData.instance.hintEditCount;
-            isInteract = mode == PlayController.Mode.Editing;
+            if(mode == PlayController.Mode.Editing) {
+                mEditCount++;
+                isInteract = true;
+            }
+            else
+                isInteract = false;
+
+            isActive = mIsShowDelayExpired || mEditCount > GameData.instance.hintEditCount;
         }
 
         if(isActive) {
@@ -104,13 +112,12 @@ public class HintWidget : MonoBehaviour {
             if(button) button.interactable = isInteract;
 
             //show tooltip?
-            var isShowToolTip = M8.SceneState.isInstantiated ? M8.SceneState.instance.global.GetValue(sceneVarToolTipShown) == 0 : true;
+            var isShowToolTip = !GameData.instance.isToolTipShown;
             if(mode == PlayController.Mode.Editing && isShowToolTip) {
                 if(mShowTooltipRout == null)
                     mShowTooltipRout = StartCoroutine(DoShowTooltop());
 
-                if(M8.SceneState.isInstantiated)
-                    M8.SceneState.instance.global.SetValue(sceneVarToolTipShown, 1, false);
+                GameData.instance.isToolTipShown = true;
             }
             else {
                 if(tooltipGO) tooltipGO.SetActive(false);
@@ -124,7 +131,7 @@ public class HintWidget : MonoBehaviour {
         else {
             if(displayGO) displayGO.SetActive(false);
 
-            if(isInteract && mShowHintButtonRout == null)
+            if(!mIsShowDelayExpired && isInteract && mShowHintButtonRout == null)
                 mShowHintButtonRout = StartCoroutine(DoShowHintButtonDelay());
         }
                 

@@ -22,6 +22,8 @@ public class GameData : M8.SingletonScriptableObject<GameData> {
     [M8.Localize]
     public string originTextRef;
 
+    public bool isToolTipShown { get; set; } = false;
+
     public string GetQuadrantTextRef(CellIndex cell) {
         if(PlayController.isInstantiated && PlayController.instance.levelGrid) {
             var quadrant = PlayController.instance.levelGrid.GetQuadrant(cell);
