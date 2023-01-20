@@ -28,23 +28,36 @@ public class HintWidget : MonoBehaviour {
     [M8.Animator.TakeSelector(animatorField = "tooltipAnimator")]
     public string tooltipTakeExit;
 
-    private bool mFirstPlayTimeIsApplied;
-    private float mFirstPlayTime; //time since the first play has been hit
-
-
     private GameObject mHintRootGO;
 
     private LevelEntityHint[] mHintItems;
 
     private LevelEntityItemGroupWidget mItemSelectUI;
 
-    private Coroutine mDragGuideRout;
+    private bool mIsShowDelayExpired;
+
+    private Coroutine mRout;
+    private Coroutine mShowTooltipRout;
+    private Coroutine mShowHintButtonRout;
 
     void OnDisable() {
         if(PlayController.isInstantiated)
             PlayController.instance.modeChangedCallback -= OnChangeMode;
 
-        mDragGuideRout = null;
+        if(mRout != null) {
+            StopCoroutine(mRout);
+            mRout = null;
+        }
+
+        if(mShowTooltipRout != null) {
+            StopCoroutine(mShowTooltipRout);
+            mShowTooltipRout = null;
+        }
+
+        if(mShowHintButtonRout != null) {
+            StopCoroutine(mShowHintButtonRout);
+            mShowHintButtonRout = null;
+        }
     }
 
     void OnEnable() {
@@ -52,6 +65,8 @@ public class HintWidget : MonoBehaviour {
         OnChangeMode(PlayController.instance.curMode);
 
         PlayController.instance.modeChangedCallback += OnChangeMode;
+
+        mIsShowDelayExpired = false;
     }
 
     void Awake() {
@@ -73,15 +88,16 @@ public class HintWidget : MonoBehaviour {
     }
 
     void OnChangeMode(PlayController.Mode mode) {
-        if(mode == PlayController.Mode.Running) {
-            if(!mFirstPlayTimeIsApplied) {
-                mFirstPlayTime = Time.time;
-                mFirstPlayTimeIsApplied = true;
-            }
-        }
+        bool isActive, isInteract;
 
-        bool isActive = PlayWidget.editCounter >= GameData.instance.hintEditCount || (mFirstPlayTimeIsApplied && Time.time - mFirstPlayTime >= GameData.instance.hintEditDelay);
-        bool isInteract = mode == PlayController.Mode.Editing;
+        if(alwaysShowHint) {
+            isActive = false;
+            isInteract = false;
+        }
+        else {
+            isActive = mIsShowDelayExpired || PlayWidget.editCounter >= GameData.instance.hintEditCount;
+            isInteract = mode == PlayController.Mode.Editing;
+        }
 
         if(isActive) {
             if(displayGO) displayGO.SetActive(true);
@@ -90,7 +106,8 @@ public class HintWidget : MonoBehaviour {
             //show tooltip?
             var isShowToolTip = M8.SceneState.isInstantiated ? M8.SceneState.instance.global.GetValue(sceneVarToolTipShown) == 0 : true;
             if(mode == PlayController.Mode.Editing && isShowToolTip) {
-                StartCoroutine(DoShowHint());
+                if(mShowTooltipRout == null)
+                    mShowTooltipRout = StartCoroutine(DoShowTooltop());
 
                 if(M8.SceneState.isInstantiated)
                     M8.SceneState.instance.global.SetValue(sceneVarToolTipShown, 1, false);
@@ -98,29 +115,35 @@ public class HintWidget : MonoBehaviour {
             else {
                 if(tooltipGO) tooltipGO.SetActive(false);
 
-                StopAllCoroutines();
+                if(mShowTooltipRout != null) {
+                    StopCoroutine(mShowTooltipRout);
+                    mShowTooltipRout = null;
+                }
             }
         }
         else {
             if(displayGO) displayGO.SetActive(false);
+
+            if(isInteract && mShowHintButtonRout == null)
+                mShowHintButtonRout = StartCoroutine(DoShowHintButtonDelay());
         }
                 
         if(!isPanelMode && alwaysShowHint && mode == PlayController.Mode.Editing) {
             if(mHintRootGO)
                 mHintRootGO.SetActive(true);
 
-            if(mDragGuideRout != null)
-                StopCoroutine(mDragGuideRout);
+            if(mRout != null)
+                StopCoroutine(mRout);
 
-            mDragGuideRout = StartCoroutine(DoShowDragGuide());
+            mRout = StartCoroutine(DoShowDragGuide());
         }
         else {
             if(mHintRootGO)
                 mHintRootGO.SetActive(false);
 
-            if(mDragGuideRout != null) {
-                StopCoroutine(mDragGuideRout);
-                mDragGuideRout = null;
+            if(mRout != null) {
+                StopCoroutine(mRout);
+                mRout = null;
             }
 
             if(mItemSelectUI)
@@ -135,9 +158,9 @@ public class HintWidget : MonoBehaviour {
             if(hintPanelContainer && !hintPanelContainer.gameObject.activeSelf) {
                 hintPanelContainer.gameObject.SetActive(true);
 
-                if(mDragGuideRout != null)
-                    StopCoroutine(mDragGuideRout);
-                mDragGuideRout = StartCoroutine(DoPanelRefresh());
+                if(mRout != null)
+                    StopCoroutine(mRout);
+                mRout = StartCoroutine(DoPanelRefresh());
             }
         }
         else {
@@ -145,12 +168,29 @@ public class HintWidget : MonoBehaviour {
                 mHintRootGO.SetActive(!mHintRootGO.activeSelf);
 
                 if(mHintRootGO.activeSelf) {
-                    if(mDragGuideRout != null)
-                        StopCoroutine(mDragGuideRout);
-                    mDragGuideRout = StartCoroutine(DoShowDragGuide());
+                    if(mRout != null)
+                        StopCoroutine(mRout);
+                    mRout = StartCoroutine(DoShowDragGuide());
                 }
             }
         }
+    }
+
+    IEnumerator DoShowHintButtonDelay() {
+        float startTime = Time.time;
+        float delay = GameData.instance.hintEditDelay;
+
+        while(displayGO && !displayGO.activeSelf) {
+            if(Time.time - startTime >= delay) {
+                mIsShowDelayExpired = true;
+                OnChangeMode(PlayController.instance.curMode); //refresh display                
+                break;
+            }
+
+            yield return null;
+        }
+
+        mShowHintButtonRout = null;
     }
 
     IEnumerator DoPanelRefresh() {        
@@ -161,7 +201,7 @@ public class HintWidget : MonoBehaviour {
             yield return wait;
         }
 
-        mDragGuideRout = null;
+        mRout = null;
     }
 
     IEnumerator DoShowDragGuide() {
@@ -193,7 +233,7 @@ public class HintWidget : MonoBehaviour {
             }
         }
 
-        mDragGuideRout = null;
+        mRout = null;
     }
 
     private bool EvalItem(LevelEntityPlaceable itm) {
@@ -220,7 +260,7 @@ public class HintWidget : MonoBehaviour {
         return false;
     }
 
-    IEnumerator DoShowHint() {
+    IEnumerator DoShowTooltop() {
         if(tooltipGO) tooltipGO.SetActive(true);
 
         if(tooltipAnimator && !string.IsNullOrEmpty(tooltipTakeEnter))
@@ -232,5 +272,7 @@ public class HintWidget : MonoBehaviour {
             yield return tooltipAnimator.PlayWait(tooltipTakeExit);
 
         if(tooltipGO) tooltipGO.SetActive(false);
+
+        mShowTooltipRout = null;
     }
 }

@@ -149,7 +149,7 @@ MonoBehaviour:
   - quadrant4
   coordRoot: {fileID: 8652301541251008993}
   coordText: {fileID: 7056563597199841365}
-  coordStringFormat: X, Y = ({0}, {1})
+  coordStringFormat: (x = {0},  y = {1})
   nextButtonGO: {fileID: 4514537957946704718}
   questionTextRef: quadrant_question
   sfxCorrect: correct

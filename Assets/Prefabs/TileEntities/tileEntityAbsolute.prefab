@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e12aaffa850be4db3c282d4d6148dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.3
+  delay: 0.5
   isRealtime: 0
   ignoreDrag: 0
   input: {fileID: 0}

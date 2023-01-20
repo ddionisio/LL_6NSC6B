@@ -25,13 +25,16 @@ public class HintItemWidget : MonoBehaviour {
 
         hint.RefreshCellIndex();
 
-        var levelGrid = PlayController.instance.levelGrid;
+        var cellPos = hint.cellIndex;        
 
-        var cellPos = hint.cellIndex;
-        cellPos.col -= levelGrid.originCol;
-        cellPos.row -= levelGrid.originRow;
+        //use Quadrant type
+        coordText.text = M8.Localize.Get(GameData.instance.GetQuadrantTextRef(cellPos));
 
-        coordText.text = string.Format("({0}, {1})", cellPos.col, cellPos.row);
+        //coord
+        //var levelGrid = PlayController.instance.levelGrid;
+        //cellPos.col -= levelGrid.originCol;
+        //cellPos.row -= levelGrid.originRow;
+        //coordText.text = string.Format("({0}, {1})", cellPos.col, cellPos.row);
 
         activeGO.SetActive(false);
     }
