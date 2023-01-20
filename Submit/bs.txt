@@ -12,4 +12,4 @@ You can delete a placed item on the level by pressing it for a second.
 To clear all items on the board, press and hold the CLEAR button (red) during edit mode (when the stop button is pressed).
 
 Hints:
-After a few tries, a hint button will display at the bottom left (light-bulb). Press this button to display a list of items with hints on where to place them (somewhere in Quadrant 1, etc.). A star will appear beside the item if you placed the matching item on the board at the exact coordinate.
+After a few tries, a hint button will display at the bottom left (light-bulb). Press this button to display a list of items with hints on where to place them (e.g. Quadrant 1 = place matching item somewhere in Quadrant 1). A star will appear beside the item if you placed the matching item on the board at the exact coordinate.
