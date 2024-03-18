@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+using TMPro;
+
 public class LevelGridPointerWidget : MonoBehaviour {
     public enum Mode {
         None,
@@ -24,7 +26,7 @@ public class LevelGridPointerWidget : MonoBehaviour {
     [Header("Pointer")]
     public Transform pointerRoot;
     public GameObject pointerDisplayGO;
-    public Text pointerDescText; //display: quadrant 1, 2, ...etc. or axis-X/Y, Origin
+    public TMP_Text pointerDescText; //display: quadrant 1, 2, ...etc. or axis-X/Y, Origin
     public string pointerCoordStringFormat = "({0}, {1})";
     public bool isPointerDisabled;
     

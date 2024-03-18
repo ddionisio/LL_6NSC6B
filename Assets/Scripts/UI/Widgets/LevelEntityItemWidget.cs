@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+using TMPro;
+
 public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
     public const string parmPool = "pool";
     public const string parmLevelGrid = "levelGrid";
@@ -22,7 +24,7 @@ public abstract class LevelEntityItemWidget : MonoBehaviour, IPointerEnterHandle
     public M8.UI.Graphics.ColorGroup colorGroup;
     public Color colorDisabled = Color.gray;
         
-    public Text countText;
+    public TMP_Text countText;
 
     [Header("Audio")]
     [M8.SoundPlaylist]

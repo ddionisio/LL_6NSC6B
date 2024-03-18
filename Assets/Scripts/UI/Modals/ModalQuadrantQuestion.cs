@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class ModalQuadrantQuestion : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
     [Header("Answer Data")]
     public Button[] answerButtons;
@@ -13,13 +15,13 @@ public class ModalQuadrantQuestion : M8.ModalController, M8.IModalPush, M8.IModa
 
     [Header("Quadrant Data")]
     public GameObject quadrantGO;
-    public Text quadrantText;
+    public TMP_Text quadrantText;
     [M8.Localize]
     public string[] quadrantTextRefs;
 
     [Header("Coord Data")]
     public Transform coordRoot;
-    public Text coordText;
+    public TMP_Text coordText;
     public string coordStringFormat = "X, Y = ({0}, {1})";
 
     [Header("Displays")]

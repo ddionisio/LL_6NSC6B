@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class LevelEntityMoverDisplayWidget : MonoBehaviour {
     [Header("Data")]
     public LevelEntityMover entityMover;
 
     [Header("Display")]
-    public Text cellText;
+    public TMP_Text cellText;
     public string cellTextFormat = "(x, y) = ({0}, {1})";
 
     void OnDisable() {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class ModalReflectQuestion : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
     public const string parmReflectIndex = "index";
 
@@ -17,7 +19,7 @@ public class ModalReflectQuestion : M8.ModalController, M8.IModalPush, M8.IModal
     public struct AnswerData {
         public GameObject rootGO;
         public Button button;
-        public Text text;
+        public TMP_Text text;
         public M8.Animator.Animate animator;
 
         public void Init(int cellX, int cellY, ReflectType reflectType, string takeReset, string stringFormat) {
@@ -62,9 +64,9 @@ public class ModalReflectQuestion : M8.ModalController, M8.IModalPush, M8.IModal
 
     [Header("Coord Data")]
     public Transform coordSourceRoot;
-    public Text coordSourceText;
+    public TMP_Text coordSourceText;
     public Transform coordDestRoot;
-    public Text coordDestText;
+    public TMP_Text coordDestText;
     public string coordStringFormat = "(x = {0},  y = {1})";
 
     [Header("Displays")]

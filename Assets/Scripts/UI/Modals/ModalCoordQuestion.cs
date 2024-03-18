@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class ModalCoordQuestion : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
     [System.Serializable]
     public struct AnswerData {
         public GameObject rootGO;
         public Button button;
-        public Text text;
+        public TMP_Text text;
         public M8.Animator.Animate animator;
 
         public void Init(int cellX, int cellY, QuadrantType quadrant, string takeReset, string stringFormat) {
@@ -55,11 +57,11 @@ public class ModalCoordQuestion : M8.ModalController, M8.IModalPush, M8.IModalPo
     public float answerShowDelay = 0.15f;
 
     [Header("Quadrant Data")]
-    public Text quadrantText;
+    public TMP_Text quadrantText;
 
     [Header("Coord Data")]
     public Transform coordRoot;
-    public Text coordText;
+    public TMP_Text coordText;
     public string coordStringFormat = "(x = {0},  y = {1})";
 
     [Header("Displays")]
