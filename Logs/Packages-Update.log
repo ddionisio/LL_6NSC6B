@@ -44,3 +44,14 @@ The following packages were updated:
   com.unity.test-framework from version 1.0.13 to 1.1.31
 The following packages were removed:
   com.unity.package-manager-ui@2.2.0
+
+=== Sat Mar 16 14:48:28 2024
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were added:
+  com.unity.ai.navigation@1.1.5
+The following packages were updated:
+  com.unity.2d.spriteshape from version 3.0.18 to 9.0.2
+  com.unity.ide.visualstudio from version 2.0.17 to 2.0.22
