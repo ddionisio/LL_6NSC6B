@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 7154077216471335461}
   - component: {fileID: 2785324863442054937}
   - component: {fileID: 2158439188175602928}
-  - component: {fileID: 9073466117954356049}
+  - component: {fileID: 5920047023139511264}
   m_Layer: 5
   m_Name: Image (4)
   m_TagString: Untagged
@@ -846,7 +846,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 2785324863442054937}
---- !u!114 &9073466117954356049
+--- !u!114 &5920047023139511264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -855,11 +855,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 126084489045224555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &222743958677624392
 GameObject:
@@ -1340,7 +1340,7 @@ GameObject:
   - component: {fileID: 5285835044825315870}
   - component: {fileID: 661376861831342565}
   - component: {fileID: 4544202613322584975}
-  - component: {fileID: 7636002067338387406}
+  - component: {fileID: 2982960819797276745}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 661376861831342565}
---- !u!114 &7636002067338387406
+--- !u!114 &2982960819797276745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1431,11 +1431,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 468074853016501454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &538277558394743620
 GameObject:
@@ -1647,11 +1647,11 @@ GameObject:
   - component: {fileID: 6543173807510661527}
   - component: {fileID: 1101617966357686107}
   - component: {fileID: 4511171882542722461}
-  - component: {fileID: 3882268260989469449}
   - component: {fileID: 5325193492262539228}
   - component: {fileID: 811739677157996703}
   - component: {fileID: 990460557451423344}
   - component: {fileID: 9013276780058922539}
+  - component: {fileID: 8128003802086535437}
   m_Layer: 5
   m_Name: closeButton
   m_TagString: Untagged
@@ -1717,21 +1717,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3882268260989469449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 585364897738767786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30dd83a12669d4f973ff5a79ca9842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
-  m_EffectDistance: {x: 2, y: -2}
-  m_UseGraphicAlpha: 1
 --- !u!114 &5325193492262539228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1856,6 +1841,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: click
   mode: 0
+--- !u!114 &8128003802086535437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585364897738767786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &704202034677886885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,7 +2863,7 @@ GameObject:
   - component: {fileID: 6699290764248830516}
   - component: {fileID: 5400383527440957373}
   - component: {fileID: 3627527178149559859}
-  - component: {fileID: 7717655734103126283}
+  - component: {fileID: 8695039744121729019}
   m_Layer: 5
   m_Name: Image (9)
   m_TagString: Untagged
@@ -2945,7 +2945,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 5400383527440957373}
---- !u!114 &7717655734103126283
+--- !u!114 &8695039744121729019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2954,11 +2954,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1367810635747304874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &1393425347111391309
 GameObject:
@@ -4050,7 +4050,7 @@ GameObject:
   - component: {fileID: 8518164598817581382}
   - component: {fileID: 2344092309746267546}
   - component: {fileID: 80588040789662041}
-  - component: {fileID: 8605715291861767524}
+  - component: {fileID: 8050120804153459909}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -4132,7 +4132,7 @@ MonoBehaviour:
   _brightness: 0.65
   _alpha: 1
   _target: {fileID: 2344092309746267546}
---- !u!114 &8605715291861767524
+--- !u!114 &8050120804153459909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4141,10 +4141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1982663899008184370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30dd83a12669d4f973ff5a79ca9842, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.24313726}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.23921569}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &2148266931991925697
@@ -4528,7 +4528,7 @@ GameObject:
   - component: {fileID: 5771857322665187091}
   - component: {fileID: 6533591367294274098}
   - component: {fileID: 8478213253731791137}
-  - component: {fileID: 7190684474907084031}
+  - component: {fileID: 6030818839657187491}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -4593,7 +4593,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7190684474907084031
+--- !u!114 &6030818839657187491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4602,7 +4602,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2373157185642757087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30dd83a12669d4f973ff5a79ca9842, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
@@ -5406,7 +5406,7 @@ GameObject:
   - component: {fileID: 637344720500736211}
   - component: {fileID: 8419888406561208329}
   - component: {fileID: 8934419252266910989}
-  - component: {fileID: 2410505733518321770}
+  - component: {fileID: 1524612067943658509}
   m_Layer: 5
   m_Name: Image (3)
   m_TagString: Untagged
@@ -5488,7 +5488,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 8419888406561208329}
---- !u!114 &2410505733518321770
+--- !u!114 &1524612067943658509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5497,11 +5497,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3286412320146255451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &3328714868090072298
 GameObject:
@@ -5874,7 +5874,7 @@ GameObject:
   - component: {fileID: 6810374428924168290}
   - component: {fileID: 982289011926665139}
   - component: {fileID: 2491762679549228572}
-  - component: {fileID: 7921651369047169292}
+  - component: {fileID: 444213235470626108}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -5956,7 +5956,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 982289011926665139}
---- !u!114 &7921651369047169292
+--- !u!114 &444213235470626108
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5965,11 +5965,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3528117326499169188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &3573981383011496031
 GameObject:
@@ -7967,7 +7967,7 @@ GameObject:
   - component: {fileID: 4870256995694057243}
   - component: {fileID: 4402888844278446344}
   - component: {fileID: 8815903646091951543}
-  - component: {fileID: 2573704813656516835}
+  - component: {fileID: 3317224721025305571}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -8049,7 +8049,7 @@ MonoBehaviour:
   _brightness: 0.65
   _alpha: 1
   _target: {fileID: 4402888844278446344}
---- !u!114 &2573704813656516835
+--- !u!114 &3317224721025305571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8058,10 +8058,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5081104231324096473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30dd83a12669d4f973ff5a79ca9842, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.24313726}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.23921569}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &5124428985564536499
@@ -8113,7 +8113,7 @@ GameObject:
   - component: {fileID: 6702720036063973331}
   - component: {fileID: 8926878526970063047}
   - component: {fileID: 4224691464388283408}
-  - component: {fileID: 6146237531817923843}
+  - component: {fileID: 737383390298129759}
   m_Layer: 5
   m_Name: Image (5)
   m_TagString: Untagged
@@ -8195,7 +8195,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 8926878526970063047}
---- !u!114 &6146237531817923843
+--- !u!114 &737383390298129759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8204,11 +8204,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5164703362935169900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &5228890100499493489
 GameObject:
@@ -11155,7 +11155,7 @@ GameObject:
   - component: {fileID: 9127636109508381277}
   - component: {fileID: 5341053197941492993}
   - component: {fileID: 8992396010584084769}
-  - component: {fileID: 2586539901970555851}
+  - component: {fileID: 1006733499850915278}
   m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
@@ -11237,7 +11237,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 5341053197941492993}
---- !u!114 &2586539901970555851
+--- !u!114 &1006733499850915278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11246,11 +11246,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5230688848452279338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &5352061733708382864
 GameObject:
@@ -12194,7 +12194,7 @@ GameObject:
   - component: {fileID: 1277241238749776844}
   - component: {fileID: 6330602621857243691}
   - component: {fileID: 8498656993634306459}
-  - component: {fileID: 9143446062601303845}
+  - component: {fileID: 6697606307713643229}
   m_Layer: 5
   m_Name: Image (8)
   m_TagString: Untagged
@@ -12276,7 +12276,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 6330602621857243691}
---- !u!114 &9143446062601303845
+--- !u!114 &6697606307713643229
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12285,11 +12285,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5805637029745900612}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &5852751489891303737
 GameObject:
@@ -12897,7 +12897,7 @@ GameObject:
   - component: {fileID: 1786880360744002702}
   - component: {fileID: 3079366303251600187}
   - component: {fileID: 1448440915790812047}
-  - component: {fileID: 9040563427875736407}
+  - component: {fileID: 2417331040525752222}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -13063,7 +13063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sound: click
   mode: 0
---- !u!114 &9040563427875736407
+--- !u!114 &2417331040525752222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13072,7 +13072,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6273253063989437862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30dd83a12669d4f973ff5a79ca9842, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
@@ -13555,7 +13555,7 @@ GameObject:
   - component: {fileID: 1192403730685210365}
   - component: {fileID: 1527997841809626050}
   - component: {fileID: 8104715930887050374}
-  - component: {fileID: 6966643771950742210}
+  - component: {fileID: 5234336351664699867}
   m_Layer: 5
   m_Name: Image (7)
   m_TagString: Untagged
@@ -13637,7 +13637,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 1527997841809626050}
---- !u!114 &6966643771950742210
+--- !u!114 &5234336351664699867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13646,11 +13646,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6793151423949219635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &6879336463410990579
 GameObject:
@@ -18072,7 +18072,7 @@ GameObject:
   - component: {fileID: 8220175730929543401}
   - component: {fileID: 9222809961199935873}
   - component: {fileID: 9064914894821913505}
-  - component: {fileID: 3677553549157182092}
+  - component: {fileID: 8259233438720752997}
   m_Layer: 5
   m_Name: Image (6)
   m_TagString: Untagged
@@ -18154,7 +18154,7 @@ MonoBehaviour:
   _brightness: 1
   _alpha: 1
   _target: {fileID: 9222809961199935873}
---- !u!114 &3677553549157182092
+--- !u!114 &8259233438720752997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18163,11 +18163,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9101448220410154994}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db125c7de00668f4e98849d0aaf366d7, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.40077105, g: 0.26110843, b: 0.504, a: 0.35686275}
-  m_EffectDistance: {x: 2, y: -2}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
+  m_EffectDistance: {x: 3, y: -2}
   m_UseGraphicAlpha: 1
 --- !u!1 &9158640600057635144
 GameObject:

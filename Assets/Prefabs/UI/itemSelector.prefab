@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 5063501674519191018}
   - component: {fileID: 5063501674519191019}
   - component: {fileID: 5063501674519191016}
-  - component: {fileID: 5063501674519191017}
+  - component: {fileID: 2130688343718596153}
   - component: {fileID: 5063501674519191022}
   - component: {fileID: 5063501674519191023}
   m_Layer: 5
@@ -592,7 +592,7 @@ MonoBehaviour:
   _brightness: 0.4
   _alpha: 1
   _target: {fileID: 5063501674519191019}
---- !u!114 &5063501674519191017
+--- !u!114 &2130688343718596153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5063501674519191021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b30dd83a12669d4f973ff5a79ca9842, type: 3}
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.32156864}
