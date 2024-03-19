@@ -599,7 +599,7 @@ PlayerSettings:
   webGLTemplate: PROJECT:lol-template
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 1
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
@@ -624,7 +624,7 @@ PlayerSettings:
     Stadia: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN
     Standalone: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN
     VisionOS: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN
-    WebGL: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN;PLAYMAKER_TMPRO
+    WebGL: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN;PLAYMAKER_TMPRO;M8_PHYSICS_DISABLED;M8_WEB_API_DISABLED
     Windows Store Apps: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN
     XboxOne: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN
     iPhone: PLAYMAKER;PLAYMAKER_1_9;PLAYMAKER_1_8_OR_NEWER;PLAYMAKER_1_8_5_OR_NEWER;PLAYMAKER_1_9_OR_NEWER;PLAYMAKER_1_9_6;DOTWEEN
@@ -633,7 +633,8 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
-  il2cppCodeGeneration: {}
+  il2cppCodeGeneration:
+    WebGL: 1
   managedStrippingLevel:
     EmbeddedLinux: 1
     GameCoreScarlett: 1
@@ -734,7 +735,7 @@ PlayerSettings:
   embeddedLinuxEnableGamepadInput: 1
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
-  apiCompatibilityLevel: 6
+  apiCompatibilityLevel: 3
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 
