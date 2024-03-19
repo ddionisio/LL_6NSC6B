@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 public class HintItemWidget : MonoBehaviour {
     public Image icon;
-    public Text coordText;
+    public TMP_Text coordText;
     public GameObject activeGO;
 
     [M8.SoundPlaylist]

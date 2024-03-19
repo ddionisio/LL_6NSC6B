@@ -41,7 +41,8 @@ MonoBehaviour:
     _orientationTracks: []
     _orientationKeys: []
     _propertyTracks:
-    - id: 2
+    - _version: 4
+      id: 2
       name: Track1
       foldout: 1
       _targetPath: .
@@ -52,26 +53,28 @@ MonoBehaviour:
       fieldName: 
       propertyName: alpha
     _propertyKeys:
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 1
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: 10
+      isConstSpeed: 0
+      _paths: []
       val: 0
       valString: 
       valObj: {fileID: 0}
       vect4: {x: 0, y: 0, z: 0, w: 0}
-    - version: 2
-      interp: 1
+    - interp: 1
       frame: 10
       easeType: 1
       amplitude: 0
       period: 0
       customEase: []
       endFrame: -1
+      isConstSpeed: 0
+      _paths: []
       val: 1
       valString: 
       valObj: {fileID: 0}
