@@ -281,8 +281,10 @@ public class LevelGridInspector : Editor {
 
                         if(tile.gridLineSpriteRender) {
                             var colorPal = tile.gridLineSpriteRender.GetComponent<M8.SpriteColorFromPalette>();
-                            if(colorPal)
+                            if(colorPal) {
                                 colorPal.index = r == dat.originRow || c == dat.originCol ? dat.gridLineAxisPaletteIndex : dat.gridLinePaletteIndex;
+								colorPal.brightness = 1f + cellGenInfo.brightnessOffset;
+							}
                         }
 
                         //apply display

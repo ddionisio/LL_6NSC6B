@@ -49,6 +49,8 @@ public class LevelTile : MonoBehaviour {
         }
     }
 
+    public bool isBrightnessFading { get { return mTileBrightFadeRout != null; } }
+
     [HideInInspector]
     [SerializeField]
     int _col = -1;

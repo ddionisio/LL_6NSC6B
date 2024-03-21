@@ -69,8 +69,9 @@
     "level_complete": "LEVEL COMPLETE",
     "quadrant_title": "QUADRANT",
     "quadrant_question": "Which quadrant will Robert teleport in?",
-    "coord_question": "What coordinate will Robert teleport in?",
-    "reflect_question": "What is the reflection of this coordinate?"
+    "coord_question": "Please verify the teleportation coordinate.",
+    "reflect_question": "What is the reflection of this coordinate?",
+    "deployment": "DEPLOYMENT"
   },
   "es": {
     "welcome": "Bienvenido!",
