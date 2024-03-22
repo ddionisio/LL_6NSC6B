@@ -216,66 +216,10 @@ public class LevelGridPointerWidget : MonoBehaviour {
 
         var lvlGrid = PlayController.instance.levelGrid;
 
-        bool isPointerActive = false;
-        bool isDotXActive = false;
-        bool isDotYActive = false;
-        bool isLineXActive = false;
-        bool isLineYActive = false;
-
-        if(active && lvlGrid.cellHighlightRoot) {
-            var cellInd = lvlGrid.GetCellIndex(lvlGrid.cellHighlightRoot.position);
-
-            if(cellInd.col >= 0 && cellInd.col < lvlGrid.numCol && cellInd.row >= 0 && cellInd.row < lvlGrid.numRow) {
-                isPointerActive = true;
-
-                //not in origin?
-                if(cellInd.col != lvlGrid.originCol || cellInd.row != lvlGrid.originRow) {
-                    //along y-axis?
-                    if(cellInd.row != lvlGrid.originRow) {
-                        isDotYActive = true;
-                        if(lvlGrid.cellHighlightSpriteRenderDotY) lvlGrid.cellHighlightSpriteRenderDotY.transform.position = lvlGrid.GetCellPosition(cellInd.col, lvlGrid.originRow);
-
-                        isLineYActive = true;
-                        if(lvlGrid.cellHighlightSpriteRenderLineY) {
-                            var dRow = cellInd.row - lvlGrid.originRow;
-                            lvlGrid.cellHighlightSpriteRenderLineY.transform.position = lvlGrid.GetCellPosition(cellInd.col, lvlGrid.originRow);
-                            var s = lvlGrid.cellHighlightSpriteRenderLineY.size;
-                            s.y = Mathf.Abs(dRow) * lvlGrid.cellSize.y;
-                            lvlGrid.cellHighlightSpriteRenderLineY.size = s;
-                            if(dRow > 0)
-                                lvlGrid.cellHighlightSpriteRenderLineY.transform.localRotation = Quaternion.identity;
-                            else
-                                lvlGrid.cellHighlightSpriteRenderLineY.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
-                        }
-                    }
-
-                    //along x-axis?
-                    if(cellInd.col != lvlGrid.originCol) {
-                        isDotXActive = true;
-                        if(lvlGrid.cellHighlightSpriteRenderDotX) lvlGrid.cellHighlightSpriteRenderDotX.transform.position = lvlGrid.GetCellPosition(lvlGrid.originCol, cellInd.row);
-
-                        isLineXActive = true;
-                        if(lvlGrid.cellHighlightSpriteRenderLineX) {
-                            var dCol = cellInd.col - lvlGrid.originCol;
-                            lvlGrid.cellHighlightSpriteRenderLineX.transform.position = lvlGrid.GetCellPosition(lvlGrid.originCol, cellInd.row);
-                            var s = lvlGrid.cellHighlightSpriteRenderLineX.size;
-                            s.y = Mathf.Abs(dCol) * lvlGrid.cellSize.y;
-                            lvlGrid.cellHighlightSpriteRenderLineX.size = s;
-                            if(dCol > 0)
-                                lvlGrid.cellHighlightSpriteRenderLineX.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
-                            else
-                                lvlGrid.cellHighlightSpriteRenderLineX.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
-                        }
-                    }
-                }
-            }
-        }
-
-        if(lvlGrid.cellHighlightRoot) lvlGrid.cellHighlightRoot.gameObject.SetActive(isPointerActive);
-        if(lvlGrid.cellHighlightSpriteRenderDotX) lvlGrid.cellHighlightSpriteRenderDotX.gameObject.SetActive(isDotXActive);
-        if(lvlGrid.cellHighlightSpriteRenderDotY) lvlGrid.cellHighlightSpriteRenderDotY.gameObject.SetActive(isDotYActive);
-        if(lvlGrid.cellHighlightSpriteRenderLineX) lvlGrid.cellHighlightSpriteRenderLineX.gameObject.SetActive(isLineXActive);
-        if(lvlGrid.cellHighlightSpriteRenderLineY) lvlGrid.cellHighlightSpriteRenderLineY.gameObject.SetActive(isLineYActive);
+        if(active)
+            lvlGrid.CellHighlightShow();
+        else
+            lvlGrid.CellHighlightHide();
     }
 
     private PointerEventData GetLastPointerEventData() {

@@ -71,7 +71,8 @@
     "quadrant_question": "Which quadrant will Robert teleport in?",
     "coord_question": "Please verify the teleportation coordinate.",
     "reflect_question": "What is the reflection of this coordinate?",
-    "deployment": "DEPLOYMENT"
+    "deployment": "DEPLOYMENT",
+    "verify": "VERIFY"
   },
   "es": {
     "welcome": "Bienvenido!",

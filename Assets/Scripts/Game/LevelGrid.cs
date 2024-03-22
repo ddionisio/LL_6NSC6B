@@ -308,6 +308,89 @@ public class LevelGrid : MonoBehaviour {
         return GetCellPosition(cellIndex.col, cellIndex.row);
     }
 
+    public void CellHighlightShow() {
+		var cellInd = GetCellIndex(cellHighlightRoot.position);
+        CellHighlightShow(cellInd.col, cellInd.row);
+	}
+
+	public void CellHighlightShow(Vector2 pos) {
+		var cellInd = GetCellIndex(pos);
+		CellHighlightShow(cellInd.col, cellInd.row);
+	}
+
+	public void CellHighlightShow(CellIndex cellIndex) {
+        CellHighlightShow(cellIndex.col, cellIndex.row);
+    }
+
+    public void CellHighlightShow(int col, int row) {
+		bool isPointerActive = false;
+		bool isDotXActive = false;
+		bool isDotYActive = false;
+		bool isLineXActive = false;
+		bool isLineYActive = false;
+
+		if(cellHighlightRoot) {
+			if(col >= 0 && col < numCol && row >= 0 && row < numRow) {
+				isPointerActive = true;
+
+				//not in origin?
+				if(col != originCol || row != originRow) {
+					//along y-axis?
+					if(row != originRow) {
+						isDotYActive = true;
+						if(cellHighlightSpriteRenderDotY) cellHighlightSpriteRenderDotY.transform.position = GetCellPosition(col, originRow);
+
+						isLineYActive = true;
+						if(cellHighlightSpriteRenderLineY) {
+							var dRow = row - originRow;
+							cellHighlightSpriteRenderLineY.transform.position = GetCellPosition(col, originRow);
+							var s = cellHighlightSpriteRenderLineY.size;
+							s.y = Mathf.Abs(dRow) * cellSize.y;
+							cellHighlightSpriteRenderLineY.size = s;
+							if(dRow > 0)
+								cellHighlightSpriteRenderLineY.transform.localRotation = Quaternion.identity;
+							else
+								cellHighlightSpriteRenderLineY.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+						}
+					}
+
+					//along x-axis?
+					if(col != originCol) {
+						isDotXActive = true;
+						if(cellHighlightSpriteRenderDotX) cellHighlightSpriteRenderDotX.transform.position = GetCellPosition(originCol, row);
+
+						isLineXActive = true;
+						if(cellHighlightSpriteRenderLineX) {
+							var dCol = col - originCol;
+							cellHighlightSpriteRenderLineX.transform.position = GetCellPosition(originCol, row);
+							var s = cellHighlightSpriteRenderLineX.size;
+							s.y = Mathf.Abs(dCol) * cellSize.y;
+							cellHighlightSpriteRenderLineX.size = s;
+							if(dCol > 0)
+								cellHighlightSpriteRenderLineX.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+							else
+								cellHighlightSpriteRenderLineX.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+						}
+					}
+				}
+			}
+		}
+
+		if(cellHighlightRoot) cellHighlightRoot.gameObject.SetActive(isPointerActive);
+		if(cellHighlightSpriteRenderDotX) cellHighlightSpriteRenderDotX.gameObject.SetActive(isDotXActive);
+		if(cellHighlightSpriteRenderDotY) cellHighlightSpriteRenderDotY.gameObject.SetActive(isDotYActive);
+		if(cellHighlightSpriteRenderLineX) cellHighlightSpriteRenderLineX.gameObject.SetActive(isLineXActive);
+		if(cellHighlightSpriteRenderLineY) cellHighlightSpriteRenderLineY.gameObject.SetActive(isLineYActive);
+	}
+
+    public void CellHighlightHide() {
+		if(cellHighlightRoot) cellHighlightRoot.gameObject.SetActive(false);
+		if(cellHighlightSpriteRenderDotX) cellHighlightSpriteRenderDotX.gameObject.SetActive(false);
+		if(cellHighlightSpriteRenderDotY) cellHighlightSpriteRenderDotY.gameObject.SetActive(false);
+		if(cellHighlightSpriteRenderLineX) cellHighlightSpriteRenderLineX.gameObject.SetActive(false);
+		if(cellHighlightSpriteRenderLineY) cellHighlightSpriteRenderLineY.gameObject.SetActive(false);
+	}
+
     void Awake() {
         if(cellHighlightRoot) cellHighlightRoot.gameObject.SetActive(false);
         if(cellHighlightSpriteRenderDotX) cellHighlightSpriteRenderDotX.gameObject.SetActive(false);
