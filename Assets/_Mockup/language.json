@@ -72,7 +72,8 @@
     "coord_question": "Please verify the teleportation coordinate.",
     "reflect_question": "What is the reflection of this coordinate?",
     "deployment": "DEPLOYMENT",
-    "verify": "VERIFY"
+    "verify": "VERIFY",
+    "out_of_bounds": "Out of Bounds!"
   },
   "es": {
     "welcome": "Bienvenido!",
