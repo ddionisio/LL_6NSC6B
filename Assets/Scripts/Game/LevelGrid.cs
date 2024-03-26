@@ -333,6 +333,9 @@ public class LevelGrid : MonoBehaviour {
 			if(col >= 0 && col < numCol && row >= 0 && row < numRow) {
 				isPointerActive = true;
 
+                if(cellHighlightRoot)
+				    cellHighlightRoot.position = GetCellPosition(col, row);
+
 				//not in origin?
 				if(col != originCol || row != originRow) {
 					//along y-axis?

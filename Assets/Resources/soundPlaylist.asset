@@ -65,6 +65,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: edbf90f882146f24cb0bde9a1e72e2db, type: 3}
     clipVariants: []
     spatialBlend: 0
+  - name: pulse
+    clip: {fileID: 8300000, guid: cc99afd165d37c0439ea8e7c0000a250, type: 3}
+    clipVariants: []
+    spatialBlend: 0
   max: 32
   audioMixer: {fileID: 0}
   muteOnFocusLost: 1

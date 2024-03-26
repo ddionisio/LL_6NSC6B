@@ -5,16 +5,22 @@ using UnityEngine;
 using TMPro;
 
 public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
+	public const string parmIsReflection = "isReflection";
+
 	[Header("Data")]
 	public string modalCoordNumpad = "coordNumpad";
 
 	[Header("Cell Highlight Data")]
 	public float cellHighlightMoveDelay = 0.3f;
+	public float cellHighlightSuccessDelay = 0.5f;
+	public int cellReflectShowAfterFailCount = 2;
 
 	[Header("Title Display")]
 	public TMP_Text titleDisplay;
 	[M8.Localize]
 	public string titleEnterCoordTextRef; //when we just need to enter coordinates
+	[M8.Localize]
+	public string titleReflectCoordTextRef; //for reflect question
 
 	[Header("Coord Display")]
 	public Transform coordRoot;
@@ -38,8 +44,14 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	[M8.SoundPlaylist]
 	public string sfxError;
 
+	[Header("Signal Invoke")]
+	public M8.Signal signalInvokeShowReflectPoint;
+
 	[Header("Signal Listen")]
 	public SignalFloatArray signalListenCoordVerify;
+
+	private bool mIsReflect;
+	private int mErrorCount;
 
 	private Coroutine mCoordVerifyRout;
 	private int[] mCoordValues = new int[2]; //[col, row]
@@ -48,9 +60,14 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 
 	void M8.IModalActive.SetActive(bool aActive) {
 		if(aActive) {
-			//TODO: check what mode
-			if(!string.IsNullOrEmpty(titleEnterCoordTextRef))
-				LoLManager.instance.SpeakText(titleEnterCoordTextRef);
+			if(mIsReflect) {
+				if(!string.IsNullOrEmpty(titleReflectCoordTextRef))
+					LoLManager.instance.SpeakText(titleReflectCoordTextRef);
+			}
+			else {
+				if(!string.IsNullOrEmpty(titleEnterCoordTextRef))
+					LoLManager.instance.SpeakText(titleEnterCoordTextRef);
+			}
 
 			//open modal coord
 			ShowCoordNumpad();
@@ -64,17 +81,28 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	}
 
 	void M8.IModalPush.Push(M8.GenericParams parms) {
-		if(parms != null) {
+		mIsReflect = false;
 
+		if(parms != null) {
+			if(parms.ContainsKey(parmIsReflection))
+				mIsReflect = parms.GetValue<bool>(parmIsReflection);
 		}
 
 		mCoordValues[0] = 0;
 		mCoordValues[1] = 0;
 
+		mErrorCount = 0;
+
 		//TODO: determine title to use
 		if(titleDisplay) {
-			if(!string.IsNullOrEmpty(titleEnterCoordTextRef))
-				titleDisplay.text = M8.Localize.Get(titleEnterCoordTextRef);
+			if(mIsReflect) {
+				if(!string.IsNullOrEmpty(titleReflectCoordTextRef))
+					titleDisplay.text = M8.Localize.Get(titleReflectCoordTextRef);
+			}
+			else {
+				if(!string.IsNullOrEmpty(titleEnterCoordTextRef))
+					titleDisplay.text = M8.Localize.Get(titleEnterCoordTextRef);
+			}
 		}
 
 		coordRoot.gameObject.SetActive(false);
@@ -92,6 +120,9 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	}
 
 	IEnumerator DoCoordVerify(int x, int y) {
+		var cam = Camera.main;
+		Vector3 coordUIPos;
+
 		//close coord numpad
 		var modalMgr = M8.ModalManager.main;
 
@@ -114,17 +145,15 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 		var walkWait = new WaitForSeconds(cellHighlightMoveDelay);
 				
 		coordText.text = string.Format(coordStringFormat, 0, 0);
-		coordRoot.position = levelGrid.GetCellPosition(levelGrid.originCol, levelGrid.originRow);
+
+		coordUIPos = cam.WorldToScreenPoint(levelGrid.GetCellPosition(levelGrid.originCol, levelGrid.originRow));
+		coordRoot.position = coordUIPos;
 
 		levelGrid.CellHighlightShow(levelGrid.originCol, levelGrid.originRow);
 
-		if(!coordRoot.gameObject.activeSelf) {
-			coordRoot.gameObject.SetActive(true);
-			if(takeCoordEnter != -1)
-				yield return coordAnimator.PlayWait(takeCoordEnter);
-		}
-		else
-			yield return walkWait;
+		coordRoot.gameObject.SetActive(true);
+		if(takeCoordEnter != -1)
+			yield return coordAnimator.PlayWait(takeCoordEnter);
 
 		bool isOutofBounds = false;
 
@@ -146,7 +175,11 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 			curX += xDir;
 			
 			coordText.text = string.Format(coordStringFormat, curX, 0);
-			coordRoot.position = levelGrid.GetCellPosition(levelGrid.originCol + curX, levelGrid.originRow);
+
+			coordUIPos = cam.WorldToScreenPoint(levelGrid.GetCellPosition(levelGrid.originCol + curX, levelGrid.originRow));
+			coordRoot.position = coordUIPos;
+
+			levelGrid.CellHighlightShow(levelGrid.originCol + curX, levelGrid.originRow);
 
 			yield return walkWait;
 		}
@@ -169,7 +202,11 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 				curY += yDir;
 
 				coordText.text = string.Format(coordStringFormat, curX, curY);
-				coordRoot.position = levelGrid.GetCellPosition(levelGrid.originCol + curX, levelGrid.originRow + curY);
+
+				coordUIPos = cam.WorldToScreenPoint(levelGrid.GetCellPosition(levelGrid.originCol + curX, levelGrid.originRow + curY));
+				coordRoot.position = coordUIPos;
+
+				levelGrid.CellHighlightShow(levelGrid.originCol + curX, levelGrid.originRow + curY);
 
 				yield return walkWait;
 			}
@@ -178,12 +215,17 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 		levelGrid.CellHighlightHide();
 
 		if(isValid) {
+			if(signalInvokeShowReflectPoint)
+				signalInvokeShowReflectPoint.Invoke();
+
 			//match
 			if(!string.IsNullOrEmpty(sfxMatch))
 				M8.SoundPlaylist.instance.Play(sfxMatch, false);
 
 			if(takeCoordCorrect != -1)
 				yield return coordAnimator.PlayWait(takeCoordCorrect);
+
+			yield return new WaitForSeconds(cellHighlightSuccessDelay);
 
 			mCoordVerifyRout = null;
 
@@ -197,6 +239,12 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 
 			if(takeCoordError != -1)
 				yield return coordAnimator.PlayWait(takeCoordError);
+
+			mErrorCount++;
+			if(mIsReflect && mErrorCount == cellReflectShowAfterFailCount) {
+				if(signalInvokeShowReflectPoint)
+					signalInvokeShowReflectPoint.Invoke();
+			}
 
 			mCoordVerifyRout = null;
 

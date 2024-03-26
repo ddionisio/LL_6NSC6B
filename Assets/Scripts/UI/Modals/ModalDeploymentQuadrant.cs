@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ModalDeploymentQuadrant : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
+	public const string parmIsReflection = "isReflection";
+
 	[Header("Data")]
 	public AnswerWidget[] answers;
 	[M8.Localize]
@@ -60,9 +62,24 @@ public class ModalDeploymentQuadrant : M8.ModalController, M8.IModalPush, M8.IMo
 			}
 		}
 
+		var isReflection = false;
+
+		if(parms != null) {
+			if(parms.ContainsKey(parmIsReflection))
+				isReflection = parms.GetValue<bool>(parmIsReflection);
+		}
+
 		var levelGrid = PlayController.instance.levelGrid;
 		var player = PlayController.instance.player;
 		var playerCellIndex = player.cellIndex;
+
+		if(isReflection) {
+			var rX = -(playerCellIndex.col - levelGrid.originCol);
+			var rY = -(playerCellIndex.row - levelGrid.originRow);
+
+			playerCellIndex.col = levelGrid.originCol + rX;
+			playerCellIndex.row = levelGrid.originRow + rY;
+		}
 
 		var quadType = levelGrid.GetQuadrant(playerCellIndex);
 		switch(quadType) {

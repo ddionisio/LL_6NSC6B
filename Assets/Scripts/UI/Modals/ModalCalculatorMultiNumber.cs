@@ -20,20 +20,23 @@ public class ModalCalculatorMultiNumber : MonoBehaviour, M8.IModalPush, M8.IModa
 		public float currentValue { 
 			get { return mCurVal; }
 			set {
-				if(mCurVal != value) {
-					mCurVal = value;
-										
-					if(numericLabel) {
-						var iVal = Mathf.FloorToInt(mCurVal);
-						numericLabel.text = iVal.ToString();
-					}
-				}
+				if(mCurVal != value)
+					ApplyValue(value);
 			}
 		}
 
 		public Color inactiveColor { get { return colorGroup ? colorGroup.applyColor : Color.white; } set { if(colorGroup) colorGroup.applyColor = value; } }
 
 		private float mCurVal;
+
+		public void ApplyValue(float val) {
+			mCurVal = val;
+
+			if(numericLabel) {
+				var iVal = Mathf.FloorToInt(mCurVal);
+				numericLabel.text = iVal.ToString();
+			}
+		}
 
 		public void SetActive(bool isActive) {
 			if(isActive) {
@@ -81,11 +84,15 @@ public class ModalCalculatorMultiNumber : MonoBehaviour, M8.IModalPush, M8.IModa
 	public void Previous() {
 		if(currentIndex <= 0)
 			currentIndex = numericDisplays.Length - 1;
+		else
+			currentIndex--;
 	}
 
 	public void Next() {
 		if(currentIndex >= numericDisplays.Length - 1)
 			currentIndex = 0;
+		else
+			currentIndex++;
 	}
 
 	void M8.IModalPop.Pop() {
@@ -119,19 +126,19 @@ public class ModalCalculatorMultiNumber : MonoBehaviour, M8.IModalPush, M8.IModa
 					var iVals = (int[])obj;
 					var count = Mathf.Min(iVals.Length, numericDisplays.Length);
 					for(int i = 0; i < count; i++)
-						numericDisplays[i].currentValue = mValues[i] = iVals[i];
+						numericDisplays[i].ApplyValue(mValues[i] = iVals[i]);
 				}
 				else if(obj is float[]) {
 					var fVals = (float[])obj;
 					var count = Mathf.Min(fVals.Length, numericDisplays.Length);
 					for(int i = 0; i < count; i++)
-						numericDisplays[i].currentValue = mValues[i] = fVals[i];
+						numericDisplays[i].ApplyValue(mValues[i] = fVals[i]);
 				}
 				else if(obj is double[]) {
 					var dVals = (double[])obj;
 					var count = Mathf.Min(dVals.Length, numericDisplays.Length);
 					for(int i = 0; i < count; i++)
-						numericDisplays[i].currentValue = mValues[i] = (float)dVals[i];
+						numericDisplays[i].ApplyValue(mValues[i] = (float)dVals[i]);
 				}
 			}
 
