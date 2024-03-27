@@ -5868,8 +5868,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 62.109375
-        y: 113.02344
+        x: 58.460938
+        y: 506.78906
         width: 100
         height: 32
       isBreakpoint: 0
@@ -5952,8 +5952,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 244.10938
-        y: 142.02344
+        x: 240.46094
+        y: 535.78906
         width: 130
         height: 32
       isBreakpoint: 0
@@ -5964,7 +5964,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Show Deploy Banner
+        toState: Is Level Begin
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -6025,8 +6025,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 764.53906
-        y: 834.89844
+        x: 1036.5391
+        y: 690.89844
         width: 100
         height: 32
       isBreakpoint: 0
@@ -6089,8 +6089,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 763.75
-        y: 885.84375
+        x: 1035.75
+        y: 741.84375
         width: 100
         height: 32
       isBreakpoint: 0
@@ -6170,8 +6170,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 760.4453
-        y: 939.3203
+        x: 1032.4453
+        y: 795.3203
         width: 100
         height: 32
       isBreakpoint: 0
@@ -6258,8 +6258,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 950.0703
-        y: 951.2578
+        x: 1222.0703
+        y: 807.2578
         width: 146
         height: 16
       isBreakpoint: 0
@@ -6340,8 +6340,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 246.10938
-        y: 92.02344
+        x: 242.46094
+        y: 485.78906
         width: 119
         height: 32
       isBreakpoint: 0
@@ -6403,8 +6403,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 418.10938
-        y: 209.02344
+        x: 690.1094
+        y: 65.02344
         width: 150
         height: 32
       isBreakpoint: 0
@@ -6622,8 +6622,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 465.15625
-        y: 444.90625
+        x: 737.15625
+        y: 300.90625
         width: 139
         height: 32
       isBreakpoint: 0
@@ -6783,8 +6783,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 458.6328
-        y: 614.78906
+        x: 730.6328
+        y: 470.78906
         width: 134
         height: 32
       isBreakpoint: 0
@@ -6795,7 +6795,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Show Gameplay
+        toState: Progress
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -6871,8 +6871,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 771.1094
-        y: 779.8281
+        x: 1043.1094
+        y: 635.8281
         width: 124
         height: 32
       isBreakpoint: 0
@@ -6958,8 +6958,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 463.57812
-        y: 502.17188
+        x: 735.5781
+        y: 358.17188
         width: 125
         height: 32
       isBreakpoint: 0
@@ -7049,8 +7049,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 463.2422
-        y: 560.34375
+        x: 735.2422
+        y: 416.34375
         width: 105
         height: 32
       isBreakpoint: 0
@@ -7140,8 +7140,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 636.1094
-        y: 236.02344
+        x: 908.1094
+        y: 92.02344
         width: 100
         height: 48
       isBreakpoint: 0
@@ -7197,7 +7197,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 1
           networkSync: 0
-          value: 1
+          value: 0
         fsmVector2Params: []
         fsmVector3Params: []
         fsmColorParams: []
@@ -7224,8 +7224,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 791.625
-        y: 446.92188
+        x: 1063.625
+        y: 302.92188
         width: 140
         height: 32
       isBreakpoint: 0
@@ -7385,8 +7385,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 788.5156
-        y: 502.34375
+        x: 1060.5156
+        y: 358.34375
         width: 170
         height: 32
       isBreakpoint: 0
@@ -7508,8 +7508,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 794.66406
-        y: 389.6172
+        x: 1066.6641
+        y: 245.61719
         width: 154
         height: 32
       isBreakpoint: 0
@@ -7621,8 +7621,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 783.6094
-        y: 553.02344
+        x: 1055.6094
+        y: 409.02344
         width: 111
         height: 32
       isBreakpoint: 0
@@ -7744,8 +7744,8 @@ MonoBehaviour:
       colorIndex: 0
       position:
         serializedVersion: 2
-        x: 781.6094
-        y: 613.02344
+        x: 1053.6094
+        y: 469.02344
         width: 181
         height: 32
       isBreakpoint: 0
@@ -7756,7 +7756,7 @@ MonoBehaviour:
           name: FINISHED
           isSystemEvent: 1
           isGlobal: 0
-        toState: Show Gameplay
+        toState: Progress
         linkStyle: 0
         linkConstraint: 0
         linkTarget: 0
@@ -7854,6 +7854,159 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 00000000000000000100000000000000010000000100000002000000030000000200000003000000
         paramByteDataSize: 00000000000000000000000001000000010000000000000000000000000000000100000001000000
+    - name: Is Level Begin
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 450.54688
+        y: 512.14844
+        width: 110
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: TRUE
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Show Deploy Banner
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FALSE
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Show Gameplay
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.Game.LevelCheckProgressBegin
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: b1fdae04
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams:
+        - useVariable: 1
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: 0
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams:
+        - TRUE
+        - FALSE
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 11000000170000001700000011000000
+        paramName:
+        - storeResult
+        - isTrue
+        - isFalse
+        - everyFrame
+        paramDataPos: 00000000000000000100000001000000
+        paramByteDataSize: 00000000000000000000000000000000
+    - name: Progress
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 1044.2969
+        y: 581.7969
+        width: 100
+        height: 32
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FINISHED
+          isSystemEvent: 1
+          isGlobal: 0
+        toState: Show Gameplay
+        linkStyle: 0
+        linkConstraint: 0
+        linkTarget: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.LoL.LoLIncrementProgress
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 00000000
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        fsmArrayParams: []
+        fsmEnumParams: []
+        fsmFloatParams: []
+        fsmIntParams: []
+        fsmBoolParams: []
+        fsmVector2Params: []
+        fsmVector3Params: []
+        fsmColorParams: []
+        fsmRectParams: []
+        fsmQuaternionParams: []
+        stringParams: []
+        byteData: 
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 
+        paramName: []
+        paramDataPos: 
+        paramByteDataSize: 
     events:
     - name: FINISHED
       isSystemEvent: 1

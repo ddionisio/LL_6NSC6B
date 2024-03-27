@@ -12,7 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a37ae1e8ae75046ade86a272884b73, type: 3}
   m_Name: gameData
   m_EditorClassIdentifier: 
-  levelSceneNamePrefix: level
+  levels:
+  - level:
+      name: level0
+      path: Assets/Scenes/level0.unity
+    progressCount: 1
+  - level:
+      name: level1
+      path: Assets/Scenes/level1.unity
+    progressCount: 1
+  - level:
+      name: level2_new
+      path: Assets/Scenes/level2_new.unity
+    progressCount: 2
+  - level:
+      name: level3_new
+      path: Assets/Scenes/level3_new.unity
+    progressCount: 2
+  - level:
+      name: level5_new
+      path: Assets/Scenes/level5_new.unity
+    progressCount: 2
+  - level:
+      name: level6
+      path: Assets/Scenes/level6.unity
+    progressCount: 1
+  - level:
+      name: level7_new
+      path: Assets/Scenes/level7_new.unity
+    progressCount: 2
+  - level:
+      name: level9_new
+      path: Assets/Scenes/level9_new.unity
+    progressCount: 2
   levelEnd:
     name: end
     path: Assets/Scenes/end.unity

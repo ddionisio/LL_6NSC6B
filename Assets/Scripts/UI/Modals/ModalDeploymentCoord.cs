@@ -28,6 +28,7 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	public string coordStringFormat = "({0},  {1})";
 	[M8.Localize]
 	public string coordOutofBoundsTextRef;
+	public float coordHideDelay = 3f;
 
 	[Header("Coord Animation")]
 	public M8.Animator.Animate coordAnimator;
@@ -56,6 +57,8 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	private Coroutine mCoordVerifyRout;
 	private int[] mCoordValues = new int[2]; //[col, row]
 
+	private Coroutine mCoordHideRout;
+
 	private M8.GenericParams mCoordNumpadParms = new M8.GenericParams();
 
 	void M8.IModalActive.SetActive(bool aActive) {
@@ -76,6 +79,11 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 
 	void M8.IModalPop.Pop() {
 		StopCoordVerify();
+
+		if(mCoordHideRout != null) {
+			StopCoroutine(mCoordHideRout);
+			mCoordHideRout = null;
+		}
 
 		if(signalListenCoordVerify) signalListenCoordVerify.callback -= OnSignalCoordVerify;
 	}
@@ -150,6 +158,11 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 		coordRoot.position = coordUIPos;
 
 		levelGrid.CellHighlightShow(levelGrid.originCol, levelGrid.originRow);
+
+		if(mCoordHideRout != null) {
+			StopCoroutine(mCoordHideRout);
+			mCoordHideRout = null;
+		}
 
 		coordRoot.gameObject.SetActive(true);
 		if(takeCoordEnter != -1)
@@ -248,9 +261,19 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 
 			mCoordVerifyRout = null;
 
+			mCoordHideRout = StartCoroutine(DoCoordHideDelay());
+
 			//re-open coord numpad
 			ShowCoordNumpad();
 		}
+	}
+
+	IEnumerator DoCoordHideDelay() {
+		yield return new WaitForSeconds(coordHideDelay);
+
+		coordRoot.gameObject.SetActive(false);
+
+		mCoordHideRout = null;
 	}
 
 	private void ShowCoordNumpad() {
