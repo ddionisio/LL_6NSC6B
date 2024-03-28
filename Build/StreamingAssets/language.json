@@ -69,8 +69,17 @@
     "level_complete": "LEVEL COMPLETE",
     "quadrant_title": "QUADRANT",
     "quadrant_question": "Which quadrant will Robert teleport in?",
-    "coord_question": "What coordinate will Robert teleport in?",
-    "reflect_question": "What is the reflection of this coordinate?"
+    "coord_question": "Please verify the teleportation coordinate.",
+    "reflect_question": "What is the reflection of this coordinate?",
+    "deployment": "DEPLOYMENT",
+    "verify": "VERIFY",
+    "out_of_bounds": "Out of Bounds!",
+    "deploy_quad_0": "Before we begin, we must verify Robert's coordinates.",
+    "deploy_quad_1": "First, you must choose the correct quadrant.",
+    "deploy_coord_0": "Excellent! Now we need to input the actual coordinate numbers.",
+    "deploy_coord_1": "Use the numpad to input the X and Y coordinates.",
+    "deploy_coord_2": "You can switch which coordinates to input by pressing the left or right arrow.",
+    "deploy_coord_3": "Once you are satisfied with the coordinate numbers, press the VERIFY button to proceed."
   },
   "es": {
     "welcome": "Bienvenido!",
@@ -138,6 +147,15 @@
     "quadrant_title": "CUADRANTE",
     "quadrant_question": "¿En qué cuadrante se teletransportará Robert?",
     "coord_question": "",
-    "reflect_question": ""
+    "reflect_question": "",
+    "deployment": "",
+    "verify": "",
+    "out_of_bounds": "",
+    "deploy_quad_0": "",
+    "deploy_quad_1": "",
+    "deploy_coord_0": "",
+    "deploy_coord_1": "",
+    "deploy_coord_2": "",
+    "deploy_coord_3": ""
   }
 }

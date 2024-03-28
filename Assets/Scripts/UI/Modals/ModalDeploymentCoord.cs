@@ -6,6 +6,7 @@ using TMPro;
 
 public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModalPop, M8.IModalActive {
 	public const string parmIsReflection = "isReflection";
+	public const string parmIsTitleSilent = "isTitleSilent";
 
 	[Header("Data")]
 	public string modalCoordNumpad = "coordNumpad";
@@ -51,6 +52,7 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	[Header("Signal Listen")]
 	public SignalFloatArray signalListenCoordVerify;
 
+	private bool mIsTitleSilent;
 	private bool mIsReflect;
 	private int mErrorCount;
 
@@ -63,13 +65,15 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 
 	void M8.IModalActive.SetActive(bool aActive) {
 		if(aActive) {
-			if(mIsReflect) {
-				if(!string.IsNullOrEmpty(titleReflectCoordTextRef))
-					LoLManager.instance.SpeakText(titleReflectCoordTextRef);
-			}
-			else {
-				if(!string.IsNullOrEmpty(titleEnterCoordTextRef))
-					LoLManager.instance.SpeakText(titleEnterCoordTextRef);
+			if(!mIsTitleSilent) {
+				if(mIsReflect) {
+					if(!string.IsNullOrEmpty(titleReflectCoordTextRef))
+						LoLManager.instance.SpeakText(titleReflectCoordTextRef);
+				}
+				else {
+					if(!string.IsNullOrEmpty(titleEnterCoordTextRef))
+						LoLManager.instance.SpeakText(titleEnterCoordTextRef);
+				}
 			}
 
 			//open modal coord
@@ -89,9 +93,13 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 	}
 
 	void M8.IModalPush.Push(M8.GenericParams parms) {
+		mIsTitleSilent = false;
 		mIsReflect = false;
 
 		if(parms != null) {
+			if(parms.ContainsKey(parmIsTitleSilent))
+				mIsTitleSilent = parms.GetValue<bool>(parmIsTitleSilent);
+
 			if(parms.ContainsKey(parmIsReflection))
 				mIsReflect = parms.GetValue<bool>(parmIsReflection);
 		}
@@ -228,7 +236,7 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 		levelGrid.CellHighlightHide();
 
 		if(isValid) {
-			if(signalInvokeShowReflectPoint)
+			if(mIsReflect && signalInvokeShowReflectPoint)
 				signalInvokeShowReflectPoint.Invoke();
 
 			//match
@@ -254,10 +262,8 @@ public class ModalDeploymentCoord : M8.ModalController, M8.IModalPush, M8.IModal
 				yield return coordAnimator.PlayWait(takeCoordError);
 
 			mErrorCount++;
-			if(mIsReflect && mErrorCount == cellReflectShowAfterFailCount) {
-				if(signalInvokeShowReflectPoint)
-					signalInvokeShowReflectPoint.Invoke();
-			}
+			if(mIsReflect && mErrorCount == cellReflectShowAfterFailCount && signalInvokeShowReflectPoint)
+				signalInvokeShowReflectPoint.Invoke();
 
 			mCoordVerifyRout = null;
 
