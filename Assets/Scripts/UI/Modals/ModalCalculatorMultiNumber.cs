@@ -68,6 +68,8 @@ public class ModalCalculatorMultiNumber : MonoBehaviour, M8.IModalPush, M8.IModa
 				mCurIndex = val;
 
 				numericDisplays[mCurIndex].SetActive(true);
+
+				mModalCalculator.SetCurrentValue(numericDisplays[mCurIndex].currentValue);
 			}
 		}
 	}

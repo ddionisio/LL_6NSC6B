@@ -129,6 +129,9 @@ public class ModalCalculator : M8.ModalController, M8.IModalPush, M8.IModalPop, 
         if(mMaxDigits == 1 || (count == 1 && mCurInput[0] == '0')) {
 			//special case: replace number if count limit is 1, or 0 if it's the only character
 			mCurInput.Clear();
+
+            if(mCurValue < 0)
+                mCurInput.Append('-');
         }
         else if(count > 0) {
             if(mCurInput[0] == '-')
